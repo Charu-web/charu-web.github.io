@@ -24,29 +24,29 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df]"
+      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df]"
     >
-      {/* Header & Minimal Category Filters */}
+      {/* Editorial Header & Filter Controls */}
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-6 pb-12 border-b border-[#ece8df] text-left">
-        <div>
-          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
-            PROJECTS / 01—03
+        <div className="space-y-2">
+          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
+            02 / SELECTED WORK
           </span>
-          <h2 className="text-3xl sm:text-5xl font-editorial font-light text-zinc-900 tracking-tight">
-            SELECTED WORK
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-light text-zinc-900 tracking-tight">
+            Featured Projects
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-500 font-sans mt-2">
-            Selected full-stack web applications, AI-integrated digital products, and production systems.
+          <p className="text-xs sm:text-sm text-zinc-500 font-sans">
+            Full-stack web architectures, real-time client systems, and AI-integrated products.
           </p>
         </div>
 
-        {/* Minimal Filters: All, Web, App */}
-        <div className="flex items-center gap-6 text-xs font-sans tracking-wide">
+        {/* Minimal Editorial Filters: All, Web, App */}
+        <div className="flex items-center gap-6 text-xs font-mono tracking-widest">
           {(['All', 'Web', 'App'] as const).map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`transition-colors cursor-pointer py-1 ${
+              className={`transition-colors cursor-pointer py-1 uppercase ${
                 activeFilter === filter
                   ? 'text-[#2b4b7c] font-semibold border-b border-[#2b4b7c]'
                   : 'text-zinc-400 hover:text-zinc-800'
@@ -58,15 +58,14 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
         </div>
       </div>
 
-      {/* 3D Interactive Project Showcase Grid */}
-      <div className="pt-16 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 text-left">
+      {/* Vertical Editorial Gallery (Full-Width Individual Project Views) */}
+      <div className="divide-y divide-[#ece8df]">
         {filteredProjects.map((project, index) => (
           <ProjectCard3D
             key={project.id}
             project={project}
             index={index}
             onSelectCaseStudy={onSelectCaseStudy}
-            isFeatured={index === 0 && activeFilter === 'All'}
           />
         ))}
       </div>

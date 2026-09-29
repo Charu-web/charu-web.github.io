@@ -5,13 +5,12 @@ import 'lenis/dist/lenis.css';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { Statement } from './components/Statement';
 import { Projects } from './components/Projects';
-import { Lab } from './components/Lab';
 import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
+import { Lab } from './components/Lab';
 import { About } from './components/About';
-import { Services } from './components/Services';
-import { Resume } from './components/Resume';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -25,7 +24,7 @@ export function App() {
   const [toastVisible, setToastVisible] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  // Scroll Progress Tracking
+  // Top Minimal Scroll Progress Bar
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
@@ -78,7 +77,7 @@ export function App() {
   return (
     <div className="min-h-screen bg-[#faf9f6] text-[#222222] flex flex-col selection:bg-[#2b4b7c] selection:text-white relative">
       
-      {/* Minimal Top Scroll Progress Bar */}
+      {/* 2px Minimal Top Scroll Progress Bar */}
       <motion.div
         style={{ scaleX }}
         className="fixed top-0 left-0 right-0 h-[2px] bg-[#2b4b7c] origin-left z-50 pointer-events-none"
@@ -87,49 +86,46 @@ export function App() {
       {/* Global Minimal 3D Interactive Cursor */}
       <CustomCursor />
 
-      {/* Minimal Artistic Navigation */}
+      {/* Minimal Design-System Navbar */}
       <Navbar />
 
-      {/* Main Content Sections */}
+      {/* Editorial Visual Journey: Hero -> Statement -> Projects -> Experience -> Skills -> Lab -> About -> Contact */}
       <main className="flex-grow">
-        {/* 1. 3D Editorial Hero with Real-Time Bust Scene & Text Interlacing */}
+        {/* 1. Hero with Asymmetric 3D Sculpture & Interlaced Typography */}
         <Hero
           onCopyEmail={handleCopyEmail}
           copiedEmail={copiedEmail}
         />
 
-        {/* 2. Projects Section with 3D Card Showcase & Filters */}
+        {/* 2. Introduction Statement & Structured Metadata */}
+        <Statement />
+
+        {/* 3. Vertical Editorial Projects Gallery */}
         <Projects onSelectCaseStudy={(project) => setSelectedCaseStudy(project)} />
 
-        {/* 3. Lab / Creative 3D & Canvas Experiments */}
-        <Lab />
-
-        {/* 4. Experience Timeline with 3D Depth Elevation */}
+        {/* 4. Horizontal Expandable Experience List */}
         <Experience />
 
-        {/* 5. Skills with Interactive 3D Typography */}
+        {/* 5. Pure Technical Index */}
         <Skills />
 
-        {/* 6. About with 3D Geometric Sculpture */}
+        {/* 6. Horizontal Experimental Strip */}
+        <Lab />
+
+        {/* 7. Minimal Philosophy & Geometric Sculpture */}
         <About onContactClick={scrollToContact} />
 
-        {/* 7. What I Build / Services Grid */}
-        <Services />
-
-        {/* 8. Resume Qualifications */}
-        <Resume />
-
-        {/* 9. Minimal Contact with Magnetic CTA */}
+        {/* 8. Massive Typographic Contact Statement */}
         <Contact
           onCopyEmail={handleCopyEmail}
           copiedEmail={copiedEmail}
         />
       </main>
 
-      {/* Minimal Footer */}
+      {/* Minimal Editorial Footer */}
       <Footer onCopyEmail={handleCopyEmail} />
 
-      {/* Full-Screen Dedicated Case Study View */}
+      {/* Full-Screen Case Study Experience */}
       <CaseStudyModal
         project={selectedCaseStudy}
         onClose={() => setSelectedCaseStudy(null)}
@@ -137,7 +133,7 @@ export function App() {
         allProjects={ALL_PROJECTS}
       />
 
-      {/* Interactive Toast Notification */}
+      {/* Toast Notification */}
       <Toast
         message={toastMessage}
         visible={toastVisible}

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight, MapPin, Copy } from 'lucide-react';
+import { ArrowUpRight, Copy } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface ContactProps {
@@ -34,32 +34,39 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
     btnY.set(0);
   };
 
+  const editorialEase = [0.16, 1, 0.3, 1] as const;
+
   return (
     <motion.section 
       id="contact" 
       initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="py-24 md:py-32 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left"
+      transition={{ duration: 0.8, ease: editorialEase }}
+      className="py-24 sm:py-40 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left select-none"
     >
-      <div className="max-w-3xl space-y-8">
+      <div className="space-y-16">
         
-        <div className="space-y-3">
+        {/* Massive Typographic Headline */}
+        <div className="space-y-4">
           <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
-            08 / CONTACT
+            07 / GET IN TOUCH
           </span>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-editorial font-light text-zinc-900 tracking-tight leading-[1.05]">
-            Let's build something <br />
-            <span className="italic text-[#2b4b7c]">worth remembering.</span>
+
+          <h2 className="text-4xl sm:text-7xl lg:text-8xl font-editorial font-light text-zinc-900 tracking-tight leading-[0.98]">
+            Let's <br />
+            build <br />
+            <span className="italic text-[#2b4b7c]">something</span> <br />
+            memorable.
           </h2>
-          <p className="text-sm sm:text-base text-zinc-500 font-sans max-w-xl pt-2">
-            Open for full-time software engineering roles, AI product development, and selected contract builds. Let's discuss your next project.
-          </p>
         </div>
 
-        <div className="space-y-6 pt-4">
+        {/* Direct Email & Links */}
+        <div className="space-y-8 pt-6 border-t border-[#ece8df]">
           <div>
+            <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">
+              DIRECT EMAIL
+            </span>
             <button
               onClick={onCopyEmail}
               data-cursor="MAIL"
@@ -68,7 +75,7 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
               <span>{PERSONAL_INFO.email}</span>
               {copiedEmail ? (
                 <span className="font-mono text-xs text-emerald-600 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                  Copied to clipboard!
+                  Copied!
                 </span>
               ) : (
                 <Copy className="w-5 h-5 text-zinc-400 group-hover:text-[#2b4b7c] transition-colors" />
@@ -76,48 +83,44 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
             </button>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-zinc-500 uppercase tracking-wider">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-              <span>{PERSONAL_INFO.location}</span>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <a
-                href={PERSONAL_INFO.github}
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1.5"
-              >
-                <span>GITHUB ↗</span>
-              </a>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-4 font-mono text-xs text-zinc-600">
+            <div className="flex items-center gap-6">
               <a
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1.5"
+                data-cursor="OPEN ↗"
+                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1"
               >
-                <span>LINKEDIN ↗</span>
+                <span>LINKEDIN</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor="OPEN ↗"
+                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1"
+              >
+                <span>GITHUB</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
-          </div>
 
-          {/* Magnetic CTA Button */}
-          <div className="pt-6">
+            {/* Magnetic CTA Button */}
             <motion.a
               ref={buttonRef}
-              href={`mailto:${PERSONAL_INFO.email}?subject=Project%20Inquiry%20-%20Charu%20Sonker`}
+              href={`mailto:${PERSONAL_INFO.email}`}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               style={{
-                x: smoothBtnX,
-                y: smoothBtnY,
+                x: shouldReduceMotion ? 0 : smoothBtnX,
+                y: shouldReduceMotion ? 0 : smoothBtnY,
               }}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#2b4b7c] text-white font-mono text-xs uppercase tracking-widest font-semibold hover:bg-[#1e385f] transition-colors shadow-sm cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#2b4b7c] text-white px-6 py-3 rounded-full text-xs font-mono font-medium tracking-wider hover:bg-[#1d3557] transition-colors shadow-sm cursor-pointer"
             >
-              <span>START A PROJECT ↗</span>
+              <span>START A CONVERSATION</span>
               <ArrowUpRight className="w-4 h-4" />
             </motion.a>
           </div>

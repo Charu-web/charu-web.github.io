@@ -11,9 +11,9 @@ const InteractiveSkillItem: React.FC<InteractiveSkillItemProps> = ({ name }) => 
 
   return (
     <motion.span
-      whileHover={shouldReduceMotion ? {} : { y: -2, scale: 1.04 }}
-      transition={{ type: 'spring', damping: 15, stiffness: 300 }}
-      className="inline-block px-3 py-1 rounded-md bg-white border border-[#ece8df] hover:border-[#2b4b7c] hover:text-[#2b4b7c] hover:shadow-xs transition-all duration-200 cursor-default font-mono text-xs"
+      whileHover={shouldReduceMotion ? {} : { y: -2, x: 2, color: '#2b4b7c' }}
+      transition={{ type: 'spring', damping: 18, stiffness: 300 }}
+      className="inline-block cursor-default text-sm sm:text-base text-zinc-700 hover:text-[#2b4b7c] transition-colors py-1 font-mono tracking-tight"
     >
       {name}
     </motion.span>
@@ -22,6 +22,7 @@ const InteractiveSkillItem: React.FC<InteractiveSkillItemProps> = ({ name }) => 
 
 export const Skills: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
+  const editorialEase = [0.16, 1, 0.3, 1] as const;
 
   return (
     <motion.section 
@@ -29,35 +30,43 @@ export const Skills: React.FC = () => {
       initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="py-20 md:py-28 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left"
+      transition={{ duration: 0.8, ease: editorialEase }}
+      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left select-none"
     >
-      <div className="pb-10 border-b border-[#ece8df]">
-        <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
-          04 / TECHNICAL TOOLING
+      {/* Section Eyebrow & Title */}
+      <div className="pb-12 border-b border-[#ece8df] space-y-2">
+        <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
+          04 / TECHNICAL INDEX
         </span>
-        <h2 className="text-3xl sm:text-4xl font-editorial font-light text-zinc-900 tracking-tight">
-          Skills &amp; Tooling
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-light text-zinc-900 tracking-tight">
+          Tooling &amp; Architecture
         </h2>
-        <p className="text-xs sm:text-sm text-zinc-500 font-sans mt-1">
-          Interactive technology directory. Hover over skills for micro-parallax depth.
+        <p className="text-xs sm:text-sm text-zinc-500 font-sans">
+          Index of full-stack frameworks, real-time protocols, databases, and AI systems.
         </p>
       </div>
 
-      <div className="pt-8 divide-y divide-[#ece8df]">
-        {SKILL_CATEGORIES.map((cat) => (
+      {/* Editorial Index Grid */}
+      <div className="pt-10 divide-y divide-[#ece8df]">
+        {SKILL_CATEGORIES.map((category) => (
           <div 
-            key={cat.id} 
-            className="py-6 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-8 items-baseline group hover:bg-white/60 px-4 -mx-4 rounded-xl transition-colors duration-200"
+            key={category.id} 
+            className="py-8 sm:py-10 grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-8 items-baseline group"
           >
-            <div className="sm:col-span-4">
-              <h3 className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-zinc-900 group-hover:text-[#2b4b7c] group-hover:translate-x-2 transition-all duration-300">
-                {cat.title}
+            {/* Category Number & Title */}
+            <div className="sm:col-span-4 flex items-baseline gap-3">
+              <span className="font-mono text-xs text-zinc-400">
+                {category.number}
+              </span>
+              <h3 className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-zinc-900 group-hover:text-[#2b4b7c] transition-colors">
+                / {category.title}
               </h3>
             </div>
+
+            {/* Typography List with Displacement on Hover */}
             <div className="sm:col-span-8">
-              <div className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans flex flex-wrap gap-x-2.5 gap-y-2">
-                {cat.skills.map((skill) => (
+              <div className="flex flex-wrap gap-x-6 gap-y-2.5">
+                {category.skills.map((skill) => (
                   <InteractiveSkillItem key={skill} name={skill} />
                 ))}
               </div>
