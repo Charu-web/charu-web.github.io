@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useSpring, useTransform, useMotionValue, useReducedMotion } from 'framer-motion';
+import heroPhoto from '../assets/hero.png';
 
 interface HeroPhotoMotionProps {
   mouseX: number;
@@ -83,7 +84,7 @@ export const HeroPhotoMotion: React.FC<HeroPhotoMotionProps> = ({ mouseX, mouseY
             {/* Direct Personal Photograph */}
             {!imageError ? (
               <img
-                src="/images/charu-hero.jpg"
+                src={heroPhoto}
                 alt="Charu Sonker"
                 onLoad={() => setImageLoaded(true)}
                 onError={() => setImageError(true)}
