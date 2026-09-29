@@ -30,13 +30,13 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-6 pb-12 border-b border-[#ece8df] text-left">
         <div>
           <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
-            01 / SELECTED WORK
+            PROJECTS / 01—03
           </span>
-          <h2 className="text-3xl sm:text-4xl font-editorial font-light text-zinc-900 tracking-tight">
-            Featured Projects
+          <h2 className="text-3xl sm:text-5xl font-editorial font-light text-zinc-900 tracking-tight">
+            SELECTED WORK
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-500 font-sans mt-1">
-            Production web platforms, real-time architectures, and interactive digital products.
+          <p className="text-xs sm:text-sm text-zinc-500 font-sans mt-2">
+            Selected full-stack web applications, AI-integrated digital products, and production systems.
           </p>
         </div>
 
@@ -59,11 +59,12 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
       </div>
 
       {/* 3D Interactive Project Showcase Grid */}
-      <div className="pt-12 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 text-left">
+      <div className="pt-16 grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 text-left">
         {filteredProjects.map((project, index) => (
           <ProjectCard3D
             key={project.id}
             project={project}
+            index={index}
             onSelectCaseStudy={onSelectCaseStudy}
             isFeatured={index === 0 && activeFilter === 'All'}
           />

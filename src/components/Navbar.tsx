@@ -17,14 +17,11 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Work', href: '#projects' },
-    { name: 'Lab', href: '#lab' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'About', href: '#about' },
-    { name: 'Resume', href: '#resume' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'WORK', href: '#projects' },
+    { name: 'ABOUT', href: '#about' },
+    { name: 'LAB', href: '#lab' },
+    { name: 'RESUME', href: '#resume' },
+    { name: 'CONTACT', href: '#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -40,23 +37,26 @@ export const Navbar: React.FC = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
-          ? 'py-3.5 bg-[#faf9f6]/92 backdrop-blur-md border-b border-[#ece8df]' 
+          ? 'py-3 bg-[#faf9f6]/95 backdrop-blur-md border-b border-[#ece8df] shadow-2xs' 
           : 'py-5 bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
         
-        {/* Top Left: Handcrafted greeting with 0.2s entrance */}
+        {/* Top Left: CHARU SONKER Minimal Brand */}
         <motion.a 
           href="#home" 
           onClick={(e) => handleNavClick(e, '#home')}
           initial={shouldReduceMotion ? false : { opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="group flex items-center gap-1.5 focus:outline-none"
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="group flex items-baseline gap-2 focus:outline-none"
         >
-          <span className="font-script text-xl sm:text-2xl text-[#2b4b7c] hover:text-[#1d3557] transition-colors font-medium">
-            Hey! This is Charu :)
+          <span className="font-mono text-xs sm:text-sm font-semibold tracking-widest uppercase text-zinc-900 group-hover:text-[#2b4b7c] transition-colors">
+            CHARU SONKER
+          </span>
+          <span className="font-script text-xs sm:text-sm text-zinc-400 group-hover:text-[#2b4b7c] transition-colors hidden sm:inline">
+            portfolio
           </span>
         </motion.a>
 

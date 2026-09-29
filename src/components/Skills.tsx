@@ -11,9 +11,9 @@ const InteractiveSkillItem: React.FC<InteractiveSkillItemProps> = ({ name }) => 
 
   return (
     <motion.span
-      whileHover={shouldReduceMotion ? {} : { y: -3, scale: 1.05, color: '#2b4b7c' }}
+      whileHover={shouldReduceMotion ? {} : { y: -2, scale: 1.04 }}
       transition={{ type: 'spring', damping: 15, stiffness: 300 }}
-      className="inline-block cursor-default transition-colors duration-200"
+      className="inline-block px-3 py-1 rounded-md bg-white border border-[#ece8df] hover:border-[#2b4b7c] hover:text-[#2b4b7c] hover:shadow-xs transition-all duration-200 cursor-default font-mono text-xs"
     >
       {name}
     </motion.span>
@@ -46,21 +46,19 @@ export const Skills: React.FC = () => {
 
       <div className="pt-8 divide-y divide-[#ece8df]">
         {SKILL_CATEGORIES.map((cat) => (
-          <div key={cat.id} className="py-6 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-8 items-baseline">
+          <div 
+            key={cat.id} 
+            className="py-6 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-8 items-baseline group hover:bg-white/60 px-4 -mx-4 rounded-xl transition-colors duration-200"
+          >
             <div className="sm:col-span-4">
-              <h3 className="font-editorial text-lg text-zinc-900 font-normal">
+              <h3 className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-zinc-900 group-hover:text-[#2b4b7c] group-hover:translate-x-2 transition-all duration-300">
                 {cat.title}
               </h3>
             </div>
             <div className="sm:col-span-8">
-              <div className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans flex flex-wrap gap-x-2 gap-y-1">
-                {cat.skills.map((skill, index) => (
-                  <React.Fragment key={skill}>
-                    <InteractiveSkillItem name={skill} />
-                    {index < cat.skills.length - 1 && (
-                      <span className="text-zinc-400 select-none">,</span>
-                    )}
-                  </React.Fragment>
+              <div className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans flex flex-wrap gap-x-2.5 gap-y-2">
+                {cat.skills.map((skill) => (
+                  <InteractiveSkillItem key={skill} name={skill} />
                 ))}
               </div>
             </div>

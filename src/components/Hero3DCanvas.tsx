@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import heroStatue from '../assets/hero-statue.png';
 
 interface Hero3DCanvasProps {
   mouseX: number;
   mouseY: number;
+  isHovered?: boolean;
 }
 
 const checkWebglSupported = () => {
@@ -17,9 +17,26 @@ const checkWebglSupported = () => {
   }
 };
 
-export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY }) => {
+export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY, isHovered = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [webglAvailable] = useState(checkWebglSupported);
+  const animFrameRef = useRef<number | null>(null);
+
+  // Store target and current smoothed values
+  const targetRotation = useRef({ x: 0, y: 0 });
+  const currentRotation = useRef({ x: 0, y: 0 });
+  const targetScale = useRef(1);
+  const currentScale = useRef(1);
+
+  // Update target rotation based on normalized mouse coords
+  useEffect(() => {
+    targetRotation.current.x = (mouseY / 400) * 0.45;
+    targetRotation.current.y = (mouseX / 400) * 0.55;
+  }, [mouseX, mouseY]);
+
+  useEffect(() => {
+    targetScale.current = isHovered ? 1.06 : 1.0;
+  }, [isHovered]);
 
   useEffect(() => {
     if (!webglAvailable) return;
@@ -27,25 +44,26 @@ export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY }) =>
     const container = containerRef.current;
     if (!container) return;
 
-    const width = container.clientWidth || 200;
-    const height = container.clientHeight || 200;
+    const width = container.clientWidth || 360;
+    const height = container.clientHeight || 360;
 
     let scene: THREE.Scene;
     let camera: THREE.PerspectiveCamera;
     let renderer: THREE.WebGLRenderer;
     let sculptureGroup: THREE.Group;
-    let marbleMaterial: THREE.MeshStandardMaterial;
-    let pedestalMaterial: THREE.MeshStandardMaterial;
-    let geometries: THREE.BufferGeometry[] = [];
+    let mainMesh: THREE.Mesh;
+    let accentMesh: THREE.Mesh;
+    let knotGeometry: THREE.TorusKnotGeometry;
+    let accentGeometry: THREE.TorusKnotGeometry;
+    let alabasterMaterial: THREE.MeshStandardMaterial;
+    let metallicMaterial: THREE.MeshStandardMaterial;
 
     try {
-      // 1. Scene & Camera Setup (Tight, focused framing)
       scene = new THREE.Scene();
 
-      camera = new THREE.PerspectiveCamera(34, width / height, 0.1, 100);
-      camera.position.set(0, 0.1, 3.6);
+      camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 50);
+      camera.position.set(0, 0, 4.3);
 
-      // 2. High-Performance Alpha-Enabled WebGL Renderer
       renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true,
@@ -54,157 +72,95 @@ export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY }) =>
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.08;
+      renderer.toneMappingExposure = 1.15;
       container.appendChild(renderer.domElement);
 
-      // 3. Soft Studio Lighting (Restrained, neutral, elegant)
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
+      // Studio Lighting setup
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
       scene.add(ambientLight);
 
-      const keyLight = new THREE.DirectionalLight(0xfff8f0, 2.2);
-      keyLight.position.set(2.5, 3.5, 2.5);
+      const keyLight = new THREE.DirectionalLight(0xfffaee, 2.8);
+      keyLight.position.set(3.5, 4.0, 3.0);
       scene.add(keyLight);
 
-      const fillLight = new THREE.DirectionalLight(0xdbe6f5, 1.2);
-      fillLight.position.set(-2.5, 1.2, 2);
+      const fillLight = new THREE.DirectionalLight(0xd9e5f7, 1.4);
+      fillLight.position.set(-3.5, -1.5, 2.5);
       scene.add(fillLight);
 
-      const rimLight = new THREE.DirectionalLight(0xffffff, 1.4);
-      rimLight.position.set(0, 3, -2.5);
+      const rimLight = new THREE.DirectionalLight(0xffffff, 1.8);
+      rimLight.position.set(0, 3.5, -3.0);
       scene.add(rimLight);
 
-      // 4. Refined Sculptural Thinker Bust Group
       sculptureGroup = new THREE.Group();
 
-      // Soft Marble PBR Material (Refined warm stone tone)
-      marbleMaterial = new THREE.MeshStandardMaterial({
-        color: 0xf6f3eb,
-        roughness: 0.38,
-        metalness: 0.04,
+      // Warm Alabaster PBR Material (Soft matte editorial stone)
+      alabasterMaterial = new THREE.MeshStandardMaterial({
+        color: 0xf7f5ee,
+        roughness: 0.32,
+        metalness: 0.08,
         flatShading: false,
       });
 
-      pedestalMaterial = new THREE.MeshStandardMaterial({
-        color: 0xede9e0,
-        roughness: 0.48,
-        metalness: 0.03,
+      // Polished Slate Titanium Metallic Material (Restrained accent)
+      metallicMaterial = new THREE.MeshStandardMaterial({
+        color: 0x2b4b7c,
+        roughness: 0.18,
+        metalness: 0.82,
+        wireframe: false,
       });
 
-      // Head / Cranium
-      const headGeo = new THREE.SphereGeometry(0.48, 32, 32);
-      headGeo.scale(1, 1.16, 1.04);
-      geometries.push(headGeo);
-      const head = new THREE.Mesh(headGeo, marbleMaterial);
-      head.position.set(0, 0.48, 0);
-      sculptureGroup.add(head);
+      // Parametric Torus Knot (Sculptural folded ribbon)
+      knotGeometry = new THREE.TorusKnotGeometry(0.95, 0.28, 128, 32, 2, 3);
+      mainMesh = new THREE.Mesh(knotGeometry, alabasterMaterial);
+      sculptureGroup.add(mainMesh);
 
-      // Brow Arch
-      const browGeo = new THREE.BoxGeometry(0.5, 0.13, 0.2);
-      geometries.push(browGeo);
-      const brow = new THREE.Mesh(browGeo, marbleMaterial);
-      brow.position.set(0, 0.62, 0.38);
-      brow.rotation.x = -0.15;
-      sculptureGroup.add(brow);
+      // Slender metallic edge ribbon that twists along with the sculpture
+      accentGeometry = new THREE.TorusKnotGeometry(0.98, 0.045, 128, 16, 2, 3);
+      accentMesh = new THREE.Mesh(accentGeometry, metallicMaterial);
+      sculptureGroup.add(accentMesh);
 
-      // Classical Beard volume
-      const beardGeo = new THREE.ConeGeometry(0.36, 0.55, 20);
-      beardGeo.rotateX(Math.PI);
-      geometries.push(beardGeo);
-      const beard = new THREE.Mesh(beardGeo, marbleMaterial);
-      beard.position.set(0, 0.17, 0.25);
-      sculptureGroup.add(beard);
-
-      // Nose
-      const noseGeo = new THREE.ConeGeometry(0.09, 0.28, 16);
-      geometries.push(noseGeo);
-      const nose = new THREE.Mesh(noseGeo, marbleMaterial);
-      nose.position.set(0, 0.48, 0.46);
-      nose.rotation.x = 0.2;
-      sculptureGroup.add(nose);
-
-      // Thoughtful Arm touching chin
-      const armGeo = new THREE.CylinderGeometry(0.12, 0.17, 0.72, 18);
-      geometries.push(armGeo);
-      const arm = new THREE.Mesh(armGeo, marbleMaterial);
-      arm.position.set(0.23, -0.05, 0.29);
-      arm.rotation.z = -0.55;
-      arm.rotation.x = 0.4;
-      sculptureGroup.add(arm);
-
-      const handGeo = new THREE.SphereGeometry(0.15, 18, 18);
-      handGeo.scale(1, 1.25, 0.75);
-      geometries.push(handGeo);
-      const hand = new THREE.Mesh(handGeo, marbleMaterial);
-      hand.position.set(0.04, 0.21, 0.4);
-      sculptureGroup.add(hand);
-
-      // Torso & Shoulders
-      const torsoGeo = new THREE.CylinderGeometry(0.55, 0.76, 0.82, 28);
-      torsoGeo.scale(1.15, 1, 0.85);
-      geometries.push(torsoGeo);
-      const torso = new THREE.Mesh(torsoGeo, marbleMaterial);
-      torso.position.set(0, -0.34, 0);
-      sculptureGroup.add(torso);
-
-      // Toga Cowl
-      const drapeGeo = new THREE.TorusGeometry(0.59, 0.14, 16, 32, Math.PI * 1.15);
-      drapeGeo.rotateZ(Math.PI * 0.1);
-      geometries.push(drapeGeo);
-      const drape = new THREE.Mesh(drapeGeo, marbleMaterial);
-      drape.position.set(-0.08, -0.19, 0.17);
-      sculptureGroup.add(drape);
-
-      // Pedestal
-      const baseGeo = new THREE.CylinderGeometry(0.4, 0.48, 0.17, 28);
-      geometries.push(baseGeo);
-      const base = new THREE.Mesh(baseGeo, pedestalMaterial);
-      base.position.set(0, -0.78, 0);
-      sculptureGroup.add(base);
-
-      sculptureGroup.position.set(0, -0.04, 0);
-      sculptureGroup.scale.set(0.8, 0.8, 0.8);
       scene.add(sculptureGroup);
     } catch (e) {
-      console.warn('WebGL initialization fallback triggered:', e);
+      console.warn('Hero3DCanvas WebGL fallback:', e);
       return;
     }
 
-    // 5. Subtle Damped Rotation (Max X: ±3° / 0.05 rad, Max Y: ±5° / 0.08 rad)
-    let animationFrameId: number;
     const startTime = performance.now();
+    let isComponentMounted = true;
 
-    let targetRotY = 0;
-    let targetRotX = 0;
-    let currentRotY = 0;
-    let currentRotX = 0;
+    const animate = () => {
+      if (!isComponentMounted) return;
 
-    const render = () => {
-      const elapsedTime = (performance.now() - startTime) * 0.001;
+      const time = (performance.now() - startTime) * 0.001;
 
-      // Subtle mouse tracking (±5 degrees max)
-      targetRotY = (mouseX / 300) * 0.08;
-      targetRotX = (mouseY / 300) * 0.05;
-
-      currentRotY += (targetRotY - currentRotY) * 0.04;
-      currentRotX += (targetRotX - currentRotX) * 0.04;
+      // Smooth damped spring interpolation for mouse interaction
+      currentRotation.current.x += (targetRotation.current.x - currentRotation.current.x) * 0.05;
+      currentRotation.current.y += (targetRotation.current.y - currentRotation.current.y) * 0.05;
+      currentScale.current += (targetScale.current - currentScale.current) * 0.08;
 
       if (sculptureGroup) {
-        sculptureGroup.rotation.y = currentRotY + Math.sin(elapsedTime * 0.35) * 0.012;
-        sculptureGroup.rotation.x = currentRotX + Math.cos(elapsedTime * 0.3) * 0.008;
+        // Slow majestic idle rotation + smooth cursor parallax
+        sculptureGroup.rotation.x = 0.35 + Math.sin(time * 0.4) * 0.1 + currentRotation.current.x;
+        sculptureGroup.rotation.y = time * 0.22 + currentRotation.current.y;
+        sculptureGroup.rotation.z = Math.cos(time * 0.3) * 0.08;
+
+        // Subtle organic float / breathing
+        sculptureGroup.position.y = Math.sin(time * 0.75) * 0.06;
+        sculptureGroup.position.x = Math.cos(time * 0.5) * 0.04;
+
+        sculptureGroup.scale.setScalar(currentScale.current);
       }
 
-      if (renderer && scene && camera) {
-        renderer.render(scene, camera);
-      }
-      animationFrameId = requestAnimationFrame(render);
+      renderer.render(scene, camera);
+      animFrameRef.current = requestAnimationFrame(animate);
     };
 
-    render();
+    animFrameRef.current = requestAnimationFrame(animate);
 
     const handleResize = () => {
-      if (!container || !camera || !renderer) return;
-      const newWidth = container.clientWidth;
-      const newHeight = container.clientHeight;
+      if (!container || !renderer || !camera) return;
+      const newWidth = container.clientWidth || 360;
+      const newHeight = container.clientHeight || 360;
       camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(newWidth, newHeight);
@@ -213,34 +169,37 @@ export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY }) =>
     window.addEventListener('resize', handleResize);
 
     return () => {
+      isComponentMounted = false;
       window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationFrameId);
-      if (renderer && renderer.domElement && container.contains(renderer.domElement)) {
-        container.removeChild(renderer.domElement);
+      if (animFrameRef.current) {
+        cancelAnimationFrame(animFrameRef.current);
       }
-      if (renderer) renderer.dispose();
-      if (marbleMaterial) marbleMaterial.dispose();
-      if (pedestalMaterial) pedestalMaterial.dispose();
-      geometries.forEach((g) => g.dispose());
+      try {
+        if (renderer && renderer.domElement && container.contains(renderer.domElement)) {
+          container.removeChild(renderer.domElement);
+          renderer.dispose();
+        }
+        knotGeometry?.dispose();
+        accentGeometry?.dispose();
+        alabasterMaterial?.dispose();
+        metallicMaterial?.dispose();
+      } catch {}
     };
-  }, [mouseX, mouseY, webglAvailable]);
+  }, [webglAvailable]);
 
   if (!webglAvailable) {
     return (
-      <div className="w-full h-full flex items-center justify-center mix-blend-multiply pointer-events-none">
-        <img 
-          src={heroStatue} 
-          alt="Artistic Thinker Sculpture Cutout" 
-          className="w-full h-full object-contain pointer-events-none select-none"
-        />
+      <div className="w-full h-full flex items-center justify-center pointer-events-none select-none">
+        <div className="w-32 h-32 rounded-full border border-[#2b4b7c]/20 bg-gradient-to-tr from-[#faf9f6] to-[#e8e4db] shadow-inner opacity-75" />
       </div>
     );
   }
 
   return (
-    <div 
-      ref={containerRef} 
-      className="w-full h-full flex items-center justify-center relative pointer-events-none"
+    <div
+      ref={containerRef}
+      data-cursor="EXPLORE"
+      className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative flex items-center justify-center select-none pointer-events-auto cursor-grab active:cursor-grabbing"
     />
   );
 };

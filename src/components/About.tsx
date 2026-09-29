@@ -24,23 +24,26 @@ export const About: React.FC<AboutProps> = ({ onContactClick }) => {
         
         {/* Left Column: Editorial Philosophy & Biography */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="pb-4 border-b border-[#ece8df]">
-            <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
+          <div className="pb-4 border-b border-[#ece8df] space-y-2">
+            <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
               05 / BACKGROUND &amp; PHILOSOPHY
             </span>
-            <h2 className="text-3xl sm:text-5xl font-editorial font-light text-zinc-900 tracking-tight leading-tight">
-              Building interfaces where <br />
-              <span className="italic text-[#2b4b7c]">engineering meets experience.</span>
+            <h2 className="text-3xl sm:text-5xl font-editorial font-light text-zinc-900 tracking-tight leading-[1.1]">
+              Building digital experiences <br />
+              <span className="italic text-[#2b4b7c]">where engineering meets design.</span>
             </h2>
+            <div className="pt-2 font-mono text-xs uppercase tracking-wider text-zinc-800 font-semibold">
+              CHARU SONKER · Full Stack Developer
+            </div>
           </div>
 
           <div className="space-y-4 text-sm sm:text-base text-zinc-600 leading-relaxed font-sans max-w-2xl">
             <p>
-              I’m a Full Stack Developer based in Lucknow, India, specializing in building performant, production-ready web applications, AI-integrated digital tools, and scalable distributed systems.
+              I build performant web and mobile applications with a strong focus on clean system architecture, responsive frontend design, and practical AI integrations.
             </p>
 
             <p>
-              My engineering stack spans React, Node.js, Express, MongoDB, SQL, and modern AI/LLM APIs. I connect human-centered UI design with resilient backend pipelines, clean data architectures, and sub-second response times.
+              My engineering stack centers on React.js, Node.js, Express.js, MongoDB, SQL, REST APIs, WebSockets, and modern LLM APIs. Every digital product is engineered for high stability, clean codebases, and seamless production deployment.
             </p>
           </div>
 

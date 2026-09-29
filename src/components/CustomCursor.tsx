@@ -4,7 +4,7 @@ import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-moti
 export const CustomCursor: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const [cursorText, setCursorText] = useState<string>('');
-  const [cursorVariant, setCursorVariant] = useState<'default' | 'hover' | 'project' | 'mail'>('default');
+  const [cursorVariant, setCursorVariant] = useState<'default' | 'hover' | 'project' | 'explore' | 'open' | 'mail'>('default');
   const [isTouchDevice] = useState(() => {
     if (typeof window === 'undefined') return true;
     return window.matchMedia('(pointer: coarse)').matches;
@@ -13,7 +13,7 @@ export const CustomCursor: React.FC = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  const springConfig = { damping: 24, stiffness: 350, mass: 0.2 };
+  const springConfig = { damping: 26, stiffness: 360, mass: 0.18 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
@@ -24,7 +24,6 @@ export const CustomCursor: React.FC = () => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
 
-      // Check for hover target custom data attributes
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
@@ -33,15 +32,24 @@ export const CustomCursor: React.FC = () => {
         const type = cursorTarget.getAttribute('data-cursor');
         if (type === 'VIEW') {
           setCursorVariant('project');
-          setCursorText('VIEW');
+          setCursorText('VIEW PROJECT');
+        } else if (type === 'EXPLORE') {
+          setCursorVariant('explore');
+          setCursorText('EXPLORE');
+        } else if (type === 'OPEN') {
+          setCursorVariant('open');
+          setCursorText('OPEN ↗');
         } else if (type === 'MAIL') {
           setCursorVariant('mail');
-          setCursorText('MAIL');
-        } else if (type === 'CLICK') {
+          setCursorText('COPY');
+        } else {
           setCursorVariant('hover');
           setCursorText('');
         }
-      } else if (target.closest('a, button, input, textarea')) {
+      } else if (target.closest('a')) {
+        setCursorVariant('open');
+        setCursorText('OPEN ↗');
+      } else if (target.closest('button, input, textarea')) {
         setCursorVariant('hover');
         setCursorText('');
       } else {
@@ -56,6 +64,8 @@ export const CustomCursor: React.FC = () => {
 
   if (isTouchDevice || shouldReduceMotion) return null;
 
+  const isPill = cursorVariant === 'project' || cursorVariant === 'explore' || cursorVariant === 'open' || cursorVariant === 'mail';
+
   return (
     <motion.div
       className="fixed top-0 left-0 pointer-events-none z-50 flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
@@ -66,25 +76,25 @@ export const CustomCursor: React.FC = () => {
     >
       <motion.div
         animate={{
-          width: cursorVariant === 'project' || cursorVariant === 'mail' ? 56 : cursorVariant === 'hover' ? 32 : 12,
-          height: cursorVariant === 'project' || cursorVariant === 'mail' ? 56 : cursorVariant === 'hover' ? 32 : 12,
-          backgroundColor: cursorVariant === 'project' || cursorVariant === 'mail' 
-            ? 'rgba(43, 75, 124, 0.9)' 
-            : cursorVariant === 'hover' 
-              ? 'rgba(43, 75, 124, 0.15)' 
-              : 'rgba(43, 75, 124, 0.85)',
+          width: isPill ? (cursorVariant === 'project' ? 96 : 72) : cursorVariant === 'hover' ? 28 : 10,
+          height: isPill ? 30 : cursorVariant === 'hover' ? 28 : 10,
+          backgroundColor: isPill
+            ? '#2b4b7c'
+            : cursorVariant === 'hover'
+              ? 'rgba(43, 75, 124, 0.15)'
+              : 'rgba(43, 75, 124, 0.95)',
           borderColor: cursorVariant === 'hover' ? 'rgba(43, 75, 124, 0.4)' : 'transparent',
-          borderWidth: cursorVariant === 'hover' ? 1 : 0,
+          borderWidth: cursorVariant === 'hover' ? 1.5 : 0,
         }}
-        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
-        className="rounded-full flex items-center justify-center text-white font-mono text-[10px] tracking-wider uppercase backdrop-blur-2xs shadow-xs"
+        transition={{ type: 'spring', damping: 22, stiffness: 320 }}
+        className="rounded-full flex items-center justify-center text-white font-mono text-[9px] tracking-wider uppercase shadow-md select-none"
       >
         {cursorText && (
           <motion.span
-            initial={{ opacity: 0, scale: 0.6 }}
+            initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.6 }}
-            className="font-bold text-[9px]"
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="font-bold whitespace-nowrap px-2"
           >
             {cursorText}
           </motion.span>

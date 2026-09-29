@@ -47,31 +47,31 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
         
         <div className="space-y-3">
           <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
-            08 / GET IN TOUCH
+            08 / CONTACT
           </span>
-          <h2 className="text-3xl sm:text-5xl font-editorial font-light text-zinc-900 tracking-tight">
-            Have an idea? <br />
-            <span className="italic text-[#2b4b7c]">Let's build it.</span>
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-editorial font-light text-zinc-900 tracking-tight leading-[1.05]">
+            Let's build something <br />
+            <span className="italic text-[#2b4b7c]">worth remembering.</span>
           </h2>
-          <p className="text-sm text-zinc-500 font-sans max-w-xl">
+          <p className="text-sm sm:text-base text-zinc-500 font-sans max-w-xl pt-2">
             Open for full-time software engineering roles, AI product development, and selected contract builds. Let's discuss your next project.
           </p>
         </div>
 
-        <div className="space-y-6 pt-2">
+        <div className="space-y-6 pt-4">
           <div>
             <button
               onClick={onCopyEmail}
               data-cursor="MAIL"
-              className="group font-editorial text-2xl sm:text-3xl lg:text-4xl text-[#2b4b7c] hover:text-[#1d3557] transition-colors flex items-center gap-3 cursor-pointer"
+              className="group font-editorial text-2xl sm:text-4xl lg:text-5xl text-[#2b4b7c] hover:text-[#1d3557] transition-colors flex items-center gap-3 cursor-pointer"
             >
               <span>{PERSONAL_INFO.email}</span>
               {copiedEmail ? (
-                <span className="font-mono text-xs text-emerald-600 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                <span className="font-mono text-xs text-emerald-600 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
                   Copied to clipboard!
                 </span>
               ) : (
-                <Copy className="w-4 h-4 text-zinc-400 group-hover:text-[#2b4b7c] transition-colors" />
+                <Copy className="w-5 h-5 text-zinc-400 group-hover:text-[#2b4b7c] transition-colors" />
               )}
             </button>
           </div>
@@ -103,7 +103,7 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
           </div>
 
           {/* Magnetic CTA Button */}
-          <div className="pt-4">
+          <div className="pt-6">
             <motion.a
               ref={buttonRef}
               href={`mailto:${PERSONAL_INFO.email}?subject=Project%20Inquiry%20-%20Charu%20Sonker`}
@@ -117,7 +117,7 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#2b4b7c] text-white font-mono text-xs uppercase tracking-widest font-semibold hover:bg-[#1e385f] transition-colors shadow-sm cursor-pointer"
             >
-              <span>SEND A MESSAGE</span>
+              <span>START A PROJECT ↗</span>
               <ArrowUpRight className="w-4 h-4" />
             </motion.a>
           </div>

@@ -23,22 +23,67 @@ export const PERSONAL_INFO = {
 
 export const ALL_PROJECTS: FeaturedProject[] = [
   {
-    id: 'pixel-art-transformer',
-    title: 'Pixel Art Image Transformer',
-    category: 'AI / Full Stack',
+    id: 'nexus360-crm',
+    title: 'NEXUS360 CRM',
+    category: 'Enterprise CRM / Operations',
+    filterCategory: 'App',
+    tagline: 'Operational CRM for lead intake, verification tracking & role-based access control',
+    description:
+      'An end-to-end operational CRM tailored for lead intake, multi-stage verification pipelines, role-based access control (RBAC), and executive analytics dashboards.',
+    highlight:
+      'Role-based access control (RBAC), multi-stage lead lifecycles, and real-time operations dashboard with secure document handling.',
+    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT Auth', 'REST APIs'],
+    liveUrl: 'https://nexus360-crm.vercel.app',
+    githubUrl: 'https://github.com/Charu-web/dsa-crm',
+    visualType: 'dsa-crm',
+    caseStudy: {
+      overview:
+        'NEXUS360 CRM is a centralized full-stack customer relationship and operations platform built for distributed agent teams to manage lead lifecycles, document audits, and payout pipelines.',
+      problem:
+        'Fragmented lead sources and unorganized spreadsheets caused severe processing bottlenecks, duplicate entries, and lack of accountability across agent tiers.',
+      solution:
+        'Engineered a centralized MERN CRM with role-based access tiers (Admin, Operations, Agent), live status pipelines, automated lead distribution, and audit logging.',
+      keyFeatures: [
+        'Role-Based Access Control (Admin, Operations, Agent permission levels)',
+        'Visual multi-stage lead status pipeline with instant stage transitions',
+        'Document verification workflows with cryptographically signed audit logs',
+        'Comprehensive multi-field search, filtering, and automated CSV reporting',
+      ],
+      technicalImplementation: [
+        'Constructed modular React dashboard components with optimistic UI updates and zero-layout shift state transitions.',
+        'Implemented Express.js REST APIs with robust token-based authorization middleware and rate limiting.',
+        'Structured MongoDB collections with compound indexing for instant query responses under high dataset density.',
+      ],
+      technologyStack: [
+        { category: 'Frontend', tools: ['React.js', 'Tailwind CSS', 'Lucide Icons', 'Vite'] },
+        { category: 'Backend', tools: ['Node.js', 'Express.js', 'JWT Auth', 'REST APIs'] },
+        { category: 'Database', tools: ['MongoDB', 'Mongoose ODM', 'Compound Indexes'] },
+      ],
+      challenges: [
+        'Enforcing strict data isolation between competing agent teams without sacrificing query throughput.',
+        'Optimizing heavy document table queries under simultaneous multi-user filters.',
+      ],
+      outcome:
+        'Delivered a streamlined operations application that drastically reduced lead turnaround times and improved pipeline visibility.',
+    },
+  },
+  {
+    id: 'pixel-art-ai-studio',
+    title: 'PIXEL ART AI STUDIO',
+    category: 'AI / Creative Engineering',
     filterCategory: 'Web',
     tagline: 'AI-driven image transformation application with canvas quantization & palette extraction',
     description:
       'AI-driven image transformation application that converts user-uploaded images into stylized retro pixel-art with adjustable quantization, color palette extraction, and instant export.',
     highlight:
       'Engineered an image processing pipeline with client-side canvas rasterization, server-assisted color clustering, and responsive UI controls.',
-    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs'],
-    liveUrl: 'https://charu-web.github.io/pixel-art-image-transformer/',
+    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'HTML5 Canvas', 'REST APIs'],
+    liveUrl: 'https://pixel-art-ai-studio.vercel.app',
     githubUrl: 'https://github.com/Charu-web/pixel-art-image-transformer',
     visualType: 'pixel-art',
     caseStudy: {
       overview:
-        'Pixel Art Image Transformer allows users to upload high-resolution images and dynamically transform them into structured, retro-styled pixel art through algorithmic color quantization and grid sampling.',
+        'PIXEL ART AI STUDIO allows users to upload high-resolution images and dynamically transform them into structured, retro-styled pixel art through algorithmic color quantization and grid sampling.',
       problem:
         'Standard pixelation tools typically produce blurry downsamples or erratic color banding without preserving edge coherence or allowing granular palette control.',
       solution:
@@ -70,56 +115,9 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     },
   },
   {
-    id: 'neon-space-shooter',
-    title: 'Neon Space Shooter',
-    category: 'Interactive Web / Game',
-    filterCategory: 'Web',
-    tagline: 'High-performance 60FPS browser arcade engine with custom collision & particle dynamics',
-    description:
-      'Browser-based arcade game featuring custom 60FPS game loop physics, dynamic enemy wave spawning, collision detection grids, and canvas rendering.',
-    highlight:
-      'HTML5 Canvas, Game mechanics, Collision detection, High-score system, and Responsive experience with zero external dependencies.',
-    technologies: ['JavaScript', 'HTML5 Canvas', 'CSS3', 'Node.js', 'REST APIs'],
-    liveUrl: 'https://charu-web.github.io/neon-space-shooter/',
-    githubUrl: 'https://github.com/Charu-web/neon-space-shooter',
-    visualType: 'space-shooter',
-    caseStudy: {
-      overview:
-        'Neon Space Shooter is an arcade-style interactive game built directly in vanilla JavaScript and HTML5 Canvas, showcasing front-end performance engineering, state management, and mathematical physics modeling.',
-      problem:
-        'Browser-based canvas games frequently suffer from frame drops during intense particle effects and garbage collection pauses when instantiating bullet entities.',
-      solution:
-        'Implemented memory-safe object pooling for projectiles, enemies, and particle emitters, coupled with requestAnimationFrame delta-time normalization.',
-      keyFeatures: [
-        'Stable 60 FPS rendering with delta-time frame compensation',
-        'Spatial partition collision detection for high-density projectile counts',
-        'Procedural enemy wave generation with scaling difficulty algorithms',
-        'Dynamic glowing neon particle physics engine with velocity dampening',
-        'Responsive input mapping supporting keyboard, mouse, and touch controls',
-      ],
-      technicalImplementation: [
-        'Constructed custom entity-component architecture in pure JavaScript (ES6+).',
-        'Implemented object pooling patterns to eliminate garbage collection spikes during high-frequency firing.',
-        'Built custom circular and axis-aligned bounding box (AABB) collision algorithms.',
-        'Integrated Web Audio API for synthesized retro sound effects without external audio asset lag.',
-      ],
-      technologyStack: [
-        { category: 'Core Engine', tools: ['Vanilla JavaScript (ES6+)', 'Object Pooling Pattern'] },
-        { category: 'Rendering', tools: ['HTML5 Canvas 2D', 'requestAnimationFrame Game Loop'] },
-        { category: 'Backend & APIs', tools: ['Node.js', 'Express REST Endpoints', 'Leaderboard API'] },
-      ],
-      challenges: [
-        'Maintaining a locked 60 FPS across low-power mobile devices and high-refresh desktop monitors.',
-        'Fine-tuning hitboxes and collision resolution under fast projectile velocities without tunneling.',
-      ],
-      outcome:
-        'Created a fast, engaging web game demonstrating solid mathematical fundamentals, memory optimization, and frontend performance control.',
-    },
-  },
-  {
-    id: 'doodle-duel-ai',
-    title: 'Doodle Duel AI',
-    category: 'AI / Real-Time / Web',
+    id: 'sketch-duel-ai',
+    title: 'SKETCH DUEL AI',
+    category: 'AI / Real-Time WebSocket',
     filterCategory: 'Web',
     tagline: 'Real-time multiplayer drawing and guessing game with AI sketch classification',
     description:
@@ -127,12 +125,12 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     highlight:
       'Real-time WebSocket architecture + AI integration with sub-50ms stroke synchronization, OpenAI API integration, and MongoDB match persistence.',
     technologies: ['React.js', 'Node.js', 'Socket.io', 'MongoDB', 'OpenAI API', 'JWT'],
-    liveUrl: 'https://github.com/Charu-web/sketch-duel-ai-doodle-battles',
+    liveUrl: 'https://sketch-duel-ai-doodle-battles.vercel.app',
     githubUrl: 'https://github.com/Charu-web/sketch-duel-ai-doodle-battles',
     visualType: 'doodle-duel',
     caseStudy: {
       overview:
-        'Doodle Duel AI is a real-time collaborative and competitive web application where players sketch against the clock while an AI model and human opponents compete to recognize the drawing dynamically.',
+        'SKETCH DUEL AI is a real-time collaborative and competitive web application where players sketch against the clock while an AI model and human opponents compete to recognize the drawing dynamically.',
       problem:
         'Multiplayer canvas interactions suffer from coordinate transmission latency, packet dropouts, and room state desync, while AI classification models require lightweight payload contracts for live recognition.',
       solution:
@@ -162,51 +160,6 @@ export const ALL_PROJECTS: FeaturedProject[] = [
       ],
       outcome:
         'Successfully delivered a high-performance multiplayer web application demonstrating advanced proficiency in WebSockets, AI API integration, and full-stack MERN architecture.',
-    },
-  },
-  {
-    id: 'dsa-crm',
-    title: 'DSA CRM',
-    category: 'Business CRM / Operations',
-    filterCategory: 'App',
-    tagline: 'Operational CRM for lead intake, verification tracking & role-based access control',
-    description:
-      'An end-to-end operational CRM tailored for lead intake, verification tracking, user permission roles, and pipeline dashboards.',
-    highlight:
-      'Role-based access control (RBAC), multi-stage lead lifecycles, and real-time operations dashboard with secure document handling.',
-    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT Auth'],
-    liveUrl: 'https://github.com/Charu-web/dsa-crm',
-    githubUrl: 'https://github.com/Charu-web/dsa-crm',
-    visualType: 'dsa-crm',
-    caseStudy: {
-      overview:
-        'DSA CRM is an operational customer relationship system designed for direct selling agents and operations teams to manage lead lifecycles, document audits, and payout calculations.',
-      problem:
-        'Fragmented lead sources and manual spreadsheets caused processing delays, duplicate entries, and lack of accountability across agent tiers.',
-      solution:
-        'Built a centralized full-stack CRM with role-based access tiers (Admin, Operations, Agent), live status pipelines, and automated lead distribution.',
-      keyFeatures: [
-        'Role-Based Access Control (Admin, Operations, Agent views)',
-        'Visual lead status pipeline with quick status transitions',
-        'Document verification workflows with audit logging',
-        'Comprehensive search, multi-field filtering, and reporting',
-      ],
-      technicalImplementation: [
-        'Constructed modular React dashboard components with optimistic UI updates.',
-        'Implemented Express.js REST APIs with robust token-based authorization middleware.',
-        'Structured MongoDB collections with compound indexing for instant query responses.',
-      ],
-      technologyStack: [
-        { category: 'Frontend', tools: ['React.js', 'Tailwind CSS', 'Lucide Icons'] },
-        { category: 'Backend', tools: ['Node.js', 'Express.js', 'JWT', 'REST APIs'] },
-        { category: 'Database', tools: ['MongoDB', 'Mongoose'] },
-      ],
-      challenges: [
-        'Maintaining granular data isolation between competing agent teams.',
-        'Optimizing heavy document table queries under high concurrency.',
-      ],
-      outcome:
-        'Delivered a streamlined operations application that drastically reduced lead turnaround times and improved pipeline visibility.',
     },
   },
   {
@@ -308,6 +261,53 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     },
   },
   {
+    id: 'neon-space-shooter',
+    title: 'Neon Space Shooter',
+    category: 'Interactive Web / Game',
+    filterCategory: 'Web',
+    tagline: 'High-performance 60FPS browser arcade engine with custom collision & particle dynamics',
+    description:
+      'Browser-based arcade game featuring custom 60FPS game loop physics, dynamic enemy wave spawning, collision detection grids, and canvas rendering.',
+    highlight:
+      'HTML5 Canvas, Game mechanics, Collision detection, High-score system, and Responsive experience with zero external dependencies.',
+    technologies: ['JavaScript', 'HTML5 Canvas', 'CSS3', 'Node.js', 'REST APIs'],
+    liveUrl: 'https://charu-web.github.io/neon-space-shooter/',
+    githubUrl: 'https://github.com/Charu-web/neon-space-shooter',
+    visualType: 'space-shooter',
+    caseStudy: {
+      overview:
+        'Neon Space Shooter is an arcade-style interactive game built directly in vanilla JavaScript and HTML5 Canvas, showcasing front-end performance engineering, state management, and mathematical physics modeling.',
+      problem:
+        'Browser-based canvas games frequently suffer from frame drops during intense particle effects and garbage collection pauses when instantiating bullet entities.',
+      solution:
+        'Implemented memory-safe object pooling for projectiles, enemies, and particle emitters, coupled with requestAnimationFrame delta-time normalization.',
+      keyFeatures: [
+        'Stable 60 FPS rendering with delta-time frame compensation',
+        'Spatial partition collision detection for high-density projectile counts',
+        'Procedural enemy wave generation with scaling difficulty algorithms',
+        'Dynamic glowing neon particle physics engine with velocity dampening',
+        'Responsive input mapping supporting keyboard, mouse, and touch controls',
+      ],
+      technicalImplementation: [
+        'Constructed custom entity-component architecture in pure JavaScript (ES6+).',
+        'Implemented object pooling patterns to eliminate garbage collection spikes during high-frequency firing.',
+        'Built custom circular and axis-aligned bounding box (AABB) collision algorithms.',
+        'Integrated Web Audio API for synthesized retro sound effects without external audio asset lag.',
+      ],
+      technologyStack: [
+        { category: 'Core Engine', tools: ['Vanilla JavaScript (ES6+)', 'Object Pooling Pattern'] },
+        { category: 'Rendering', tools: ['HTML5 Canvas 2D', 'requestAnimationFrame Game Loop'] },
+        { category: 'Backend & APIs', tools: ['Node.js', 'Express REST Endpoints', 'Leaderboard API'] },
+      ],
+      challenges: [
+        'Maintaining a locked 60 FPS across low-power mobile devices and high-refresh desktop monitors.',
+        'Fine-tuning hitboxes and collision resolution under fast projectile velocities without tunneling.',
+      ],
+      outcome:
+        'Created a fast, engaging web game demonstrating solid mathematical fundamentals, memory optimization, and frontend performance control.',
+    },
+  },
+  {
     id: 'dsa-sathi-crm',
     title: 'DSA Sathi CRM',
     category: 'Enterprise CRM / Full Stack',
@@ -372,7 +372,7 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     id: 'hi-tech-engineering',
     company: 'Hi-Tech Engineering',
     role: 'Web Developer Intern',
-    period: 'July 2025 – September 2025',
+    period: '',
     status: 'PREVIOUS',
     responsibilities: [
       'Shipped 3+ responsive MERN stack applications, lifting cross-device compatibility by 40% and cutting data-fetch latency by 25% through optimized REST API integration.',
@@ -386,46 +386,39 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    id: 'languages',
-    number: '01',
-    title: 'Languages',
-    description: 'Core programming languages',
-    skills: ['JavaScript', 'Python', 'C++', 'SQL'],
-  },
-  {
     id: 'frontend',
-    number: '02',
-    title: 'Frontend',
+    number: '01',
+    title: 'FRONTEND',
     description: 'Client-side web development',
-    skills: ['React.js', 'Redux', 'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap', 'iOS', 'Responsive Design'],
+    skills: ['React.js', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Redux'],
   },
   {
     id: 'backend',
-    number: '03',
-    title: 'Backend',
+    number: '02',
+    title: 'BACKEND',
     description: 'Server architecture & APIs',
-    skills: ['Node.js', 'Express.js', 'REST APIs', 'WebSockets', 'Socket.io', 'JWT', 'SaaS'],
+    skills: ['Node.js', 'Express.js', 'REST APIs', 'Socket.io', 'JWT'],
+  },
+  {
+    id: 'database',
+    number: '03',
+    title: 'DATABASE',
+    description: 'Data storage & querying',
+    skills: ['MongoDB', 'Mongoose', 'SQL'],
   },
   {
     id: 'ai-ml',
     number: '04',
     title: 'AI / ML',
     description: 'Machine learning & AI integration',
-    skills: ['OpenAI API', 'Prompt Engineering', 'TensorFlow.js', 'Generative AI Integration', 'AI Tools'],
-  },
-  {
-    id: 'database',
-    number: '05',
-    title: 'Database',
-    description: 'Data storage & querying',
-    skills: ['MongoDB', 'Mongoose', 'SQL', 'Supabase', 'Schema Design', 'Query Optimization'],
+    skills: ['OpenAI API', 'Prompt Engineering', 'TensorFlow.js', 'Generative AI'],
   },
   {
     id: 'tools',
-    number: '06',
-    title: 'Tools & DevOps',
+    number: '05',
+    title: 'TOOLS',
     description: 'Developer tooling & DevOps',
-    skills: ['Git', 'GitHub', 'Docker', 'AWS', 'Postman', 'VS Code', 'Vercel', 'Netlify', 'Render', 'CI/CD', 'Agile'],
+    skills: ['Git', 'GitHub', 'Postman', 'Vercel', 'Netlify', 'Render', 'CI/CD'],
   },
 ];
 

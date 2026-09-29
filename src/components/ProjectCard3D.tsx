@@ -7,12 +7,14 @@ import { ProjectMockupVisual } from './ProjectMockupVisual';
 
 interface ProjectCard3DProps {
   project: FeaturedProject;
+  index: number;
   onSelectCaseStudy: (project: FeaturedProject) => void;
   isFeatured?: boolean;
 }
 
 export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   project,
+  index,
   onSelectCaseStudy,
   isFeatured = false,
 }) => {
@@ -20,16 +22,23 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
   const shouldReduceMotion = useReducedMotion();
   const [isHovered, setIsHovered] = useState(false);
 
-  // Mouse Coordinates inside card
+  // Normalized mouse coordinates: -0.5 to +0.5
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 20, stiffness: 220, mass: 0.2 };
+  const springConfig = { damping: 24, stiffness: 260, mass: 0.25 };
   const smoothMouseX = useSpring(mouseX, springConfig);
   const smoothMouseY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [6, -6]);
-  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-7, 7]);
+  // Perspective 3D rotation (subtle, elegant tilt)
+  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [5.5, -5.5]);
+  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-6.5, 6.5]);
+
+  // Background huge title movement
+  const bgTitleX = useTransform(smoothMouseX, [-0.5, 0.5], [-20, 20]);
+  const bgTitleY = useTransform(smoothMouseY, [-0.5, 0.5], [-12, 12]);
+
+  // Dynamic specular light reflection
   const glareX = useTransform(smoothMouseX, [-0.5, 0.5], ['0%', '100%']);
   const glareY = useTransform(smoothMouseY, [-0.5, 0.5], ['0%', '100%']);
 
@@ -50,140 +59,183 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
     mouseY.set(0);
   };
 
+  const formattedIndex = String(index + 1).padStart(2, '0');
+
   return (
-    <motion.div
+    <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      data-cursor="VIEW"
-      style={{
-        perspective: 1000,
-        transformStyle: 'preserve-3d',
-      }}
-      className={`group relative flex flex-col bg-white rounded-xl border border-[#ece8df] overflow-hidden transition-all duration-300 ${
-        isFeatured
-          ? 'md:col-span-2 shadow-sm border-[#ded8cb]'
-          : 'hover:border-[#d0cbbf] hover:shadow-md'
-      }`}
+      className={`relative group ${isFeatured ? 'md:col-span-2' : ''}`}
     >
+      {/* 1. BEHIND: Marius Ballot Signature Large Typography Reveal */}
       <motion.div
         style={{
-          rotateX: shouldReduceMotion ? 0 : rotateX,
-          rotateY: shouldReduceMotion ? 0 : rotateY,
+          x: shouldReduceMotion ? 0 : bgTitleX,
+          y: shouldReduceMotion ? 0 : bgTitleY,
+        }}
+        className={`absolute -top-10 sm:-top-14 left-0 sm:left-4 z-0 pointer-events-none select-none transition-opacity duration-500 font-editorial text-5xl sm:text-7xl lg:text-8xl italic tracking-tight text-[#2b4b7c] ${
+          isHovered ? 'opacity-15' : 'opacity-0 sm:opacity-5'
+        }`}
+      >
+        <span>{project.title}</span>
+      </motion.div>
+
+      {/* 2. FOREGROUND: 3D Perspective Card (1200px perspective) */}
+      <motion.div
+        data-cursor="VIEW"
+        style={{
+          perspective: 1200,
           transformStyle: 'preserve-3d',
         }}
-        className="w-full flex flex-col flex-grow"
+        className="relative z-10 w-full"
       >
-        {/* Dynamic 3D Specular Highlight Overlay */}
-        {!shouldReduceMotion && isHovered && (
-          <motion.div
-            style={{
-              background: `radial-gradient(circle at ${glareX} ${glareY}, rgba(255, 255, 255, 0.28) 0%, transparent 60%)`,
-            }}
-            className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300"
-          />
-        )}
-
-        {/* Project Visual Display Frame */}
-        <div 
-          onClick={() => onSelectCaseStudy(project)}
-          className={`cursor-pointer overflow-hidden bg-zinc-950 relative flex items-center justify-center border-b border-[#ece8df] ${
-            isFeatured ? 'aspect-[21/9] sm:aspect-[2/1]' : 'aspect-[16/10]'
+        <motion.div
+          style={{
+            rotateX: shouldReduceMotion ? 0 : rotateX,
+            rotateY: shouldReduceMotion ? 0 : rotateY,
+            transformStyle: 'preserve-3d',
+          }}
+          className={`flex flex-col bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
+            isHovered
+              ? 'border-[#c8c3b5] shadow-xl'
+              : 'border-[#ece8df] shadow-sm'
           }`}
         >
-          <motion.div 
-            style={{ transform: isHovered && !shouldReduceMotion ? 'translateZ(24px) scale(1.02)' : 'translateZ(0px) scale(1)' }}
-            className="w-full h-full transition-transform duration-300"
-          >
-            <ProjectMockupVisual type={project.visualType} />
-          </motion.div>
-
-          {isFeatured && (
-            <div className="absolute top-3 left-3 bg-[#2b4b7c] text-white text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded shadow-xs z-20">
-              Featured 3D Showcase
-            </div>
+          {/* Dynamic Light Sheen on Hover */}
+          {!shouldReduceMotion && isHovered && (
+            <motion.div
+              style={{
+                background: `radial-gradient(circle at ${glareX} ${glareY}, rgba(255, 255, 255, 0.35) 0%, transparent 65%)`,
+              }}
+              className="absolute inset-0 pointer-events-none z-30 transition-opacity duration-300"
+            />
           )}
-        </div>
 
-        {/* Project Content */}
-        <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between space-y-4">
-          <div className="space-y-2.5">
-            <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
-              <span>{project.category}</span>
-              <span className="text-zinc-500 font-sans lowercase">{project.filterCategory}</span>
+          {/* Browser / Device Chrome Header */}
+          <div className="bg-[#f7f5f0] border-b border-[#ece8df] px-4 py-2.5 flex items-center justify-between text-xs select-none">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#e87063]/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#f4be4f]/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#62c554]/80 inline-block" />
             </div>
 
-            <h3 
-              onClick={() => onSelectCaseStudy(project)}
-              className="text-xl sm:text-2xl font-editorial font-normal text-zinc-900 group-hover:text-[#2b4b7c] transition-colors cursor-pointer"
+            {/* URL pill */}
+            <div className="font-mono text-[10px] text-zinc-400 bg-white/80 px-3 py-0.5 rounded-full border border-[#ece8df] max-w-[200px] truncate">
+              {project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, '') : `${project.id}.app`}
+            </div>
+
+            <div className="font-mono text-[10px] text-zinc-500 font-semibold">
+              {formattedIndex}
+            </div>
+          </div>
+
+          {/* Project Screenshot / Visual Container with Subtle Living Motion */}
+          <div
+            onClick={() => onSelectCaseStudy(project)}
+            className={`cursor-pointer overflow-hidden bg-zinc-950 relative flex items-center justify-center border-b border-[#ece8df] ${
+              isFeatured ? 'aspect-[21/9] sm:aspect-[2/1]' : 'aspect-[16/10]'
+            }`}
+          >
+            <motion.div
+              animate={
+                shouldReduceMotion
+                  ? {}
+                  : {
+                      scale: isHovered ? 1.03 : 1,
+                      y: isHovered ? -2 : 0,
+                    }
+              }
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full h-full"
             >
-              {project.title}
-            </h3>
+              <ProjectMockupVisual type={project.visualType} />
+            </motion.div>
 
-            <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans">
-              {project.description}
-            </p>
+            {/* Live Indicator Badge on Visual */}
+            <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 bg-black/60 backdrop-blur-xs text-white text-[10px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>LIVE READY</span>
+            </div>
           </div>
 
-          {/* Footer Tech Stack & Links */}
-          <div className="pt-3 border-t border-[#f2efe9] flex items-center justify-between text-xs">
-            <div className="flex flex-wrap gap-1">
-              {project.technologies.slice(0, 4).map((tech) => (
-                <span 
-                  key={tech} 
-                  className="text-[10px] font-mono text-zinc-500 bg-[#faf9f6] px-2 py-0.5 rounded border border-[#ece8df]"
-                >
-                  {tech}
-                </span>
-              ))}
-              {project.technologies.length > 4 && (
-                <span className="text-[10px] font-mono text-zinc-400 px-1 py-0.5">
-                  +{project.technologies.length - 4}
-                </span>
-              )}
-            </div>
+          {/* Project Content & Typography */}
+          <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between space-y-4 text-left">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
+                <span>{project.category}</span>
+                <span className="text-zinc-500 font-sans lowercase">{project.filterCategory}</span>
+              </div>
 
-            <div className="flex items-center gap-3 font-sans text-xs">
-              <button
+              <h3
                 onClick={() => onSelectCaseStudy(project)}
-                className="inline-flex items-center gap-1 text-[#2b4b7c] hover:text-[#1d3557] font-medium transition-colors cursor-pointer"
+                className="text-2xl sm:text-3xl font-editorial font-normal text-zinc-900 group-hover:text-[#2b4b7c] transition-colors cursor-pointer"
               >
-                <span>{isFeatured ? 'VIEW CASE STUDY' : 'Details'}</span>
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-              </button>
+                {project.title}
+              </h3>
 
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-zinc-400 hover:text-zinc-800 transition-colors inline-flex items-center gap-0.5"
-                  title={`Live Demo for ${project.title}`}
-                  aria-label={`Live Demo for ${project.title}`}
-                >
-                  <span>Live</span>
-                  <ArrowUpRight className="w-3 h-3" />
-                </a>
-              )}
+              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans line-clamp-2">
+                {project.description}
+              </p>
+            </div>
 
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-zinc-400 hover:text-zinc-800 transition-colors"
-                  title={`Source Code for ${project.title}`}
-                  aria-label={`GitHub Repository for ${project.title}`}
+            {/* Tech Stack Chips & Direct Links */}
+            <div className="pt-4 border-t border-[#f2efe9] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+              <div className="flex flex-wrap gap-1">
+                {project.technologies.slice(0, 3).map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-[10px] font-mono text-zinc-500 bg-[#faf9f6] px-2 py-0.5 rounded border border-[#ece8df]"
+                  >
+                    {tech}
+                  </span>
+                ))}
+                {project.technologies.length > 3 && (
+                  <span className="text-[10px] font-mono text-zinc-400 px-1 py-0.5">
+                    +{project.technologies.length - 3}
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-3 font-sans text-xs">
+                <button
+                  onClick={() => onSelectCaseStudy(project)}
+                  className="inline-flex items-center gap-1 text-[#2b4b7c] hover:text-[#1d3557] font-semibold transition-colors cursor-pointer"
                 >
-                  <GithubIcon className="w-3.5 h-3.5" />
-                </a>
-              )}
+                  <span>VIEW CASE STUDY</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-500 hover:text-[#2b4b7c] transition-colors inline-flex items-center gap-1 font-mono text-[11px]"
+                    title={`Live Demo for ${project.title}`}
+                  >
+                    <span>DEMO</span>
+                    <ArrowUpRight className="w-3 h-3" />
+                  </a>
+                )}
+
+                {project.githubUrl && (
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-500 hover:text-zinc-900 transition-colors inline-flex items-center gap-1 font-mono text-[11px]"
+                    title={`GitHub Repository for ${project.title}`}
+                  >
+                    <GithubIcon className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-
-        </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };

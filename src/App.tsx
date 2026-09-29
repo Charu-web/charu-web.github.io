@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import { CustomCursor } from './components/CustomCursor';
@@ -16,13 +17,17 @@ import { Footer } from './components/Footer';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { Toast } from './components/Toast';
 import type { FeaturedProject } from './types';
-import { PERSONAL_INFO } from './data/portfolioData';
+import { PERSONAL_INFO, ALL_PROJECTS } from './data/portfolioData';
 
 export function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<FeaturedProject | null>(null);
   const [toastMessage, setToastMessage] = useState<string>('');
   const [toastVisible, setToastVisible] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+
+  // Scroll Progress Tracking
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
   // Initialize Lenis smooth scrolling (respects prefers-reduced-motion)
   useEffect(() => {
@@ -73,6 +78,12 @@ export function App() {
   return (
     <div className="min-h-screen bg-[#faf9f6] text-[#222222] flex flex-col selection:bg-[#2b4b7c] selection:text-white relative">
       
+      {/* Minimal Top Scroll Progress Bar */}
+      <motion.div
+        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-[2px] bg-[#2b4b7c] origin-left z-50 pointer-events-none"
+      />
+
       {/* Global Minimal 3D Interactive Cursor */}
       <CustomCursor />
 
@@ -118,10 +129,12 @@ export function App() {
       {/* Minimal Footer */}
       <Footer onCopyEmail={handleCopyEmail} />
 
-      {/* Deep-Dive Case Study Modal */}
+      {/* Full-Screen Dedicated Case Study View */}
       <CaseStudyModal
         project={selectedCaseStudy}
         onClose={() => setSelectedCaseStudy(null)}
+        onSelectProject={(project) => setSelectedCaseStudy(project)}
+        allProjects={ALL_PROJECTS}
       />
 
       {/* Interactive Toast Notification */}

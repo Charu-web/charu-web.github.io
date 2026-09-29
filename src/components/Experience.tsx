@@ -30,9 +30,9 @@ export const Experience: React.FC = () => {
         {EXPERIENCE_ITEMS.map((item) => (
           <motion.div 
             key={item.id} 
-            whileHover={shouldReduceMotion ? {} : { x: 6, scale: 1.008 }}
+            whileHover={shouldReduceMotion ? {} : { x: 8 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="py-8 first:pt-0 last:pb-0 space-y-3 p-4 sm:p-6 rounded-xl hover:bg-white/80 hover:shadow-xs transition-colors duration-300 group cursor-default"
+            className="py-8 first:pt-0 last:pb-0 space-y-3 p-4 sm:p-6 rounded-xl hover:bg-white border-l-2 border-transparent hover:border-[#2b4b7c] hover:shadow-xs transition-all duration-300 group cursor-default"
           >
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
               <div>
@@ -44,14 +44,16 @@ export const Experience: React.FC = () => {
                     {item.status}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm font-medium text-zinc-700 mt-0.5">
+                <p className="text-xs sm:text-sm font-medium text-zinc-700 mt-0.5 font-mono">
                   {item.role}
                 </p>
               </div>
 
-              <span className="font-mono text-xs text-zinc-400">
-                {item.period}
-              </span>
+              {item.period ? (
+                <span className="font-mono text-xs text-zinc-400">
+                  {item.period}
+                </span>
+              ) : null}
             </div>
 
             <ul className="space-y-1.5 pt-1 text-xs sm:text-sm text-zinc-600 leading-relaxed">
