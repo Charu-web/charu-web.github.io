@@ -219,7 +219,7 @@ export const Hero: React.FC<HeroProps> = ({
           transition={{ duration: 1.0, delay: 0.3, ease: editorialEase }}
           onMouseEnter={() => setIs3DHovered(true)}
           onMouseLeave={() => setIs3DHovered(false)}
-          className="relative my-4 lg:my-0 lg:absolute lg:right-[2vw] xl:right-[4vw] lg:top-1/2 lg:-translate-y-1/2 w-[270px] h-[270px] sm:w-[350px] sm:h-[350px] lg:w-[480px] lg:h-[480px] xl:w-[520px] xl:h-[520px] mx-auto lg:mx-0 flex items-center justify-center z-20 pointer-events-auto cursor-grab active:cursor-grabbing"
+          className="relative my-4 lg:my-0 lg:absolute lg:right-[3vw] xl:right-[5vw] lg:top-1/2 lg:-translate-y-1/2 w-[250px] h-[250px] sm:w-[320px] sm:h-[320px] lg:w-[440px] lg:h-[440px] xl:w-[480px] xl:h-[480px] mx-auto lg:mx-0 flex items-center justify-center z-20 pointer-events-auto cursor-grab active:cursor-grabbing"
         >
           <Hero3DCanvas
             mouseX={mouseCoords.x}
@@ -277,9 +277,14 @@ export const Hero: React.FC<HeroProps> = ({
             )}
           </button>
 
-          <span className="hidden md:inline-block text-zinc-400 font-mono text-[10px] tracking-wider">
-            [ SCROLL ↓ ]
-          </span>
+          <a
+            href="#projects"
+            data-cursor="EXPLORE"
+            className="hidden md:inline-flex items-center gap-1.5 text-zinc-500 hover:text-[#2b4b7c] transition-colors font-mono text-[10px] tracking-wider uppercase cursor-pointer"
+          >
+            <span>EXPLORE</span>
+            <span>↓</span>
+          </a>
         </div>
       </motion.div>
 
