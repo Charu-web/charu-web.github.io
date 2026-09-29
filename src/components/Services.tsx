@@ -1,120 +1,133 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Code2, Cpu, Activity } from 'lucide-react';
 
 interface ServiceItem {
-  number: string;
+  id: string;
+  icon: React.ReactNode;
   title: string;
+  subtitle: string;
   description: string;
+  count: string;
   tags: string[];
 }
 
-const SERVICES_LIST: ServiceItem[] = [
+const SERVICES_DATA: ServiceItem[] = [
   {
-    number: '01',
+    id: 'fullstack',
+    icon: <Code2 className="w-5 h-5 text-amber-400" />,
     title: 'Full Stack Web Applications',
-    description:
-      'End-to-end web applications built with React, Node.js, Express, and MongoDB. Clean component architecture paired with robust backend APIs and secure data models.',
+    subtitle: 'Production MERN, Next.js & REST APIs',
+    description: 'Scalable web applications with modular frontend architectures, secure backend services, JWT authorization, and optimized MongoDB/SQL databases.',
+    count: '10+ Projects',
     tags: ['React.js', 'Node.js', 'Express', 'MongoDB', 'REST APIs'],
   },
   {
-    number: '02',
-    title: 'AI-Integrated Applications',
-    description:
-      'Practical AI integration utilizing OpenAI GPT-4 APIs, prompt engineering pipelines, dynamic sketch classification, and intelligent data transformation.',
-    tags: ['OpenAI API', 'Prompt Engineering', 'AI Pipelines', 'Canvas AI'],
+    id: 'ai-integration',
+    icon: <Cpu className="w-5 h-5 text-blue-400" />,
+    title: 'AI Systems & LLM Integration',
+    subtitle: 'Gemini, OpenAI & Intelligent Pipelines',
+    description: 'AI-assisted web tooling, automated sketch classification, canvas color quantization, prompt engineering, and real-time model integration.',
+    count: '5+ Projects',
+    tags: ['OpenAI API', 'Gemini API', 'Prompt Design', 'Canvas AI'],
   },
   {
-    number: '03',
-    title: 'CRM & Business Systems',
-    description:
-      'Tailored operational systems featuring role-based access control (RBAC), multi-stage workflow pipelines, document verification, and operational dashboards.',
-    tags: ['RBAC', 'Pipelines', 'JWT Auth', 'Dashboards'],
-  },
-  {
-    number: '04',
-    title: 'Real-Time Web Applications',
-    description:
-      'Low-latency bidirectional systems with Socket.io and WebSockets. Delta-compressed state synchronization, collaborative canvas, and multi-user room management.',
-    tags: ['Socket.io', 'WebSockets', 'Real-Time Sync', 'Lobby State'],
-  },
-  {
-    number: '05',
-    title: 'Responsive Frontend Experiences',
-    description:
-      'High-performance, editorial user interfaces with smooth micro-interactions, responsive typography, HTML5 Canvas graphics, and fluid cross-device layouts.',
-    tags: ['Tailwind CSS', 'Framer Motion', 'HTML5 Canvas', 'Responsive UI'],
-  },
-  {
-    number: '06',
-    title: 'Web & Mobile Applications',
-    description:
-      'Cross-platform digital solutions focusing on performance, modular codebases, intuitive usability, and seamless client-side experience.',
-    tags: ['React Native / Web', 'JavaScript', 'State Management', 'UI/UX'],
+    id: 'realtime-interactive',
+    icon: <Activity className="w-5 h-5 text-purple-400" />,
+    title: 'Interactive & Real-Time Engineering',
+    subtitle: 'WebSockets, 60FPS Canvas & Modern UI',
+    description: 'Sub-50ms synchronized multiplayer drawing lobbies, physics-based 2D arcade loops, responsive Tailwind layouts, and interactive experiences.',
+    count: '6+ Projects',
+    tags: ['Socket.io', 'HTML5 Canvas', 'Tailwind CSS', 'Framer Motion'],
   },
 ];
 
 export const Services: React.FC = () => {
-  return (
-    <section id="services" className="py-28 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df]">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div>
-          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-3">
-            06 / CAPABILITIES
-          </span>
-          <h2 className="font-editorial text-4xl sm:text-5xl font-light text-[#2b4b7c] tracking-tight">
-            What I Build
-          </h2>
-        </div>
-        <p className="font-sans text-sm text-zinc-600 max-w-md leading-relaxed">
-          From concept and system architecture to production deployment. Focused on clean engineering, responsiveness, and practical business value.
-        </p>
-      </div>
+  const shouldReduceMotion = useReducedMotion();
+  const editorialEase = [0.16, 1, 0.3, 1] as const;
 
-      {/* Services Grid (Numbered Editorial Style) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {SERVICES_LIST.map((service, index) => (
-          <motion.div
-            key={service.number}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative bg-[#f7f5f0] border border-[#ece8df] rounded-lg p-7 hover:border-[#2b4b7c]/30 hover:shadow-sm transition-all duration-300 flex flex-col justify-between"
-          >
-            <div>
-              {/* Number and accent */}
-              <div className="flex items-center justify-between mb-5">
-                <span className="font-mono text-xs font-semibold text-[#2b4b7c]/70 tracking-widest">
-                  {service.number}
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2b4b7c]/20 group-hover:bg-[#2b4b7c] transition-colors" />
+  return (
+    <section id="services" className="py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative z-10">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-10 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        {/* Left Column: Heading & Explanatory Paragraph (Matching Figma) */}
+        <motion.div 
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: editorialEase }}
+          className="lg:col-span-5 space-y-4 text-left"
+        >
+          <span className="font-mono text-xs font-semibold tracking-widest uppercase text-amber-400">
+            CAPABILITIES
+          </span>
+          <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            My Awesome <br />
+            Services
+          </h2>
+          <div className="w-12 h-1 bg-amber-400 rounded-full my-2" />
+          <p className="font-sans text-sm sm:text-base text-zinc-300 leading-relaxed max-w-md pt-2">
+            From technical architecture and database schemas to client-side state and responsive production deployments. Focused on clean code, speed, and real-world impact.
+          </p>
+
+          <div className="pt-4">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors group cursor-pointer"
+            >
+              <span>Explore portfolio works</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Right Column: Stack of 3 Horizontal Cards (Matching Figma) */}
+        <div className="lg:col-span-7 space-y-4">
+          {SERVICES_DATA.map((service, index) => (
+            <motion.div
+              key={service.id}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: editorialEase }}
+              className="group relative bg-[#131627]/90 hover:bg-[#181d33] border border-white/[0.08] hover:border-amber-400/40 rounded-2xl p-6 sm:p-7 transition-all duration-300 shadow-lg shadow-black/20 flex flex-col sm:flex-row sm:items-center justify-between gap-5 text-left"
+            >
+              <div className="flex items-start sm:items-center gap-4">
+                {/* Thumbnail Icon Box */}
+                <div className="w-12 h-12 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                  {service.icon}
+                </div>
+
+                {/* Details */}
+                <div className="space-y-1">
+                  <h3 className="font-sans text-lg sm:text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-zinc-400">
+                    {service.subtitle}
+                  </p>
+                  <p className="font-sans text-xs text-zinc-400 leading-relaxed pt-1 sm:hidden">
+                    {service.description}
+                  </p>
+                </div>
               </div>
 
-              {/* Service Title */}
-              <h3 className="font-editorial text-2xl font-light text-zinc-900 group-hover:text-[#2b4b7c] transition-colors mb-3 leading-snug">
-                {service.title}
-              </h3>
-
-              {/* Service Description */}
-              <p className="font-sans text-xs text-zinc-600 leading-relaxed mb-6">
-                {service.description}
-              </p>
-            </div>
-
-            {/* Service Tags */}
-            <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#ece8df]/60">
-              {service.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-[10px] text-zinc-500 bg-[#edeae1] px-2 py-0.5 rounded"
-                >
-                  {tag}
+              {/* Count & Golden Arrow */}
+              <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-white/[0.06]">
+                <span className="font-mono text-xs text-zinc-400 font-medium">
+                  {service.count}
                 </span>
-              ))}
-            </div>
-          </motion.div>
-        ))}
+                <div className="w-9 h-9 rounded-full bg-white/[0.04] group-hover:bg-amber-400/20 border border-white/10 group-hover:border-amber-400/40 flex items-center justify-center text-zinc-400 group-hover:text-amber-400 transition-all">
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

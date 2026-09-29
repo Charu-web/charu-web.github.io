@@ -79,15 +79,15 @@ export const CustomCursor: React.FC = () => {
           width: isPill ? (cursorVariant === 'project' ? 96 : 72) : cursorVariant === 'hover' ? 28 : 10,
           height: isPill ? 30 : cursorVariant === 'hover' ? 28 : 10,
           backgroundColor: isPill
-            ? '#2b4b7c'
+            ? '#f59e0b'
             : cursorVariant === 'hover'
-              ? 'rgba(43, 75, 124, 0.15)'
-              : 'rgba(43, 75, 124, 0.95)',
-          borderColor: cursorVariant === 'hover' ? 'rgba(43, 75, 124, 0.4)' : 'transparent',
+              ? 'rgba(245, 158, 11, 0.2)'
+              : 'rgba(245, 158, 11, 0.9)',
+          borderColor: cursorVariant === 'hover' ? '#f59e0b' : 'transparent',
           borderWidth: cursorVariant === 'hover' ? 1.5 : 0,
         }}
         transition={{ type: 'spring', damping: 22, stiffness: 320 }}
-        className="rounded-full flex items-center justify-center text-white font-mono text-[9px] tracking-wider uppercase shadow-md select-none"
+        className="rounded-full flex items-center justify-center text-zinc-950 font-mono text-[9px] tracking-wider uppercase shadow-md select-none"
       >
         {cursorText && (
           <motion.span

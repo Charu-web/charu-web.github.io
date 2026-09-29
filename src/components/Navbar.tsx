@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,11 +29,11 @@ export const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'WORK', href: '#projects', num: '01' },
-    { name: 'ABOUT', href: '#about', num: '02' },
-    { name: 'EXPERIENCE', href: '#experience', num: '03' },
-    { name: 'LAB', href: '#lab', num: '04' },
-    { name: 'CONTACT', href: '#contact', num: '05' },
+    { name: 'Services', href: '#services' },
+    { name: 'Portfolio', href: '#projects' },
+    { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -52,32 +52,30 @@ export const Navbar: React.FC = () => {
       <header 
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled 
-            ? 'py-3.5 bg-[#faf9f6]/92 backdrop-blur-md border-b border-[#ece8df] shadow-2xs' 
+            ? 'py-4 bg-[#0c0d19]/90 backdrop-blur-md border-b border-white/[0.08] shadow-lg' 
             : 'py-6 bg-transparent'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
           
-          {/* Top Left: CHARU SONKER 01—05 Minimal Brand */}
+          {/* Logo: CHARU* with amber sparkle matching Figma's STEFAN* */}
           <motion.a 
             href="#home" 
             onClick={(e) => handleNavClick(e, '#home')}
             initial={shouldReduceMotion ? false : { opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: editorialEase }}
-            className="group flex items-baseline gap-2.5 focus:outline-none"
+            transition={{ duration: 0.5, ease: editorialEase }}
+            className="group flex items-center gap-1.5 focus:outline-none"
           >
-            <span className="font-mono text-xs sm:text-sm font-semibold tracking-widest uppercase text-zinc-900 group-hover:text-[#2b4b7c] transition-colors">
-              CHARU SONKER
+            <span className="font-sans font-bold text-lg sm:text-xl tracking-wider uppercase text-white group-hover:text-amber-400 transition-colors">
+              CHARU
             </span>
-            <span className="font-mono text-[10px] text-zinc-400 tracking-wider">
-              01—05
-            </span>
+            <span className="text-amber-400 font-extrabold text-sm animate-pulse">✦</span>
           </motion.a>
 
-          {/* Top Right: Minimalist Desktop Navigation */}
-          <div className="flex items-center gap-6">
-            <nav className="hidden md:flex items-center gap-7 text-xs font-mono tracking-widest text-zinc-600">
+          {/* Desktop Navigation Links */}
+          <div className="flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
@@ -86,62 +84,57 @@ export const Navbar: React.FC = () => {
                   initial={shouldReduceMotion ? false : { opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.5,
-                    delay: 0.2 + index * 0.04,
+                    duration: 0.4,
+                    delay: 0.15 + index * 0.04,
                     ease: editorialEase
                   }}
-                  className="hover:text-[#2b4b7c] transition-colors font-medium relative group py-1"
+                  className="hover:text-white transition-colors relative py-1 group"
                 >
                   <span>{link.name}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#2b4b7c] group-hover:w-full transition-all duration-200" />
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-amber-400 group-hover:w-full transition-all duration-200" />
                 </motion.a>
               ))}
             </nav>
 
-            {/* Availability Indicator */}
-            <motion.div
-              initial={shouldReduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="hidden lg:flex items-center gap-2 pl-4 border-l border-[#ece8df] font-mono text-[10px] tracking-wider text-zinc-500 uppercase select-none"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-[10px] text-zinc-600 font-semibold tracking-widest">AVAILABLE</span>
-            </motion.div>
+            {/* Resume / Action Button */}
+            <div className="hidden sm:flex items-center gap-3">
+              <a
+                href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
+                download
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border border-white/20 text-white hover:border-amber-400 hover:text-amber-400 transition-all duration-200 bg-white/[0.04] backdrop-blur-xs"
+              >
+                <span>Resume</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
 
             {/* Mobile Hamburger Button */}
-            <motion.button
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              initial={shouldReduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="md:hidden p-1.5 text-zinc-800 hover:text-zinc-950 focus:outline-none cursor-pointer"
+              className="md:hidden p-1.5 text-zinc-300 hover:text-white focus:outline-none cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </motion.button>
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
 
         </div>
       </header>
 
-      {/* Custom Fullscreen Mobile Menu Overlay */}
+      {/* Fullscreen Mobile Drawer Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35, ease: editorialEase }}
-            className="fixed inset-0 z-30 bg-[#faf9f6] flex flex-col justify-between p-8 pt-28 text-left md:hidden"
+            transition={{ duration: 0.3, ease: editorialEase }}
+            className="fixed inset-0 z-30 bg-[#0c0d19]/98 backdrop-blur-xl flex flex-col justify-between p-8 pt-28 text-left md:hidden"
           >
             <div className="space-y-6">
-              <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
-                NAVIGATION / DIRECTORY
+              <span className="font-mono text-[11px] text-zinc-500 uppercase tracking-widest block">
+                NAVIGATION
               </span>
 
               <nav className="flex flex-col space-y-4">
@@ -152,24 +145,31 @@ export const Navbar: React.FC = () => {
                     onClick={(e) => handleNavClick(e, link.href)}
                     initial={{ opacity: 0, x: -16 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05, duration: 0.3 }}
-                    className="flex items-baseline justify-between py-2 border-b border-[#ece8df] group"
+                    transition={{ delay: index * 0.05, duration: 0.25 }}
+                    className="flex items-center justify-between py-2 border-b border-white/[0.08] group"
                   >
-                    <span className="text-3xl font-editorial text-zinc-900 group-hover:text-[#2b4b7c] transition-colors">
+                    <span className="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">
                       {link.name}
                     </span>
-                    <span className="font-mono text-xs text-zinc-400">
-                      {link.num}
-                    </span>
+                    <span className="text-amber-400 text-sm">→</span>
                   </motion.a>
                 ))}
               </nav>
             </div>
 
-            <div className="pt-8 border-t border-[#ece8df] space-y-2 font-mono text-xs text-zinc-500">
-              <p className="uppercase tracking-widest text-[10px] text-zinc-400">CONTACT DIRECT</p>
-              <p className="text-zinc-900">csonker04@gmail.com</p>
-              <p className="text-zinc-500">Lucknow, India</p>
+            <div className="pt-8 border-t border-white/[0.08] space-y-4 text-xs text-zinc-400">
+              <a
+                href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
+                download
+                className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-amber-400 text-zinc-950 font-semibold text-sm hover:bg-amber-300 transition-colors"
+              >
+                <span>Download Resume (PDF)</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <div className="space-y-1 text-center">
+                <p className="text-white font-medium">csonker04@gmail.com</p>
+                <p className="text-zinc-500">Lucknow, India</p>
+              </div>
             </div>
           </motion.div>
         )}

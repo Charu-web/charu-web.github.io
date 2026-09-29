@@ -1,115 +1,119 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { Briefcase, Calendar, ChevronRight } from 'lucide-react';
 import { EXPERIENCE_ITEMS } from '../data/portfolioData';
 
 export const Experience: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const [hoveredId, setHoveredId] = useState<string | null>(EXPERIENCE_ITEMS[0]?.id || null);
-
   const editorialEase = [0.16, 1, 0.3, 1] as const;
 
   return (
-    <motion.section 
+    <section 
       id="experience" 
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, ease: editorialEase }}
-      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left select-none"
+      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative z-10 text-left"
     >
-      {/* Section Header */}
-      <div className="pb-12 border-b border-[#ece8df] space-y-2">
-        <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
-          03 / PROFESSIONAL HISTORY
-        </span>
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-light text-zinc-900 tracking-tight">
-          Experience
-        </h2>
-        <p className="text-xs sm:text-sm text-zinc-500 font-sans">
-          Software engineering background, production platforms, and team contributions.
-        </p>
-      </div>
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Horizontal Editorial List */}
-      <div 
-        onMouseLeave={() => setHoveredId(EXPERIENCE_ITEMS[0]?.id || null)}
-        className="pt-6 divide-y divide-[#ece8df]"
+      {/* Section Header */}
+      <motion.div 
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: editorialEase }}
+        className="pb-12 space-y-2"
       >
-        {EXPERIENCE_ITEMS.map((item) => {
+        <span className="font-mono text-xs font-semibold tracking-widest uppercase text-amber-400 block">
+          CAREER TIMELINE
+        </span>
+        <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+          Professional Experience
+        </h2>
+        <div className="w-12 h-1 bg-amber-400 rounded-full my-2" />
+        <p className="font-sans text-sm text-zinc-300 max-w-md pt-1">
+          Production software engineering, full stack workflows, and verified project outcomes.
+        </p>
+      </motion.div>
+
+      {/* Horizontal Experience List in Dark Navy Cards */}
+      <div className="space-y-4">
+        {EXPERIENCE_ITEMS.map((item, index) => {
           const isSelected = hoveredId === item.id;
-          const isMuted = hoveredId !== null && !isSelected;
 
           return (
-            <div
+            <motion.div
               key={item.id}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.08, ease: editorialEase }}
               onMouseEnter={() => setHoveredId(item.id)}
-              className={`py-8 sm:py-10 transition-all duration-300 cursor-default ${
-                isMuted ? 'opacity-40 filter blur-[0.2px]' : 'opacity-100'
+              onClick={() => setHoveredId(isSelected ? null : item.id)}
+              className={`rounded-2xl border p-6 sm:p-7 transition-all duration-300 cursor-pointer ${
+                isSelected 
+                  ? 'bg-[#181d33] border-amber-400/50 shadow-xl shadow-black/30' 
+                  : 'bg-[#131627]/80 hover:bg-[#15192c] border-white/[0.08]'
               }`}
             >
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-8 items-start">
-                
-                {/* Column 1: Date/Period */}
-                <div className="md:col-span-3 font-mono text-xs text-zinc-400 uppercase tracking-wider pt-1">
-                  {item.period ? (
-                    <span>{item.period.includes('2026') ? '2026' : item.period}</span>
-                  ) : (
-                    <span className="text-zinc-300">—</span>
-                  )}
-                </div>
-
-                {/* Column 2: Company & Role */}
-                <div className="md:col-span-5 space-y-1">
-                  <h3 className={`text-2xl sm:text-3xl font-editorial tracking-tight transition-colors ${
-                    isSelected ? 'text-[#2b4b7c]' : 'text-zinc-900'
-                  }`}>
-                    {item.company}
-                  </h3>
-                  <p className="font-mono text-xs text-zinc-500 uppercase tracking-widest">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <Briefcase className="w-4 h-4 text-amber-400" />
+                    <h3 className="font-sans text-xl sm:text-2xl font-bold text-white">
+                      {item.company}
+                    </h3>
+                  </div>
+                  <p className="font-sans text-sm text-amber-300/90 font-medium">
                     {item.role}
                   </p>
                 </div>
 
-                {/* Column 3: Expandable Responsibilities & Details */}
-                <div className="md:col-span-4 space-y-3 pt-1">
-                  <AnimatePresence>
-                    {isSelected && (
-                      <motion.div
-                        initial={shouldReduceMotion ? false : { opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.35, ease: editorialEase }}
-                        className="space-y-3 overflow-hidden"
-                      >
-                        <ul className="space-y-2 text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans">
-                          {item.responsibilities.slice(0, 2).map((resp, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className="text-[#2b4b7c] mt-0.5">—</span>
-                              <span>{resp}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        <div className="flex flex-wrap gap-1.5 pt-2">
-                          {item.technologies.map((tech) => (
-                            <span 
-                              key={tech} 
-                              className="text-[10px] font-mono text-zinc-500 bg-white px-2 py-0.5 rounded border border-[#ece8df]"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-400">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{item.period || '2026'}</span>
+                  </div>
+                  <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform ${isSelected ? 'rotate-90 text-amber-400' : ''}`} />
                 </div>
-
               </div>
-            </div>
+
+              {/* Responsibilities & Technologies */}
+              <AnimatePresence>
+                {isSelected && (
+                  <motion.div
+                    initial={shouldReduceMotion ? false : { opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3, ease: editorialEase }}
+                    className="pt-5 mt-4 border-t border-white/[0.08] space-y-4 overflow-hidden"
+                  >
+                    <ul className="space-y-2 text-sm text-zinc-300 leading-relaxed font-sans">
+                      {item.responsibilities.map((resp, i) => (
+                        <li key={i} className="flex items-start gap-2.5">
+                          <span className="text-amber-400 mt-1">•</span>
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {item.technologies.map((tech) => (
+                        <span 
+                          key={tech} 
+                          className="text-xs font-mono text-zinc-300 bg-white/[0.06] px-2.5 py-1 rounded-lg border border-white/[0.08]"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           );
         })}
       </div>
-    </motion.section>
+    </section>
   );
 };

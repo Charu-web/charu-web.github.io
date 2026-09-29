@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight, Copy } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Mail, Copy, Check, Send } from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from './Icons';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface ContactProps {
@@ -9,124 +10,163 @@ interface ContactProps {
 }
 
 export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) => {
-  const buttonRef = useRef<HTMLAnchorElement>(null);
   const shouldReduceMotion = useReducedMotion();
-
-  // Magnetic Button Spring Physics
-  const btnX = useMotionValue(0);
-  const btnY = useMotionValue(0);
-
-  const springConfig = { damping: 15, stiffness: 180, mass: 0.1 };
-  const smoothBtnX = useSpring(btnX, springConfig);
-  const smoothBtnY = useSpring(btnY, springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (shouldReduceMotion || !buttonRef.current) return;
-    const rect = buttonRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    btnX.set((e.clientX - centerX) * 0.35);
-    btnY.set((e.clientY - centerY) * 0.35);
-  };
-
-  const handleMouseLeave = () => {
-    btnX.set(0);
-    btnY.set(0);
-  };
-
   const editorialEase = [0.16, 1, 0.3, 1] as const;
 
+  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+  const [sentSuccess, setSentSuccess] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Simulate sending message or open mailto
+    const mailtoUrl = `mailto:${PERSONAL_INFO.email}?subject=Project Inquiry from ${encodeURIComponent(formState.name)}&body=${encodeURIComponent(formState.message)}%0A%0AFrom: ${encodeURIComponent(formState.email)}`;
+    window.location.href = mailtoUrl;
+    setSentSuccess(true);
+    setTimeout(() => setSentSuccess(false), 4000);
+  };
+
   return (
-    <motion.section 
+    <section 
       id="contact" 
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, ease: editorialEase }}
-      className="py-24 sm:py-40 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left select-none"
+      className="py-24 sm:py-36 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative z-10 text-left"
     >
-      <div className="space-y-16">
-        
-        {/* Massive Typographic Headline */}
-        <div className="space-y-4">
-          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
-            07 / GET IN TOUCH
-          </span>
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 right-10 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
 
-          <h2 className="text-4xl sm:text-7xl lg:text-8xl font-editorial font-light text-zinc-900 tracking-tight leading-[0.98]">
-            Let's <br />
-            build <br />
-            <span className="italic text-[#2b4b7c]">something</span> <br />
-            memorable.
-          </h2>
-        </div>
+      {/* Main Banner Container Matching Figma's CTA */}
+      <motion.div
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.7, ease: editorialEase }}
+        className="rounded-3xl bg-gradient-to-b from-[#161a2e] to-[#0f1122] border border-white/10 p-8 sm:p-12 lg:p-16 shadow-2xl relative overflow-hidden"
+      >
+        {/* Glow overlay */}
+        <div className="absolute -top-24 -right-24 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Direct Email & Links */}
-        <div className="space-y-8 pt-6 border-t border-[#ece8df]">
-          <div>
-            <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">
-              DIRECT EMAIL
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 relative z-10 items-center">
+          
+          {/* Left Column: Figma Exact Headline */}
+          <div className="lg:col-span-7 space-y-6">
+            <span className="font-mono text-xs font-semibold tracking-widest uppercase text-amber-400 block">
+              START A COLLABORATION
             </span>
-            <button
-              onClick={onCopyEmail}
-              data-cursor="MAIL"
-              className="group font-editorial text-2xl sm:text-4xl lg:text-5xl text-[#2b4b7c] hover:text-[#1d3557] transition-colors flex items-center gap-3 cursor-pointer"
-            >
-              <span>{PERSONAL_INFO.email}</span>
-              {copiedEmail ? (
-                <span className="font-mono text-xs text-emerald-600 font-semibold bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                  Copied!
-                </span>
-              ) : (
-                <Copy className="w-5 h-5 text-zinc-400 group-hover:text-[#2b4b7c] transition-colors" />
-              )}
-            </button>
-          </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-4 font-mono text-xs text-zinc-600">
-            <div className="flex items-center gap-6">
-              <a
-                href={PERSONAL_INFO.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="OPEN ↗"
-                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1"
+            {/* Exact headline from Figma */}
+            <h2 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08]">
+              Want to make awesome and impactful Product?
+            </h2>
+
+            <div className="w-14 h-1 bg-amber-400 rounded-full my-2" />
+
+            <p className="font-sans text-sm sm:text-base text-zinc-300 leading-relaxed max-w-lg">
+              Let's discuss your roadmap, product vision, or engineering needs. Currently open to full-time engineering roles and high-impact digital projects.
+            </p>
+
+            {/* Email quick copy */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                onClick={onCopyEmail}
+                className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-amber-400 text-zinc-950 font-bold text-xs sm:text-sm tracking-wide uppercase hover:bg-amber-300 transition-all duration-200 shadow-lg shadow-amber-400/20 cursor-pointer"
               >
-                <span>LINKEDIN</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+                <span>{copiedEmail ? 'Email Copied!' : 'Copy Email Address'}</span>
+                {copiedEmail ? (
+                  <Check className="w-4 h-4 text-zinc-950" />
+                ) : (
+                  <Copy className="w-4 h-4 text-zinc-950" />
+                )}
+              </button>
 
+              <a
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className="inline-flex items-center gap-2 text-sm text-zinc-300 hover:text-white transition-colors py-2 px-3"
+              >
+                <Mail className="w-4 h-4 text-amber-400" />
+                <span>{PERSONAL_INFO.email}</span>
+              </a>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-6 pt-4 text-xs font-mono text-zinc-400">
+              <span className="uppercase tracking-widest text-[10px] text-zinc-500">FOLLOW US</span>
               <a
                 href={PERSONAL_INFO.github}
                 target="_blank"
                 rel="noreferrer"
-                data-cursor="OPEN ↗"
-                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1"
+                className="hover:text-amber-400 transition-colors flex items-center gap-1.5"
               >
-                <span>GITHUB</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <GithubIcon className="w-4 h-4" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href={PERSONAL_INFO.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-amber-400 transition-colors flex items-center gap-1.5"
+              >
+                <LinkedinIcon className="w-4 h-4" />
+                <span>LinkedIn</span>
               </a>
             </div>
 
-            {/* Magnetic CTA Button */}
-            <motion.a
-              ref={buttonRef}
-              href={`mailto:${PERSONAL_INFO.email}`}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              style={{
-                x: shouldReduceMotion ? 0 : smoothBtnX,
-                y: shouldReduceMotion ? 0 : smoothBtnY,
-              }}
-              className="inline-flex items-center gap-2 bg-[#2b4b7c] text-white px-6 py-3 rounded-full text-xs font-mono font-medium tracking-wider hover:bg-[#1d3557] transition-colors shadow-sm cursor-pointer"
-            >
-              <span>START A CONVERSATION</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </motion.a>
           </div>
-        </div>
 
-      </div>
-    </motion.section>
+          {/* Right Column: Direct Quick Contact Form */}
+          <div className="lg:col-span-5 bg-[#0d0f1f]/80 backdrop-blur-md rounded-2xl p-6 sm:p-7 border border-white/[0.08] shadow-inner">
+            <h3 className="font-sans text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <Send className="w-4 h-4 text-amber-400" />
+              <span>Send a Quick Message</span>
+            </h3>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-mono text-zinc-400 mb-1">Your Name</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Alex Rivers"
+                  value={formState.name}
+                  onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono text-zinc-400 mb-1">Your Email</label>
+                <input
+                  type="email"
+                  required
+                  placeholder="alex@company.com"
+                  value={formState.email}
+                  onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono text-zinc-400 mb-1">Project Details</label>
+                <textarea
+                  rows={3}
+                  required
+                  placeholder="Briefly describe what you would like to build..."
+                  value={formState.message}
+                  onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-amber-400 transition-colors resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-zinc-950 font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-amber-400/20"
+              >
+                <span>{sentSuccess ? 'Opening Mail Client...' : 'Send Message →'}</span>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </motion.div>
+    </section>
   );
 };
