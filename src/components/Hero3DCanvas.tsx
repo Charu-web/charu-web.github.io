@@ -69,10 +69,12 @@ export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY, isHo
         antialias: true,
         powerPreference: 'high-performance',
       });
+      renderer.setClearColor(0x000000, 0);
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.15;
+      renderer.domElement.style.background = 'transparent';
       container.appendChild(renderer.domElement);
 
       // Studio Lighting setup
