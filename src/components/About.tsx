@@ -99,7 +99,7 @@ export const About: React.FC<AboutProps> = ({ onContactClick }) => {
                   STUDIO ARTIFACT
                 </span>
                 <span className="font-mono text-xs text-zinc-800 font-medium tracking-wider">
-                  PARAMETRIC SCULPTURE
+                  DEVELOPMENT SYSTEM
                 </span>
               </div>
               <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
