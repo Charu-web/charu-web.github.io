@@ -226,56 +226,86 @@ export const ALL_PROJECTS: FeaturedProject[] = [
   },
   {
     id: 'yuvahub',
-    title: 'YuvaHub — Naukri Mahotsav 2026',
-    category: 'Full-Stack Web Application / Government & Employment Platform',
+    title: 'YuvaHub',
+    category: 'Community & Career Portal',
     filterCategory: 'Web',
-    tagline: 'Full-stack employment portal & admin panel for Naukri Mahotsav 2026 with persistent cloud database & digital pass generator',
+    tagline: 'Career development & community platform with interactive directory filters',
     description:
-      'A complete employment and job-registration platform for Naukri Mahotsav 2026, including candidate registration, digital Job Card generation and lookup, persistent candidate data, Admin Panel, authentication, candidate management, search/filter, status updates and CSV export.',
+      'A responsive web portal connecting users to career development resources, event listings, community discussions, and mentorship opportunities.',
     highlight:
-      'Full-stack serverless architecture with Netlify Functions, persistent cloud storage (@netlify/blobs), bcrypt admin authentication, real-time candidate search/filter, and automated CSV export.',
-    technologies: ['React', 'Node.js', 'Express', 'Serverless', 'Database', 'Admin Panel', 'REST API'],
-    liveUrl: 'https://cozy-sable-726aa1.netlify.app',
+      'Implemented clean navigation architecture, interactive directory filters, dynamic data fetching, and mobile-first layouts.',
+    technologies: ['React.js', 'JavaScript', 'Node.js', 'CSS3', 'REST APIs'],
+    liveUrl: 'https://charu-web.github.io/yuvahub/',
     githubUrl: 'https://github.com/Charu-web/yuvahub',
     visualType: 'yuvahub',
+  },
+  {
+    id: 'yuvahub-naukri-mahotsav-2026',
+    title: 'YuvaHub — Naukri Mahotsav 2026',
+    category: 'Employment / Job Registration Platform',
+    filterCategory: 'Web',
+    tagline: 'Full-Stack Web Application for Naukri Mahotsav 2026 with digital job card pass & persistent cloud database',
+    description:
+      'A complete employment platform created for Naukri Mahotsav 2026, featuring candidate registration, digital Job Card generation and lookup, persistent candidate data, Admin Panel, authentication, candidate management, search/filter, status updates and CSV export.',
+    highlight:
+      'Full-stack serverless architecture with Netlify Functions, persistent cloud storage (@netlify/blobs), bcrypt admin authentication, real-time candidate search/filter, and automated CSV export.',
+    technologies: [
+      'React',
+      'JavaScript',
+      'Node.js',
+      'Express.js',
+      'REST API',
+      'Netlify Functions',
+      'Serverless',
+      'Cloud Database',
+      'Admin Panel',
+      'Authentication',
+      'Responsive Design',
+    ],
+    liveUrl: 'https://cozy-sable-726aa1.netlify.app',
+    githubUrl: 'https://github.com/Charu-web/yuvahub',
+    visualType: 'yuvahub-naukri-mahotsav',
     caseStudy: {
       overview:
-        'YuvaHub (Naukri Mahotsav 2026) is a high-traffic employment recruitment platform built for Dharashiv constituency, enabling thousands of job seekers to register, receive unique digital candidate passes, and be matched with 50+ participating corporate employers.',
+        'YuvaHub — Naukri Mahotsav 2026 is an end-to-end employment and recruitment platform engineered for Dharashiv constituency. It enables thousands of job seekers to register, receive unique digital candidate passes, and be matched with 50+ participating corporate employers during the recruitment mega drive.',
       problem:
-        'Large-scale job fairs traditionally suffer from unorganized on-ground candidate lines, lost physical resumes, lack of live applicant analytics for administrative teams, and fragile database hosting during traffic spikes.',
+        'Large-scale employment drives traditionally suffer from massive physical congestion, lost paper resumes, lack of applicant verification mechanisms, and inability for coordinators to track candidate metrics in real time.',
       solution:
-        'Architected a resilient serverless full-stack web application with Netlify Functions and Netlify Blobs persistent cloud database, instant unique Job Card generation, responsive Marathi bilingual UI, and a secure real-time administrative command center.',
+        'Engineered a complete serverless full-stack web application with Netlify Functions and Netlify Blobs persistent cloud database, instant unique Job Card generation, responsive bilingual UI, and a secure real-time administrative command center.',
       keyFeatures: [
-        'Candidate Registration with instant unique candidate ID generation (MP-JOB-2026-XXXXXX)',
-        'Digital Job Card generation & Job Card Unique Code lookup',
-        'Persistent candidate database using Netlify Blobs with strong consistency',
-        'Secure Admin Login/Logout with bcrypt password hashing & session management',
-        'Admin Dashboard with registration analytics, district & qualification metrics',
-        'Candidate Search & Filters across multi-field criteria',
-        'Candidate Details view & Candidate Status Updates (Verified/Approved/Pending)',
-        'Automated UTF-8 BOM CSV Export for administrative reporting',
-        'Mobile-first responsive bilingual UI design'
+        'Candidate Registration: Streamlined multi-step applicant registration with immediate unique Candidate ID generation (MP-JOB-2026-XXXXXX).',
+        'Digital Job Card: Instant generation of digital PVC Job Card pass for candidates.',
+        'Job Card Unique Code Lookup: Public verification and status lookup via unique Candidate ID or phone number.',
+        'Persistent Candidate Database: High-reliability cloud key-value database using Netlify Blobs with strong consistency across cold starts.',
+        'Admin Dashboard: Real-time KPIs tracking total applicant volume, daily registrations, district distribution, and educational qualifications.',
+        'Candidate Search & Filters: Instant search by name, candidate ID, contact number, and filters by qualification and district.',
+        'Candidate Details: Full profile modal view displaying complete educational and professional background.',
+        'Candidate Status Update: Granular administrative status transitions (Verified, Approved, Pending, Rejected).',
+        'CSV Export: Automated UTF-8 BOM CSV dataset export for administrative reporting and corporate recruiters.',
+        'Admin Login / Logout: Secure bcrypt password verification and cryptographic bearer token session management.',
+        'Protected Admin Routes: Guard middleware enforcing 401 Unauthorized rejection for all unauthenticated administrative requests.',
+        'Responsive UI: Mobile-first bilingual (Marathi / English) interface optimized across mobile, tablet, and desktop viewports.',
       ],
       technicalImplementation: [
-        'Developed modular React.js frontend with Tailwind CSS and Vite, optimized for high Lighthouse performance scores.',
-        'Engineered 15 RESTful API endpoints utilizing Express.js bundled into Netlify Serverless Functions.',
+        'Built modern, responsive React.js frontend with Tailwind CSS and Vite, optimized for fast initial render and Core Web Vitals.',
+        'Developed 15 RESTful API routes in Express.js bundled into Netlify Functions via serverless-http.',
         'Integrated @netlify/blobs persistent cloud key-value store with strong consistency across serverless cold starts.',
-        'Implemented cryptographically secure session authentication guard middleware protecting sensitive admin APIs.',
-        'Built automated UTF-8 BOM CSV generation pipeline for on-demand candidate dataset exports.'
+        'Implemented Bcrypt password verification and cryptographically secure token-based session guard middleware.',
+        'Constructed automated UTF-8 BOM CSV generation pipeline for on-demand candidate dataset exports.',
       ],
       technologyStack: [
-        { category: 'Frontend', tools: ['React.js', 'Vite', 'Tailwind CSS', 'Lucide React'] },
-        { category: 'Serverless Backend', tools: ['Node.js', 'Express.js', 'Netlify Functions', 'serverless-http'] },
-        { category: 'Database & Storage', tools: ['@netlify/blobs (Strong Consistency)', 'JSON Store'] },
-        { category: 'Security & Auth', tools: ['Bcrypt.js', 'Crypto Bearer Tokens', 'Admin RBAC Guard'] }
+        { category: 'Frontend', tools: ['React', 'JavaScript', 'Tailwind CSS', 'Vite', 'Responsive Design'] },
+        { category: 'Backend & Serverless', tools: ['Node.js', 'Express.js', 'Netlify Functions', 'Serverless', 'REST API'] },
+        { category: 'Database & Storage', tools: ['Cloud Database', 'Netlify Blobs (Strong Consistency)', 'JSON Store'] },
+        { category: 'Security & Auth', tools: ['Admin Panel', 'Authentication (Bcrypt & Bearer Tokens)', 'Protected Admin Routes'] },
       ],
       challenges: [
-        'Ensuring zero data loss across ephemeral serverless function cold starts without incurring expensive database cluster overhead.',
-        'Formatting Marathi Unicode text accurately across CSV spreadsheet exports on different operating systems.'
+        'Ensuring 100% data persistence across ephemeral serverless cold starts without incurring expensive database cluster overhead.',
+        'Rendering Marathi Unicode typography seamlessly in exported CSV spreadsheets across different operating systems.',
       ],
       outcome:
-        'Delivered a robust, high-performance web platform actively deployed in production on Netlify, facilitating seamless candidate enrollment and live administration for thousands of applicants.'
-    }
+        'Delivered a production-ready, high-performance web platform actively deployed in production on Netlify, facilitating seamless candidate enrollment, instant pass generation, and live administrative management for thousands of job seekers.',
+    },
   },
   {
     id: 'dsa-sathi-crm',

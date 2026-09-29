@@ -43,7 +43,7 @@ export const Resume: React.FC = () => {
             EXPERIENCE
           </div>
           <p className="font-editorial text-lg text-zinc-900">
-            Empire IT Xpert &amp; Hi-Tech Eng.
+            Volna Tech, Empire IT &amp; Hi-Tech
           </p>
           <p className="text-zinc-600 leading-relaxed">
             Production web platforms, real-time architectures, CRM tools, and scalable REST APIs.

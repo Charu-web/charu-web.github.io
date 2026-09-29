@@ -14,8 +14,10 @@ import {
   FileText
 } from 'lucide-react';
 
+import type { FeaturedProject } from '../types';
+
 interface VisualProps {
-  type: 'pixel-art' | 'space-shooter' | 'doodle-duel' | 'dsa-crm' | 'hda-production' | 'yuvahub' | 'dsa-sathi-crm' | 'bubble-shooter';
+  type: FeaturedProject['visualType'];
 }
 
 export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
@@ -213,44 +215,90 @@ export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
     return (
       <div className="w-full h-full min-h-[220px] bg-zinc-950 p-4 font-mono text-xs flex flex-col justify-between text-zinc-300">
         <div className="flex items-center justify-between pb-2 border-b border-zinc-800 text-[11px]">
-          <span className="text-zinc-200 font-semibold flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5 text-orange-400" /> YuvaHub — Naukri Mahotsav 2026
+          <span className="text-zinc-300 font-medium flex items-center gap-1.5">
+            <Layers className="w-3.5 h-3.5 text-zinc-400" /> YuvaHub Career Portal
           </span>
-          <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px]">
-            Live on Netlify
+          <span className="px-2 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-300 text-[10px]">
+            Community Hub
           </span>
         </div>
 
         <div className="my-3 h-28 bg-zinc-900 rounded border border-zinc-800 p-3 flex flex-col justify-between">
-          <div className="flex justify-between items-center text-[10px]">
-            <span className="text-zinc-400">Digital PVC Job Card Pass</span>
-            <span className="font-mono text-orange-400 font-bold">MP-JOB-2026</span>
+          <div className="flex justify-between items-center text-[10px] text-zinc-400">
+            <span>Event &amp; Opportunity Directory</span>
+            <span className="text-emerald-400">Active</span>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 my-1 text-[10px]">
-            <div className="bg-zinc-950 p-1.5 rounded border border-zinc-800">
-              <span className="text-zinc-500 text-[9px]">Candidates</span>
-              <div className="text-zinc-200 font-bold mt-0.5">Live DB</div>
+          <div className="grid grid-cols-2 gap-2 my-1">
+            <div className="bg-zinc-950 p-1.5 rounded border border-zinc-800 text-[9px] text-zinc-400">
+              Tech Mentorship
             </div>
-            <div className="bg-zinc-950 p-1.5 rounded border border-zinc-800">
-              <span className="text-zinc-500 text-[9px]">Admin Panel</span>
-              <div className="text-emerald-400 font-bold mt-0.5">Auth RBAC</div>
-            </div>
-            <div className="bg-zinc-950 p-1.5 rounded border border-zinc-800">
-              <span className="text-zinc-500 text-[9px]">Export</span>
-              <div className="text-zinc-200 font-bold mt-0.5">UTF-8 CSV</div>
+            <div className="bg-zinc-950 p-1.5 rounded border border-zinc-800 text-[9px] text-zinc-400">
+              Career Resources
             </div>
           </div>
 
-          <div className="flex justify-between items-center text-[10px] text-zinc-400 pt-1 border-t border-zinc-800">
-            <span>Netlify Serverless API</span>
-            <span className="text-emerald-400">Persistent Cloud Store</span>
+          <div className="text-[10px] text-zinc-500">
+            Interactive Search &amp; Filter Logic
           </div>
         </div>
 
         <div className="flex items-center justify-between bg-zinc-900 px-2.5 py-1.5 rounded border border-zinc-800 text-[10px] text-zinc-400">
-          <span>React · Express · Netlify Functions</span>
-          <span className="text-zinc-300">Gov &amp; Employment Portal</span>
+          <span>Dynamic Data Fetching</span>
+          <span className="text-zinc-300">Responsive UI</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === 'yuvahub-naukri-mahotsav') {
+    return (
+      <div className="w-full h-full min-h-[220px] bg-zinc-950 relative overflow-hidden flex flex-col justify-between text-zinc-300 group">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-40 transition-opacity" 
+          style={{ backgroundImage: "url('/images/yuvahub-naukri-mahotsav-2026.jpg')" }} 
+        />
+        <div className="relative z-10 p-4 flex flex-col justify-between h-full bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-zinc-950/60 font-mono text-xs">
+          <div className="flex items-center justify-between pb-2 border-b border-zinc-800/80 text-[11px]">
+            <span className="text-zinc-100 font-semibold flex items-center gap-1.5">
+              <Layers className="w-3.5 h-3.5 text-orange-400" /> YuvaHub — Naukri Mahotsav 2026
+            </span>
+            <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px]">
+              Live on Netlify
+            </span>
+          </div>
+
+          <div className="my-2 p-2.5 bg-zinc-900/90 backdrop-blur-sm rounded border border-zinc-800/80 flex flex-col justify-between">
+            <div className="flex justify-between items-center text-[10px]">
+              <span className="text-zinc-300">Digital PVC Job Card Pass</span>
+              <span className="font-mono text-orange-400 font-bold bg-orange-950/40 px-1.5 py-0.5 rounded border border-orange-500/20">MP-JOB-2026</span>
+            </div>
+
+            <div className="grid grid-cols-3 gap-1.5 my-2 text-[10px]">
+              <div className="bg-zinc-950/80 p-1.5 rounded border border-zinc-800 text-center">
+                <span className="text-zinc-500 text-[9px] block">Database</span>
+                <span className="text-zinc-200 font-bold text-[10px]">Persistent</span>
+              </div>
+              <div className="bg-zinc-950/80 p-1.5 rounded border border-zinc-800 text-center">
+                <span className="text-zinc-500 text-[9px] block">Admin Panel</span>
+                <span className="text-emerald-400 font-bold text-[10px]">RBAC Auth</span>
+              </div>
+              <div className="bg-zinc-950/80 p-1.5 rounded border border-zinc-800 text-center">
+                <span className="text-zinc-500 text-[9px] block">Export</span>
+                <span className="text-zinc-200 font-bold text-[10px]">UTF-8 CSV</span>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center text-[9px] text-zinc-400 pt-1 border-t border-zinc-800/80">
+              <span>Serverless Netlify Functions</span>
+              <span className="text-emerald-400">@netlify/blobs Cloud Store</span>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between bg-zinc-900/90 px-2.5 py-1.5 rounded border border-zinc-800 text-[10px] text-zinc-400">
+            <span>React · Express · Node.js</span>
+            <span className="text-zinc-200 font-medium">Gov &amp; Employment Platform</span>
+          </div>
         </div>
       </div>
     );

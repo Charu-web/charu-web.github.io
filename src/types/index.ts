@@ -21,7 +21,7 @@ export interface FeaturedProject {
   liveUrl?: string;
   githubUrl?: string;
   caseStudy?: CaseStudyData;
-  visualType: 'pixel-art' | 'space-shooter' | 'doodle-duel' | 'dsa-crm' | 'hda-production' | 'yuvahub' | 'dsa-sathi-crm' | 'bubble-shooter';
+  visualType: 'pixel-art' | 'space-shooter' | 'doodle-duel' | 'dsa-crm' | 'hda-production' | 'yuvahub' | 'yuvahub-naukri-mahotsav' | 'dsa-sathi-crm' | 'bubble-shooter';
 }
 
 export interface ProductionProject {

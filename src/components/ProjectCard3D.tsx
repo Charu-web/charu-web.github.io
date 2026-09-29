@@ -159,7 +159,8 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
                   target="_blank"
                   rel="noreferrer"
                   className="text-zinc-400 hover:text-zinc-800 transition-colors inline-flex items-center gap-0.5"
-                  title="Live Demo"
+                  title={`Live Demo for ${project.title}`}
+                  aria-label={`Live Demo for ${project.title}`}
                 >
                   <span>Live</span>
                   <ArrowUpRight className="w-3 h-3" />
@@ -172,7 +173,8 @@ export const ProjectCard3D: React.FC<ProjectCard3DProps> = ({
                   target="_blank"
                   rel="noreferrer"
                   className="text-zinc-400 hover:text-zinc-800 transition-colors"
-                  title="Source Code"
+                  title={`Source Code for ${project.title}`}
+                  aria-label={`GitHub Repository for ${project.title}`}
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
                 </a>

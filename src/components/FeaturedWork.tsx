@@ -107,6 +107,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({ onSelectCaseStudy })
                         href={project.liveUrl} 
                         target="_blank" 
                         rel="noreferrer" 
+                        aria-label={`Live Demo for ${project.title}`}
                         className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-100 transition-colors"
                       >
                         <span>LIVE DEMO</span>
@@ -119,6 +120,7 @@ export const FeaturedWork: React.FC<FeaturedWorkProps> = ({ onSelectCaseStudy })
                         href={project.githubUrl} 
                         target="_blank" 
                         rel="noreferrer" 
+                        aria-label={`GitHub Repository for ${project.title}`}
                         className="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-100 transition-colors"
                       >
                         <span>GITHUB</span>
