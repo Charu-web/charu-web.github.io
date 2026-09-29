@@ -18,11 +18,11 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', href: '#home' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Work', href: '#projects' },
     { name: 'Lab', href: '#lab' },
     { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
-    { name: 'Services', href: '#services' },
+    { name: 'About', href: '#about' },
     { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -40,8 +40,8 @@ export const Navbar: React.FC = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
-          ? 'py-4 bg-[#faf9f6]/90 backdrop-blur-md border-b border-[#ece8df]' 
-          : 'py-6 bg-transparent'
+          ? 'py-3.5 bg-[#faf9f6]/92 backdrop-blur-md border-b border-[#ece8df]' 
+          : 'py-5 bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
@@ -60,26 +60,42 @@ export const Navbar: React.FC = () => {
           </span>
         </motion.a>
 
-        {/* Top Right: Understated minimalist navigation with staggered 0.4s entrance */}
-        <nav className="hidden md:flex items-center gap-7 text-xs font-sans tracking-wide text-zinc-600">
-          {navLinks.map((link, index) => (
-            <motion.a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: 0.35 + index * 0.05,
-                ease: [0.16, 1, 0.3, 1]
-              }}
-              className="hover:text-[#2b4b7c] transition-colors"
-            >
-              {link.name}
-            </motion.a>
-          ))}
-        </nav>
+        {/* Top Right: Understated minimalist navigation & live status */}
+        <div className="flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-6 text-xs font-sans tracking-wide text-zinc-600">
+            {navLinks.map((link, index) => (
+              <motion.a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.35 + index * 0.04,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                className="hover:text-[#2b4b7c] transition-colors font-medium"
+              >
+                {link.name}
+              </motion.a>
+            ))}
+          </nav>
+
+          {/* Open to Opportunities Live Pulse Indicator */}
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="hidden lg:flex items-center gap-2 pl-4 border-l border-[#ece8df] font-mono text-[10px] tracking-wider text-zinc-500 uppercase select-none"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="text-[10px] text-zinc-600 font-semibold tracking-widest">OPEN TO OPPORTUNITIES</span>
+          </motion.div>
+        </div>
 
         {/* Mobile Hamburger Menu Button */}
         <motion.button

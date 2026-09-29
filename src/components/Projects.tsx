@@ -29,11 +29,14 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
       {/* Header & Minimal Category Filters */}
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-6 pb-12 border-b border-[#ece8df] text-left">
         <div>
+          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
+            01 / SELECTED WORK
+          </span>
           <h2 className="text-3xl sm:text-4xl font-editorial font-light text-zinc-900 tracking-tight">
-            Projects
+            Featured Projects
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500 font-sans mt-1">
-            Selected 3D product showcases, interactive web systems, and full-stack applications.
+            Production web platforms, real-time architectures, and interactive digital products.
           </p>
         </div>
 

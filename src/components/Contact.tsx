@@ -45,16 +45,20 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
     >
       <div className="max-w-3xl space-y-8">
         
-        <div className="space-y-2">
+        <div className="space-y-3">
+          <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block">
+            08 / GET IN TOUCH
+          </span>
           <h2 className="text-3xl sm:text-5xl font-editorial font-light text-zinc-900 tracking-tight">
-            LET'S BUILD SOMETHING.
+            Have an idea? <br />
+            <span className="italic text-[#2b4b7c]">Let's build it.</span>
           </h2>
-          <p className="text-sm text-zinc-500 font-sans">
-            Open for full-time engineering roles, AI product development, and contract builds.
+          <p className="text-sm text-zinc-500 font-sans max-w-xl">
+            Open for full-time software engineering roles, AI product development, and selected contract builds. Let's discuss your next project.
           </p>
         </div>
 
-        <div className="space-y-5 pt-2">
+        <div className="space-y-6 pt-2">
           <div>
             <button
               onClick={onCopyEmail}
@@ -63,8 +67,8 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
             >
               <span>{PERSONAL_INFO.email}</span>
               {copiedEmail ? (
-                <span className="font-mono text-xs text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                  Copied!
+                <span className="font-mono text-xs text-emerald-600 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  Copied to clipboard!
                 </span>
               ) : (
                 <Copy className="w-4 h-4 text-zinc-400 group-hover:text-[#2b4b7c] transition-colors" />
@@ -72,13 +76,34 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
             </button>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-500 uppercase tracking-wider">
-            <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-            <span>{PERSONAL_INFO.location}</span>
+          <div className="flex flex-wrap items-center gap-6 text-xs font-mono text-zinc-500 uppercase tracking-wider">
+            <div className="flex items-center gap-2">
+              <MapPin className="w-3.5 h-3.5 text-zinc-400" />
+              <span>{PERSONAL_INFO.location}</span>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1.5"
+              >
+                <span>GITHUB ↗</span>
+              </a>
+              <a
+                href={PERSONAL_INFO.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-[#2b4b7c] transition-colors flex items-center gap-1.5"
+              >
+                <span>LINKEDIN ↗</span>
+              </a>
+            </div>
           </div>
 
           {/* Magnetic CTA Button */}
-          <div className="pt-6">
+          <div className="pt-4">
             <motion.a
               ref={buttonRef}
               href={`mailto:${PERSONAL_INFO.email}?subject=Project%20Inquiry%20-%20Charu%20Sonker`}
@@ -92,7 +117,7 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#2b4b7c] text-white font-mono text-xs uppercase tracking-widest font-semibold hover:bg-[#1e385f] transition-colors shadow-sm cursor-pointer"
             >
-              <span>LET'S TALK</span>
+              <span>SEND A MESSAGE</span>
               <ArrowUpRight className="w-4 h-4" />
             </motion.a>
           </div>

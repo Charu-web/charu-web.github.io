@@ -14,7 +14,8 @@ export const Lab: React.FC = () => {
       description: 'Collaborative multiplayer canvas synchronized with OpenAI vision evaluation.',
       technologies: ['React', 'Socket.io', 'OpenAI API', 'Canvas API'],
       visualType: 'doodle-duel' as const,
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/Charu-web/sketch-duel-ai-doodle-battles',
+      liveUrl: 'https://github.com/Charu-web/sketch-duel-ai-doodle-battles',
     },
     {
       id: 'neon-space-shooter',
@@ -23,7 +24,8 @@ export const Lab: React.FC = () => {
       description: '60FPS arcade space engine with spatial partition collision & zero garbage collection.',
       technologies: ['JavaScript', 'HTML5 Canvas', 'Game Physics'],
       visualType: 'space-shooter' as const,
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/Charu-web/neon-space-shooter',
+      liveUrl: 'https://charu-web.github.io/neon-space-shooter/',
     },
     {
       id: 'bubble-shooter',
@@ -32,7 +34,7 @@ export const Lab: React.FC = () => {
       description: 'Ray-casting trajectory projection with recursive cluster drop math.',
       technologies: ['Canvas API', 'Math Physics', 'Algorithms'],
       visualType: 'bubble-shooter' as const,
-      githubUrl: 'https://github.com',
+      githubUrl: 'https://github.com/Charu-web',
     },
   ];
 
@@ -46,6 +48,9 @@ export const Lab: React.FC = () => {
       className="py-20 md:py-28 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left"
     >
       <div className="pb-10 border-b border-[#ece8df]">
+        <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
+          02 / EXPERIMENTS &amp; INTERACTIVE GRAPHICS
+        </span>
         <h2 className="text-3xl sm:text-4xl font-editorial font-light text-zinc-900 tracking-tight">
           Lab &amp; Creative Coding
         </h2>
@@ -88,15 +93,28 @@ export const Lab: React.FC = () => {
                   ))}
                 </div>
 
-                <a
-                  href={exp.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-[#2b4b7c] hover:text-[#1d3557] font-medium transition-colors text-xs"
-                >
-                  <span>Code</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
+                <div className="flex items-center gap-3">
+                  {exp.liveUrl && (
+                    <a
+                      href={exp.liveUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 text-[#2b4b7c] hover:text-[#1d3557] font-semibold transition-colors text-xs"
+                    >
+                      <span>Demo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+                  )}
+                  <a
+                    href={exp.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-900 font-medium transition-colors text-xs"
+                  >
+                    <span>Code</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>

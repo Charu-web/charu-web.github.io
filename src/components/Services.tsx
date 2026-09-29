@@ -60,7 +60,7 @@ export const Services: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
         <div>
           <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-3">
-            05 / CAPABILITIES
+            06 / CAPABILITIES
           </span>
           <h2 className="font-editorial text-4xl sm:text-5xl font-light text-[#2b4b7c] tracking-tight">
             What I Build

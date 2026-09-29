@@ -15,6 +15,9 @@ export const Experience: React.FC = () => {
       className="py-20 md:py-28 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto border-t border-[#ece8df] text-left"
     >
       <div className="pb-10 border-b border-[#ece8df]">
+        <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
+          03 / PROFESSIONAL HISTORY
+        </span>
         <h2 className="text-3xl sm:text-4xl font-editorial font-light text-zinc-900 tracking-tight">
           Experience
         </h2>

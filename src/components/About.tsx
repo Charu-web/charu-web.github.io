@@ -25,30 +25,46 @@ export const About: React.FC<AboutProps> = ({ onContactClick }) => {
         {/* Left Column: Editorial Philosophy & Biography */}
         <div className="lg:col-span-8 space-y-6">
           <div className="pb-4 border-b border-[#ece8df]">
+            <span className="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block mb-2">
+              05 / BACKGROUND &amp; PHILOSOPHY
+            </span>
             <h2 className="text-3xl sm:text-5xl font-editorial font-light text-zinc-900 tracking-tight leading-tight">
-              Building useful products <br />
-              <span className="italic text-[#2b4b7c]">from idea to production.</span>
+              Building interfaces where <br />
+              <span className="italic text-[#2b4b7c]">engineering meets experience.</span>
             </h2>
           </div>
 
           <div className="space-y-4 text-sm sm:text-base text-zinc-600 leading-relaxed font-sans max-w-2xl">
             <p>
-              I’m a Full Stack Developer focused on building responsive, scalable web applications, real-time products, and AI-integrated digital systems.
+              I’m a Full Stack Developer based in Lucknow, India, specializing in building performant, production-ready web applications, AI-integrated digital tools, and scalable distributed systems.
             </p>
 
             <p>
-              My engineering approach connects thoughtful frontend experiences with solid backend architectures, modular APIs, and efficient database designs.
+              My engineering stack spans React, Node.js, Express, MongoDB, SQL, and modern AI/LLM APIs. I connect human-centered UI design with resilient backend pipelines, clean data architectures, and sub-second response times.
             </p>
           </div>
 
+          {/* Minimal Editorial Metadata Badges */}
+          <div className="pt-2 flex flex-wrap gap-2 text-xs font-mono">
+            <span className="bg-white px-3 py-1 rounded-md border border-[#ece8df] text-zinc-600">
+              LOCATION: <strong className="text-zinc-900">{PERSONAL_INFO.location}</strong>
+            </span>
+            <span className="bg-white px-3 py-1 rounded-md border border-[#ece8df] text-zinc-600">
+              FOCUS: <strong className="text-zinc-900">Full Stack &amp; AI Integration</strong>
+            </span>
+            <span className="bg-white px-3 py-1 rounded-md border border-[#ece8df] text-zinc-600">
+              CURRENT ROLE: <strong className="text-zinc-900">Full Stack Developer</strong>
+            </span>
+          </div>
+
           <div className="pt-2 flex flex-wrap items-center gap-6 text-xs font-sans text-zinc-500">
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-zinc-400" />
+            <div className="flex items-center gap-1.5 font-mono text-[11px]">
+              <MapPin className="w-3.5 h-3.5 text-zinc-400" />
               <span>{PERSONAL_INFO.location}</span>
             </div>
 
-            <div className="flex items-center gap-1.5">
-              <Mail className="w-4 h-4 text-zinc-400" />
+            <div className="flex items-center gap-1.5 font-mono text-[11px]">
+              <Mail className="w-3.5 h-3.5 text-zinc-400" />
               <span>{PERSONAL_INFO.email}</span>
             </div>
 
