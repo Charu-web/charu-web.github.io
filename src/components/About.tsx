@@ -86,11 +86,26 @@ export const About: React.FC<AboutProps> = ({ onContactClick }) => {
 
         {/* Right Column: Original Geometric Dynamics Visualization */}
         <div className="lg:col-span-4 flex items-center justify-center pt-8 lg:pt-16">
-          <div className="w-full max-w-xs rounded-2xl bg-white border border-[#ece8df] p-6 shadow-xs flex flex-col items-center justify-center">
-            <About3DCanvas />
-            <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest mt-4">
-              PARAMETRIC SCULPTURE
-            </span>
+          <div className="w-full max-w-xs sm:max-w-sm rounded-2xl bg-white border border-[#ece8df] p-6 shadow-xs flex flex-col justify-between overflow-hidden group">
+            {/* Visual 3D Container with comfortable breathing room */}
+            <div className="w-full h-52 sm:h-56 relative flex items-center justify-center">
+              <About3DCanvas />
+            </div>
+
+            {/* Editorial Metadata Label Block */}
+            <div className="pt-4 border-t border-[#f2efe9] flex items-center justify-between text-left">
+              <div>
+                <span className="font-mono text-[9px] text-zinc-400 uppercase tracking-widest block mb-0.5">
+                  STUDIO ARTIFACT
+                </span>
+                <span className="font-mono text-xs text-zinc-800 font-medium tracking-wider">
+                  PARAMETRIC SCULPTURE
+                </span>
+              </div>
+              <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
+                FIG. 01
+              </span>
+            </div>
           </div>
         </div>
 
