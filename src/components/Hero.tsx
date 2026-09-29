@@ -104,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({
         {/* LAYER 1 (z-10): Background Typography (Primary Layout Driver) */}
         <motion.div 
           style={{ x: shouldReduceMotion ? 0 : textX, y: shouldReduceMotion ? 0 : textY }}
-          className="relative z-10 font-editorial text-[clamp(3.5rem,8vw,8.5rem)] font-normal leading-[0.92] tracking-[-0.03em] text-[#2b4b7c] flex flex-col items-center justify-center w-full"
+          className="relative z-10 font-editorial text-[clamp(2.35rem,8vw,8.5rem)] font-normal leading-[0.94] tracking-[-0.03em] text-[#2b4b7c] flex flex-col items-center justify-center w-full"
         >
           {/* Line 1: "I design, build" */}
           <motion.div

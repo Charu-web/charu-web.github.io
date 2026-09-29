@@ -62,7 +62,7 @@ export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY, isHo
       scene = new THREE.Scene();
 
       camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 50);
-      camera.position.set(0, 0, 4.3);
+      camera.position.set(0, 0, 5.2);
 
       renderer = new THREE.WebGLRenderer({
         alpha: true,
@@ -111,13 +111,13 @@ export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY, isHo
         wireframe: false,
       });
 
-      // Parametric Torus Knot (Sculptural folded ribbon)
-      knotGeometry = new THREE.TorusKnotGeometry(0.95, 0.28, 128, 32, 2, 3);
+      // Parametric Torus Knot (Sculptural folded ribbon - scaled to avoid clipping)
+      knotGeometry = new THREE.TorusKnotGeometry(0.82, 0.22, 128, 32, 2, 3);
       mainMesh = new THREE.Mesh(knotGeometry, alabasterMaterial);
       sculptureGroup.add(mainMesh);
 
       // Slender metallic edge ribbon that twists along with the sculpture
-      accentGeometry = new THREE.TorusKnotGeometry(0.98, 0.045, 128, 16, 2, 3);
+      accentGeometry = new THREE.TorusKnotGeometry(0.85, 0.035, 128, 16, 2, 3);
       accentMesh = new THREE.Mesh(accentGeometry, metallicMaterial);
       sculptureGroup.add(accentMesh);
 
@@ -201,7 +201,7 @@ export const Hero3DCanvas: React.FC<Hero3DCanvasProps> = ({ mouseX, mouseY, isHo
     <div
       ref={containerRef}
       data-cursor="EXPLORE"
-      className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 relative flex items-center justify-center select-none pointer-events-auto cursor-grab active:cursor-grabbing"
+      className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-84 lg:h-84 relative flex items-center justify-center select-none pointer-events-auto cursor-grab active:cursor-grabbing"
     />
   );
 };
