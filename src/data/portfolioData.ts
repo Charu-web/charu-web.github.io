@@ -23,6 +23,59 @@ export const PERSONAL_INFO = {
 
 export const ALL_PROJECTS: FeaturedProject[] = [
   {
+    id: 'zenith-hrms',
+    title: 'HRMS — Human Resource Management System',
+    category: 'Enterprise HRMS Platform',
+    filterCategory: 'App',
+    tagline: 'FactoHR-inspired enterprise HRMS with Face Attendance AI, GPS Geofencing, Payroll & 8-tab Employee Profiles',
+    description:
+      'A complete enterprise HRMS platform engineered with Next.js 14, TypeScript, Tailwind CSS, Neon PostgreSQL and Prisma ORM. Features 15 integrated modules including Face AI Attendance, GPS Geofencing, Multi-tier Leave Approvals, Configurable Payroll & Payslips, ATS Recruitment Pipeline, and Audit Trails.',
+    highlight:
+      'Production-ready FactoHR-style architecture with client-side biometric facial landmark verification, Haversine GPS geofencing, month-locked payroll batches, and Neon PostgreSQL persistence.',
+    technologies: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma ORM', 'JWT Auth'],
+    liveUrl: 'https://hrms-chi-three.vercel.app',
+    githubUrl: 'https://github.com/Charu-web/HRMS',
+    visualType: 'hrms',
+    caseStudy: {
+      overview:
+        'ZenithHR is a production-grade Human Resource Management System inspired by FactoHR enterprise workflows. It automates the complete employee lifecycle from recruitment through daily attendance, leave approvals, salary structure computation, payroll batch processing, and document verification.',
+      problem:
+        'Traditional mid-market HR software relies on fragmented spreadsheets or expensive legacy tools with rigid licensing, lacking real-time biometric verification, GPS geofencing for remote or hybrid teams, and automated salary slip generation.',
+      solution:
+        'Architected a unified full-stack HRMS with Next.js 14 App Router, Prisma ORM, and Neon PostgreSQL. Implemented browser-based facial vector capture & similarity matching, mobile GPS coordinate validation against company office polygons, multi-tier leave approval loops, and automated payroll disbursement calculations.',
+      keyFeatures: [
+        'Enterprise Dashboard: 9 live KPI metric cards, Recharts attendance trends, department breakdowns, and punch boards.',
+        'Employee 360 Vault: Comprehensive 8-tab employee profile covering Personal, Employment, Attendance, Leaves, Payroll, Documents, OKRs, and Audit History.',
+        'Face AI Attendance: Client-side 128-dimensional facial landmark vector extraction with Euclidean distance verification against enrolled employee biometrics.',
+        'GPS Geofencing: Real-time latitude/longitude coordinate capture with Haversine formula radius validation against configured office branches.',
+        'Configurable Payroll & Payslips: Basic, HRA, Allowances, PF, ESI, TDS calculations, month locking, batch processing, and printable/downloadable payslips.',
+        'Multi-Tier Leave Workflow: 6 standard leave types with dynamic balance enforcement, manager and HR review queues, and rejection reason tracking.',
+        'ATS Recruitment Pipeline: 7-stage visual Kanban board from Applied to Joined, candidate ratings, CTC negotiation, and interview scheduling.',
+        'Document Vault & Announcements: KYC verification badges, priority company bulletin boards, and real-time in-app notification center.',
+      ],
+      technicalImplementation: [
+        'Built 50+ RESTful Next.js 14 route handlers protected with JWT authentication and Role-Based Access Control (Admin, Manager, Employee).',
+        'Modelled 20+ relational database entities in Prisma ORM targeting serverless Neon PostgreSQL with indexed foreign keys and cascades.',
+        'Developed client-side face detection and vector encoding using Web APIs with strict biometric user consent tracking.',
+        'Enforced strict row-level salary and document isolation ensuring employees can only query their own compensation records.',
+        'Built responsive FactoHR-styled UI with dark/light theme switching, sticky sidebar navigation, and mobile bottom tab bar.',
+      ],
+      technologyStack: [
+        { category: 'Frontend', tools: ['Next.js 14 (App Router)', 'React 18', 'TypeScript', 'Tailwind CSS', 'Recharts', 'Lucide Icons'] },
+        { category: 'Backend & APIs', tools: ['Next.js Route Handlers', 'JWT Authentication', 'Bcryptjs', 'Haversine GPS Engine'] },
+        { category: 'Database & ORM', tools: ['Neon PostgreSQL', 'Prisma ORM', 'Relational Schema', 'Cascade Constraints'] },
+        { category: 'Security & Hosting', tools: ['Vercel Edge Deployment', 'RBAC Middleware', 'Biometric Consent Vault', 'Audit Trails'] },
+      ],
+      challenges: [
+        'Implementing client-side facial landmark extraction without external heavy third-party cloud SDK dependencies.',
+        'Formulating high-precision GPS geofence calculations handling device hardware accuracy variations across mobile browsers.',
+        'Designing a flexible payroll computation model supporting configurable company allowances, tax slabs, and month locking.',
+      ],
+      outcome:
+        'Successfully delivered and deployed a full-fledged enterprise HRMS with 32 active employee profiles, 480+ attendance logs, verified salary structures, and zero mock data, fully accessible online with sub-second page transitions.',
+    },
+  },
+  {
     id: 'nexus360-crm',
     title: 'NEXUS360 CRM',
     category: 'Enterprise CRM / Operations',
