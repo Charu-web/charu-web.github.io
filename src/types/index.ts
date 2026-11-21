@@ -21,6 +21,7 @@ export interface FeaturedProject {
   liveUrl?: string;
   githubUrl?: string;
   imageUrl?: string;
+  galleryImages?: string[];
   caseStudy?: CaseStudyData;
   visualType: 
     | 'pixel-art' 

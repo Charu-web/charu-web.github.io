@@ -1,10 +1,14 @@
 import React from 'react';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Mail, Copy } from 'lucide-react';
+import { GithubIcon, LinkedinIcon } from './Icons';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface FooterProps {
   onCopyEmail: () => void;
 }
+
+const EMAIL_SUBJECT = 'Project Inquiry – Full Stack Development';
+const MAILTO_LINK = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
 
 export const Footer: React.FC<FooterProps> = ({ onCopyEmail }) => {
   const scrollToTop = () => {
@@ -17,39 +21,89 @@ export const Footer: React.FC<FooterProps> = ({ onCopyEmail }) => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 border-b border-white/[0.06]">
           
-          {/* Brand & Role */}
-          <div className="space-y-1.5">
+          {/* Brand & Direct Email */}
+          <div className="space-y-3">
             <div className="flex items-center gap-1.5 text-white font-bold text-sm tracking-wider uppercase">
               <span>CHARU</span>
               <span className="text-amber-400">{'\u2726'}</span>
             </div>
             <p className="text-zinc-400 text-xs">
-              Full Stack &amp; AI Web Developer
+              Full Stack &amp; AI Product Developer
             </p>
+            <div className="pt-1 space-y-1.5">
+              <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono block">
+                DIRECT INBOX
+              </span>
+              <a
+                href={MAILTO_LINK}
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-amber-400 hover:text-amber-300 transition-colors"
+                title="Send direct email"
+              >
+                <Mail className="w-3.5 h-3.5 text-amber-400" />
+                <span>{PERSONAL_INFO.email}</span>
+              </a>
+              <div>
+                <button
+                  onClick={onCopyEmail}
+                  className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer"
+                >
+                  <Copy className="w-3 h-3" />
+                  <span>Copy Address</span>
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* Location */}
-          <div className="space-y-1">
+          {/* Social Links & Location */}
+          <div className="space-y-3">
             <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono block">
-              LOCATION
+              CONNECT &amp; LOCATION
             </span>
-            <span className="text-zinc-200 font-medium">
+            <div className="text-zinc-200 font-medium">
               {PERSONAL_INFO.location}
-            </span>
+            </div>
+            <div className="flex items-center gap-3 pt-1">
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-300 hover:text-amber-400 transition-colors font-mono text-[11px]"
+              >
+                <GithubIcon className="w-3.5 h-3.5" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href={PERSONAL_INFO.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-zinc-300 hover:text-amber-400 transition-colors font-mono text-[11px]"
+              >
+                <LinkedinIcon className="w-3.5 h-3.5" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
           </div>
 
-          {/* Direct Links */}
+          {/* Direct Navigation Links */}
           <div className="space-y-1">
-            <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono block">
+            <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono block mb-2">
               QUICK NAVIGATION
             </span>
-            <div className="flex flex-wrap gap-x-4 gap-y-1.5 text-zinc-300">
+            <div className="flex flex-col gap-1.5 text-zinc-300">
               <a href="#services" className="hover:text-amber-400 transition-colors">Services</a>
-              <a href="#projects" className="hover:text-amber-400 transition-colors">Projects</a>
-              <a href="#about" className="hover:text-amber-400 transition-colors">About</a>
-              <a href="#experience" className="hover:text-amber-400 transition-colors">Experience</a>
-              <a href="#contact" className="hover:text-amber-400 transition-colors">Contact</a>
-              <button onClick={onCopyEmail} className="hover:text-amber-400 transition-colors cursor-pointer text-left">Copy Email</button>
+              <a href="#projects" className="hover:text-amber-400 transition-colors">Featured Projects</a>
+              <a href="#about" className="hover:text-amber-400 transition-colors">About &amp; Philosophy</a>
+              <a href="#experience" className="hover:text-amber-400 transition-colors">Professional Experience</a>
+              <a href="#freelance-models" className="hover:text-amber-400 transition-colors">Engagement Models</a>
+              <a href="#contact" className="hover:text-amber-400 transition-colors">Contact &amp; Inquiries</a>
+              <a
+                href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
+                download="Charu_Sonker_Full_Stack_Developer_Resume.pdf"
+                className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-amber-400/90 font-medium pt-0.5"
+              >
+                <span>Download Resume</span>
+                <span className="text-[10px] font-mono text-zinc-500">(PDF)</span>
+              </a>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Mail, Copy, Check, Send, ExternalLink, AlertCircle, Info } from 'lucide-react';
+import { Mail, Copy, Check, Send, ExternalLink, AlertCircle, Info, MessageSquare } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
@@ -9,14 +9,41 @@ interface ContactProps {
   copiedEmail: boolean;
 }
 
+const EMAIL_SUBJECT = 'Project Inquiry – Full Stack Development';
+
+const EMAIL_TEMPLATE = `Hi Charu,
+
+I would like to discuss a potential project:
+
+- Project Overview: 
+- Target Timeline: 
+- Estimated Budget / Engagement Model: 
+- Key Deliverables / Technical Requirements: 
+
+Looking forward to hearing from you.
+
+Best regards,
+[Your Name]
+[Company / Organization]`;
+
+const DIRECT_MAILTO = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_TEMPLATE)}`;
+
+const DIRECT_GMAIL_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}&su=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_TEMPLATE)}`;
+
 export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) => {
   const shouldReduceMotion = useReducedMotion();
   const editorialEase = [0.16, 1, 0.3, 1] as const;
 
-  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    projectType: 'Full-Stack Web App',
+    message: '',
+  });
   const [formErrors, setFormErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const [submissionInitiated, setSubmissionInitiated] = useState(false);
   const [copiedMessage, setCopiedMessage] = useState(false);
+  const [copiedTemplate, setCopiedTemplate] = useState(false);
 
   const validateForm = () => {
     const errors: { name?: string; email?: string; message?: string } = {};
@@ -43,36 +70,45 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
     return Object.keys(errors).length === 0;
   };
 
-  const getMailtoUrl = () => {
-    const subject = encodeURIComponent(`Project Inquiry from ${formState.name.trim()}`);
+  const getFormMailtoUrl = () => {
+    const subject = encodeURIComponent(`Project Inquiry: ${formState.projectType} – from ${formState.name.trim()}`);
     const body = encodeURIComponent(
-      `Hi Charu,\n\nName: ${formState.name.trim()}\nEmail: ${formState.email.trim()}\n\nMessage:\n${formState.message.trim()}\n\n---\nSent via portfolio contact form`
+      `Hi Charu,\n\nName: ${formState.name.trim()}\nEmail: ${formState.email.trim()}\nProject Type: ${formState.projectType}\n\nProject Requirements / Scope:\n${formState.message.trim()}\n\n---\nSent via portfolio contact form`
     );
     return `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
   };
 
-  const getGmailWebUrl = () => {
-    const subject = encodeURIComponent(`Project Inquiry from ${formState.name.trim()}`);
+  const getFormGmailWebUrl = () => {
+    const subject = encodeURIComponent(`Project Inquiry: ${formState.projectType} – from ${formState.name.trim()}`);
     const body = encodeURIComponent(
-      `Hi Charu,\n\nName: ${formState.name.trim()}\nEmail: ${formState.email.trim()}\n\nMessage:\n${formState.message.trim()}\n\n---\nSent via portfolio contact form`
+      `Hi Charu,\n\nName: ${formState.name.trim()}\nEmail: ${formState.email.trim()}\nProject Type: ${formState.projectType}\n\nProject Requirements / Scope:\n${formState.message.trim()}\n\n---\nSent via portfolio contact form`
     );
     return `https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}&su=${subject}&body=${body}`;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      setSubmissionInitiated(false);
+      return;
+    }
 
-    const mailtoUrl = getMailtoUrl();
+    const mailtoUrl = getFormMailtoUrl();
     window.location.href = mailtoUrl;
     setSubmissionInitiated(true);
   };
 
   const handleCopyMessage = () => {
-    const fullText = `Name: ${formState.name.trim()}\nEmail: ${formState.email.trim()}\n\nMessage:\n${formState.message.trim()}`;
+    const fullText = `Name: ${formState.name.trim()}\nEmail: ${formState.email.trim()}\nProject Type: ${formState.projectType}\n\nMessage:\n${formState.message.trim()}`;
     navigator.clipboard.writeText(fullText);
     setCopiedMessage(true);
     setTimeout(() => setCopiedMessage(false), 2500);
+  };
+
+  const handleCopyTemplate = () => {
+    navigator.clipboard.writeText(EMAIL_TEMPLATE);
+    setCopiedTemplate(true);
+    setTimeout(() => setCopiedTemplate(false), 2500);
   };
 
   return (
@@ -97,47 +133,84 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 relative z-10 items-start">
           
-          {/* Left Column: Heading & Contact Info */}
+          {/* Left Column: Heading & Direct Email Contact Options */}
           <div className="lg:col-span-7 space-y-6">
             <span className="font-mono text-xs font-semibold tracking-widest uppercase text-amber-400 block">
-              START A COLLABORATION
+              // 06 — DIRECT EMAIL &amp; COLLABORATION
             </span>
 
             <h2 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08]">
-              Want to make awesome and impactful Product?
+              Want to make an awesome &amp; impactful product?
             </h2>
 
             <div className="w-14 h-1 bg-amber-400 rounded-full my-2" />
 
             <p className="font-sans text-sm sm:text-base text-zinc-300 leading-relaxed max-w-lg">
-              Let's discuss your roadmap, product vision, or engineering needs. Currently open to full-time software engineering roles and high-impact digital projects.
+              Potential clients, startup founders, and recruiters can reach me directly via email. Ready to discuss architecture, MVP delivery, or engineering roles with guaranteed response within 24 hours.
             </p>
 
-            {/* Email quick copy */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <button
-                onClick={onCopyEmail}
-                className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-amber-400 text-zinc-950 font-bold text-xs sm:text-sm tracking-wide uppercase hover:bg-amber-300 transition-all duration-200 shadow-lg shadow-amber-400/20 cursor-pointer"
-              >
-                <span>{copiedEmail ? 'Email Copied!' : 'Copy Email Address'}</span>
-                {copiedEmail ? (
-                  <Check className="w-4 h-4 text-zinc-950" />
-                ) : (
-                  <Copy className="w-4 h-4 text-zinc-950" />
-                )}
-              </button>
+            {/* Prominent Clickable Email Card */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/40 border border-white/10 backdrop-blur-md space-y-3">
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest block">
+                PRIMARY DIRECT INBOX
+              </span>
+              
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href={DIRECT_MAILTO}
+                  className="inline-flex items-center gap-2.5 text-base sm:text-lg font-mono font-bold text-amber-400 hover:text-amber-300 transition-colors"
+                  title="Click to open default email client"
+                >
+                  <Mail className="w-5 h-5 text-amber-400" />
+                  <span>{PERSONAL_INFO.email}</span>
+                </a>
 
-              <a
-                href={`mailto:${PERSONAL_INFO.email}`}
-                className="inline-flex items-center gap-2 text-sm text-zinc-300 hover:text-white transition-colors py-2 px-3"
-              >
-                <Mail className="w-4 h-4 text-amber-400" />
-                <span>{PERSONAL_INFO.email}</span>
-              </a>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={onCopyEmail}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-colors cursor-pointer"
+                    title="Copy email to clipboard"
+                  >
+                    {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>{copiedEmail ? 'Copied!' : 'Copy Email'}</span>
+                  </button>
+
+                  <a
+                    href={DIRECT_GMAIL_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-xs font-mono text-blue-300 hover:text-blue-200 transition-colors"
+                    title="Compose directly in Gmail Web"
+                  >
+                    <span>Gmail Web</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Action Buttons: Direct Mailto with Template */}
+              <div className="pt-2 flex flex-wrap items-center gap-2.5">
+                <a
+                  href={DIRECT_MAILTO}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-400 text-zinc-950 font-bold text-xs uppercase tracking-wider hover:bg-amber-300 transition-colors shadow-lg shadow-amber-400/20 cursor-pointer"
+                >
+                  <Mail className="w-3.5 h-3.5 text-zinc-950" />
+                  <span>Email Me Directly</span>
+                </a>
+
+                <button
+                  onClick={handleCopyTemplate}
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-colors cursor-pointer"
+                  title="Copy prefilled project inquiry template to clipboard"
+                >
+                  <MessageSquare className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{copiedTemplate ? 'Template Copied!' : 'Copy Project Brief Template'}</span>
+                </button>
+              </div>
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-6 pt-4 text-xs font-mono text-zinc-400">
+            <div className="flex items-center gap-6 pt-2 text-xs font-mono text-zinc-400">
               <span className="uppercase tracking-widest text-[10px] text-zinc-500">CONNECT</span>
               <a
                 href={PERSONAL_INFO.github}
@@ -161,14 +234,14 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
 
           </div>
 
-          {/* Right Column: Direct Quick Contact Form */}
+          {/* Right Column: Interactive Quick Inquiry Form */}
           <div className="lg:col-span-5 bg-[#0d0f1f]/80 backdrop-blur-md rounded-2xl p-6 sm:p-7 border border-white/[0.08] shadow-inner">
             <h3 className="font-sans text-lg font-bold text-white mb-2 flex items-center gap-2">
               <Send className="w-4 h-4 text-amber-400" />
-              <span>Send a Message</span>
+              <span>Or Compose Inquiry Here</span>
             </h3>
             <p className="text-xs text-zinc-400 font-sans mb-4">
-              Prefills your message directly in your mail application for transparent, direct delivery.
+              Prefills your message directly in your mail application for transparent, reliable delivery.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -177,7 +250,7 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
                 <input
                   type="text"
                   required
-                  placeholder="Alex Rivers"
+                  placeholder="e.g. Alex Rivers"
                   value={formState.name}
                   onChange={(e) => {
                     setFormState({ ...formState, name: e.target.value });
@@ -200,7 +273,7 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
                 <input
                   type="email"
                   required
-                  placeholder="alex@company.com"
+                  placeholder="e.g. alex@company.com"
                   value={formState.email}
                   onChange={(e) => {
                     setFormState({ ...formState, email: e.target.value });
@@ -219,11 +292,27 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-zinc-400 mb-1">Project Details *</label>
+                <label className="block text-xs font-mono text-zinc-400 mb-1">Project Type / Inquiry *</label>
+                <select
+                  value={formState.projectType}
+                  onChange={(e) => setFormState({ ...formState, projectType: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#131627] border border-white/[0.08] text-sm text-zinc-200 focus:outline-none focus:border-amber-400 transition-colors"
+                >
+                  <option value="Full-Stack Web App">Full-Stack Web Application</option>
+                  <option value="MVP Build (2–4 Week Sprint)">MVP Build (2–4 Week Sprint)</option>
+                  <option value="AI & LLM Integration">AI &amp; LLM Integration</option>
+                  <option value="Codebase Audit & Optimization">Codebase Audit &amp; Performance</option>
+                  <option value="Dedicated Monthly Retainer">Dedicated Monthly Retainer</option>
+                  <option value="Full-Time Engineering Role">Full-Time Engineering Role</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-mono text-zinc-400 mb-1">Project Details / Requirements *</label>
                 <textarea
                   rows={3}
                   required
-                  placeholder="Briefly describe what you would like to build..."
+                  placeholder="Briefly describe project goals, deliverables, timeline, or requirements..."
                   value={formState.message}
                   onChange={(e) => {
                     setFormState({ ...formState, message: e.target.value });
@@ -266,7 +355,7 @@ export const Contact: React.FC<ContactProps> = ({ onCopyEmail, copiedEmail }) =>
 
                 <div className="pt-2 border-t border-blue-500/20 flex flex-wrap gap-2 text-[11px] font-mono">
                   <a
-                    href={getGmailWebUrl()}
+                    href={getFormGmailWebUrl()}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-blue-500/20 hover:bg-blue-500/30 text-blue-200 transition-colors"

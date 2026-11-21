@@ -58,8 +58,24 @@ export const CustomCursor: React.FC = () => {
       }
     };
 
+    const handleMouseLeave = () => {
+      setCursorVariant('default');
+      setCursorText('');
+    };
+
+    const handleScroll = () => {
+      setCursorVariant('default');
+      setCursorText('');
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [mouseX, mouseY, isTouchDevice]);
 
   if (isTouchDevice || shouldReduceMotion) return null;

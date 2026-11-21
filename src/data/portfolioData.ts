@@ -35,6 +35,7 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     technologies: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma ORM', 'JWT Auth'],
     liveUrl: 'https://hrms-chi-three.vercel.app',
     githubUrl: 'https://github.com/Charu-web/HRMS',
+    imageUrl: './images/projects/zenith-hrms.png',
     visualType: 'hrms',
     caseStudy: {
       overview:
@@ -88,6 +89,13 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     technologies: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma ORM', 'PostgreSQL', 'Zustand'],
     liveUrl: 'https://fruitsandnuts.co.in',
     githubUrl: 'https://github.com/Charu-web/fruits-and-nuts-platform',
+    imageUrl: './images/projects/fruits-and-nuts.jpg',
+    galleryImages: [
+      './images/projects/fruits-and-nuts-hamper.jpg',
+      './images/projects/fruits-and-nuts-almonds.jpg',
+      './images/projects/fruits-and-nuts-cashews.jpg',
+      './images/projects/fruits-and-nuts-dates.jpg',
+    ],
     visualType: 'fruits-and-nuts',
     caseStudy: {
       overview:
@@ -138,6 +146,11 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     technologies: ['HTML5', 'Tailwind CSS', 'JavaScript (ES6+)', 'Schema.org JSON-LD', 'Apache / Hostinger'],
     liveUrl: 'https://shubhu.site',
     githubUrl: 'https://github.com/Charu-web/saimaya-hotel',
+    imageUrl: './images/projects/saimaya-hotel.jpg',
+    galleryImages: [
+      './images/projects/saimaya-exterior.jpg',
+      './images/projects/saimaya-day.jpg',
+    ],
     visualType: 'saimaya',
     caseStudy: {
       overview:
@@ -186,6 +199,14 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     technologies: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel Edge'],
     liveUrl: 'https://kritours-palette.vercel.app',
     githubUrl: 'https://github.com/Charu-web/kritours-palette',
+    imageUrl: './images/projects/kritours-palette.jpg',
+    galleryImages: [
+      './images/projects/kritours-palace.jpg',
+      './images/projects/kritours-kashmir.jpg',
+      './images/projects/kritours-taj.jpg',
+      './images/projects/kritours-dubai.jpg',
+      './images/projects/kritours-kerala.jpg',
+    ],
     visualType: 'kritours',
     caseStudy: {
       overview:
@@ -234,6 +255,7 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT Auth', 'REST APIs'],
     liveUrl: 'https://nexus360-crm.vercel.app',
     githubUrl: 'https://github.com/Charu-web/dsa-crm',
+    imageUrl: './images/projects/nexus360-crm.png',
     visualType: 'dsa-crm',
     caseStudy: {
       overview:
@@ -279,6 +301,7 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'HTML5 Canvas', 'REST APIs'],
     liveUrl: 'https://pixel-art-ai-studio.vercel.app',
     githubUrl: 'https://github.com/Charu-web/pixel-art-image-transformer',
+    imageUrl: './images/projects/pixel-art-studio.png',
     visualType: 'pixel-art',
     caseStudy: {
       overview:
@@ -315,7 +338,7 @@ export const ALL_PROJECTS: FeaturedProject[] = [
   },
   {
     id: 'sketch-duel-ai',
-    title: 'SKETCH DUEL AI',
+    title: 'Doodle Duel AI (Sketch Duel)',
     category: 'AI / Real-Time WebSocket',
     filterCategory: 'Web',
     tagline: 'Real-time multiplayer drawing and guessing game with AI sketch classification',
@@ -326,6 +349,7 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     technologies: ['React.js', 'Node.js', 'Socket.io', 'MongoDB', 'OpenAI API', 'JWT'],
     liveUrl: 'https://sketch-duel-ai-doodle-battles.vercel.app',
     githubUrl: 'https://github.com/Charu-web/sketch-duel-ai-doodle-battles',
+    imageUrl: './images/projects/doodle-duel-ai.png',
     visualType: 'doodle-duel',
     caseStudy: {
       overview:
@@ -416,6 +440,8 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     ],
     liveUrl: 'https://cozy-sable-726aa1.netlify.app',
     githubUrl: 'https://github.com/Charu-web/yuvahub',
+    imageUrl: './images/yuvahub-naukri-mahotsav-2026.jpg',
+    galleryImages: ['./images/yuvahub-pvc-job-card.png'],
     visualType: 'yuvahub-naukri-mahotsav',
     caseStudy: {
       overview:

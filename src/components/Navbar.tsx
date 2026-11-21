@@ -76,8 +76,8 @@ export const Navbar: React.FC = () => {
           </motion.a>
 
           {/* Desktop Navigation Links */}
-          <div className="flex items-center gap-8">
-            <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+          <div className="flex items-center gap-6 xl:gap-8">
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-zinc-300">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
@@ -110,14 +110,14 @@ export const Navbar: React.FC = () => {
               </a>
             </div>
 
-            {/* Mobile Hamburger Button */}
+            {/* Mobile / Tablet Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 text-zinc-300 hover:text-white focus:outline-none cursor-pointer"
+              className="lg:hidden p-2 rounded-lg bg-white/[0.04] border border-white/10 text-zinc-300 hover:text-white focus:outline-none cursor-pointer flex items-center justify-center"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
@@ -132,7 +132,7 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: editorialEase }}
-            className="fixed inset-0 z-30 bg-[#0c0d19]/98 backdrop-blur-xl flex flex-col justify-between p-8 pt-28 text-left md:hidden"
+            className="fixed inset-0 z-30 bg-[#0c0d19]/98 backdrop-blur-xl flex flex-col justify-between p-8 pt-24 text-left overflow-y-auto lg:hidden"
           >
             <div className="space-y-6">
               <span className="font-mono text-[11px] text-zinc-500 uppercase tracking-widest block">

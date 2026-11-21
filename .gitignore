@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Internal QA, Audit & Deployment Reports
+*_REPORT.md
+HERO_CLIENT_REVIEW.md

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { 
   X, 
@@ -7,7 +7,8 @@ import {
   ArrowRight,
   Target, 
   Lightbulb, 
-  Globe
+  Globe,
+  Images
 } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import type { FeaturedProject } from '../types';
@@ -27,6 +28,8 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
   allProjects = []
 }) => {
   const shouldReduceMotion = useReducedMotion();
+  const [activeVisual, setActiveVisual] = useState<'screenshot' | 'architecture'>('screenshot');
+  const [activePhoto, setActivePhoto] = useState<string | null>(null);
 
   useEffect(() => {
     if (!project) return;
@@ -152,12 +155,98 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               <div className="font-mono text-[10px] text-zinc-400">
                 {project.liveUrl || 'production-build.app'}
               </div>
-              <div className="w-4" />
+              
+              {/* Visual Mode Selector */}
+              {project.imageUrl && (
+                <div className="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/10">
+                  <button
+                    onClick={() => { setActiveVisual('screenshot'); setActivePhoto(null); }}
+                    className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
+                      activeVisual === 'screenshot' && !activePhoto
+                        ? 'bg-amber-400 text-zinc-950 font-bold'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    Screenshot
+                  </button>
+                  <button
+                    onClick={() => { setActiveVisual('architecture'); setActivePhoto(null); }}
+                    className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
+                      activeVisual === 'architecture'
+                        ? 'bg-amber-400 text-zinc-950 font-bold'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    Architecture
+                  </button>
+                </div>
+              )}
+              {!project.imageUrl && <div className="w-4" />}
             </div>
 
-            <div className="min-h-[360px] sm:min-h-[460px] flex items-center justify-center p-4">
-              <ProjectMockupVisual type={project.visualType} />
+            <div className="min-h-[360px] sm:min-h-[460px] flex items-center justify-center p-2 sm:p-4 bg-[#0a0c16]">
+              {activePhoto ? (
+                <div className="w-full h-full min-h-[360px] sm:min-h-[440px] relative rounded-xl overflow-hidden flex items-center justify-center">
+                  <img
+                    src={activePhoto}
+                    alt={`${project.title} - Authentic Photography`}
+                    className="w-full h-auto max-h-[560px] object-contain rounded-xl"
+                  />
+                  <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono text-zinc-300">
+                    Authentic Photography Sample
+                  </div>
+                </div>
+              ) : project.imageUrl && activeVisual === 'screenshot' ? (
+                <div className="w-full h-full min-h-[360px] sm:min-h-[440px] relative rounded-xl overflow-hidden flex items-center justify-center">
+                  <img
+                    src={project.imageUrl}
+                    alt={`${project.title} - Live Production Screenshot`}
+                    className="w-full h-auto max-h-[560px] object-contain rounded-xl"
+                  />
+                </div>
+              ) : (
+                <div className="w-full">
+                  <ProjectMockupVisual type={project.visualType} />
+                </div>
+              )}
             </div>
+
+            {/* Gallery Thumbnails Strip (if genuine product/venue photography exists) */}
+            {project.galleryImages && project.galleryImages.length > 0 && (
+              <div className="p-4 bg-[#0e1122] border-t border-white/[0.08] space-y-2 text-left">
+                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest flex items-center gap-1.5">
+                  <Images className="w-3 h-3 text-amber-400" />
+                  <span>Authentic Project &amp; Product Photography</span>
+                </span>
+                <div className="flex flex-wrap gap-2.5">
+                  {project.imageUrl && (
+                    <button
+                      onClick={() => { setActivePhoto(null); setActiveVisual('screenshot'); }}
+                      className={`relative w-20 h-14 rounded-lg overflow-hidden border transition-all cursor-pointer ${
+                        !activePhoto && activeVisual === 'screenshot'
+                          ? 'border-amber-400 ring-2 ring-amber-400/30'
+                          : 'border-white/10 opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      <img src={project.imageUrl} alt="Overview" className="w-full h-full object-cover" />
+                    </button>
+                  )}
+                  {project.galleryImages.map((imgUrl, gIdx) => (
+                    <button
+                      key={gIdx}
+                      onClick={() => { setActivePhoto(imgUrl); }}
+                      className={`relative w-20 h-14 rounded-lg overflow-hidden border transition-all cursor-pointer ${
+                        activePhoto === imgUrl
+                          ? 'border-amber-400 ring-2 ring-amber-400/30'
+                          : 'border-white/10 opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      <img src={imgUrl} alt={`Photo ${gIdx + 1}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Structured Architectural Sections */}
