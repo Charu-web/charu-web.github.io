@@ -101,8 +101,10 @@ export const Navbar: React.FC = () => {
             {/* Resume / Action Button */}
             <div className="hidden sm:flex items-center gap-3">
               <a
-                href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
-                download="Charu_Sonker_Full_Stack_Developer_Resume.pdf"
+                href="./Charu%20Resume.pdf"
+                download="Charu Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border border-white/20 text-white hover:border-amber-400 hover:text-amber-400 transition-all duration-200 bg-white/[0.04] backdrop-blur-xs"
               >
                 <span>Resume</span>
@@ -161,8 +163,10 @@ export const Navbar: React.FC = () => {
 
             <div className="pt-8 border-t border-white/[0.08] space-y-4 text-xs text-zinc-400">
               <a
-                href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
-                download="Charu_Sonker_Full_Stack_Developer_Resume.pdf"
+                href="./Charu%20Resume.pdf"
+                download="Charu Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-amber-400 text-zinc-950 font-semibold text-sm hover:bg-amber-300 transition-colors"
               >
                 <span>Download Resume (PDF)</span>

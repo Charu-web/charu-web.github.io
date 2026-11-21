@@ -26,3 +26,4 @@ dist-ssr
 # Internal QA, Audit & Deployment Reports
 *_REPORT.md
 HERO_CLIENT_REVIEW.md
+resume_output/

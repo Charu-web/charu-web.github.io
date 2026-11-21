@@ -97,8 +97,10 @@ export const Footer: React.FC<FooterProps> = ({ onCopyEmail }) => {
               <a href="#freelance-models" className="hover:text-amber-400 transition-colors">Engagement Models</a>
               <a href="#contact" className="hover:text-amber-400 transition-colors">Contact &amp; Inquiries</a>
               <a
-                href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
-                download="Charu_Sonker_Full_Stack_Developer_Resume.pdf"
+                href="./Charu%20Resume.pdf"
+                download="Charu Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-amber-400 transition-colors inline-flex items-center gap-1.5 text-amber-400/90 font-medium pt-0.5"
               >
                 <span>Download Resume</span>
