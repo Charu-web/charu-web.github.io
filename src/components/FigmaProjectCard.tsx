@@ -19,6 +19,8 @@ export const FigmaProjectCard: React.FC<FigmaProjectCardProps> = ({
   const shouldReduceMotion = useReducedMotion();
   const editorialEase = [0.16, 1, 0.3, 1] as const;
 
+  const hasLiveDemo = Boolean(project.liveUrl && !project.liveUrl.includes('github.com'));
+
   return (
     <motion.div
       initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
@@ -73,7 +75,7 @@ export const FigmaProjectCard: React.FC<FigmaProjectCardProps> = ({
       {/* Card Action Links */}
       <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          {project.liveUrl && (
+          {hasLiveDemo && (
             <a
               href={project.liveUrl}
               target="_blank"

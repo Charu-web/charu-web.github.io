@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ArrowRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#projects' },
+    { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
           
-          {/* Logo: CHARU* with amber sparkle matching Figma's STEFAN* */}
+          {/* Logo: CHARU✦ with amber sparkle */}
           <motion.a 
             href="#home" 
             onClick={(e) => handleNavClick(e, '#home')}
@@ -66,11 +66,12 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: editorialEase }}
             className="group flex items-center gap-1.5 focus:outline-none"
+            aria-label="Charu Sonker - Home"
           >
             <span className="font-sans font-bold text-lg sm:text-xl tracking-wider uppercase text-white group-hover:text-amber-400 transition-colors">
               CHARU
             </span>
-            <span className="text-amber-400 font-extrabold text-sm animate-pulse">✦</span>
+            <span className="text-amber-400 font-extrabold text-sm animate-pulse">{'\u2726'}</span>
           </motion.a>
 
           {/* Desktop Navigation Links */}
@@ -100,7 +101,7 @@ export const Navbar: React.FC = () => {
             <div className="hidden sm:flex items-center gap-3">
               <a
                 href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
-                download
+                download="Charu_Sonker_Full_Stack_Developer_Resume.pdf"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border border-white/20 text-white hover:border-amber-400 hover:text-amber-400 transition-all duration-200 bg-white/[0.04] backdrop-blur-xs"
               >
                 <span>Resume</span>
@@ -151,7 +152,7 @@ export const Navbar: React.FC = () => {
                     <span className="text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">
                       {link.name}
                     </span>
-                    <span className="text-amber-400 text-sm">→</span>
+                    <ArrowRight className="w-4 h-4 text-amber-400" />
                   </motion.a>
                 ))}
               </nav>
@@ -160,7 +161,7 @@ export const Navbar: React.FC = () => {
             <div className="pt-8 border-t border-white/[0.08] space-y-4 text-xs text-zinc-400">
               <a
                 href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
-                download
+                download="Charu_Sonker_Full_Stack_Developer_Resume.pdf"
                 className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-amber-400 text-zinc-950 font-semibold text-sm hover:bg-amber-300 transition-colors"
               >
                 <span>Download Resume (PDF)</span>

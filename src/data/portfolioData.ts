@@ -18,7 +18,7 @@ export const PERSONAL_INFO = {
   linkedin: 'https://www.linkedin.com/in/charu-sonker-196910250',
   location: 'Lucknow, India',
   about:
-    'I’m a Full Stack Developer focused on building responsive, scalable web applications and AI-integrated digital products. I work across frontend, backend, databases and real-time systems, with a strong focus on turning ideas into practical production-ready applications.',
+    "I'm a Full Stack Developer focused on building responsive, scalable web applications and AI-integrated digital products. I work across frontend, backend, databases and real-time systems, with a strong focus on turning ideas into practical production-ready applications.",
 };
 
 export const ALL_PROJECTS: FeaturedProject[] = [
@@ -399,8 +399,8 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     id: 'volna-technologies',
     company: 'Volna Technologies',
     role: 'Full Stack Developer',
-    period: 'July 2026 – October 2026 (Expected)',
-    status: 'CURRENT',
+    period: 'July 2026 – October 2026',
+    status: 'PREVIOUS',
     responsibilities: [
       'Developed and maintained responsive full-stack web applications and reusable UI components using React.js and modern JavaScript (ES6+).',
       'Built and integrated robust RESTful API endpoints and backend services with Node.js and Express.js, handling client-side state and async data pipelines.',
@@ -425,13 +425,13 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     id: 'hi-tech-engineering',
     company: 'Hi-Tech Engineering',
     role: 'Web Developer Intern',
-    period: '',
+    period: 'November 2025 – March 2026',
     status: 'PREVIOUS',
     responsibilities: [
-      'Shipped 3+ responsive MERN stack applications, lifting cross-device compatibility by 40% and cutting data-fetch latency by 25% through optimized REST API integration.',
-      'Redesigned MongoDB schemas and implemented indexing for Node.js/Express services, improving database query performance by 30%.',
-      'Raised Core Web Vitals scores by 35% through lazy loading, code splitting, and asset compression.',
-      'Collaborated within a 5-member Agile team using Git and GitHub for version control and sprint delivery.',
+      'Developed responsive web applications and reusable frontend components using JavaScript (ES6+), HTML5, and CSS3.',
+      'Optimized MongoDB schemas, collections, and query indexes for Node.js and Express backend services to ensure data consistency.',
+      'Improved frontend loading performance through asset compression, lazy loading, and code splitting across modern browsers.',
+      'Collaborated within an Agile sprint team using Git and GitHub for version control and sprint delivery.',
     ],
     technologies: ['JavaScript', 'HTML5', 'CSS3', 'Bootstrap', 'REST APIs', 'Git'],
   },

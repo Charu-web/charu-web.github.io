@@ -1,79 +1,76 @@
 # CHARU SONKER
-**FULL STACK DEVELOPER | AI-INTEGRATED WEB APPLICATIONS**  
-Lucknow, India | +91-8318129536 | [csonker04@gmail.com](mailto:csonker04@gmail.com) | [Portfolio](https://charu-web.github.io/) | [LinkedIn](https://www.linkedin.com/in/charu-sonker-196910250) | [GitHub](https://github.com/Charu-web)
+**Software Development Engineer | Full Stack Developer | JavaScript, React.js, Node.js, SQL**  
+Lucknow, India | [+91-8318129536](tel:+918318129536) | [csonker04@gmail.com](mailto:csonker04@gmail.com) | [LinkedIn](https://www.linkedin.com/in/charu-sonker-196910250) | [GitHub](https://github.com/Charu-web) | [Portfolio](https://charu-web.github.io/)
 
 ---
 
 ## PROFESSIONAL SUMMARY
-Full Stack Developer with hands-on experience building and deploying production web applications using React.js, Node.js, Express.js, MongoDB, SQL, REST APIs, and AI integrations. Experienced in developing responsive interfaces, backend services, real-time applications, CRM platforms, and AI-powered web products. Strong foundation in JavaScript, Python, C++, database design, API integration, authentication, Git/GitHub, and modern web development.
-
----
-
-## EDUCATION
-
-**B.Tech in Electrical and Electronics Engineering** | *Completed 2026*  
-Galgotias College of Engineering and Technology, Greater Noida
-
-**Diploma in Computer Science Engineering** | *2020 – 2022*  
-Glocal University, Saharanpur
+Software developer with a B.Tech (2026) and a Diploma in Computer Science Engineering, with hands-on experience across three web development roles building, testing, and deploying full-stack applications. Skilled in JavaScript (ES6+), React.js, Node.js, Express.js, REST APIs, SQL, and MongoDB, including authentication, schema design, and Git-based team workflows. Experienced across the SDLC from feature implementation and debugging to cross-browser testing and production deployments across CRM, e-commerce, and AI-integrated web systems.
 
 ---
 
 ## TECHNICAL SKILLS
-- **Programming:** JavaScript (ES6+), Python, C++, SQL
-- **Frontend:** React.js, Redux, HTML5, CSS3, Tailwind CSS, Bootstrap, iOS, Responsive Design
-- **Backend:** Node.js, Express.js, REST APIs, WebSockets, Socket.io, JWT Authentication, SaaS
-- **AI / ML:** OpenAI API, Prompt Engineering, TensorFlow.js, Generative AI Integration, AI Tools
-- **Databases:** MongoDB, Mongoose, SQL, Supabase, Schema Design, Query Optimization
-- **Tools & Engineering:** Git, GitHub, Docker, AWS, Postman, VS Code, Vercel, Netlify, Render, CI/CD, Agile, MVC Architecture
+- **Programming Languages:** JavaScript (ES6+), SQL, Python, C++
+- **Frontend Development:** React.js, Next.js, HTML5, CSS3, Redux, Tailwind CSS, Bootstrap, Responsive Web Design
+- **Backend Development:** Node.js, Express.js, REST APIs, API Integration, JWT Authentication, Role-Based Access Control (RBAC), Socket.io
+- **Databases:** SQL, MongoDB, Mongoose, Supabase, Schema Design, Indexing, Query Optimization
+- **Developer Tools & Version Control:** Git, GitHub, Postman, VS Code
+- **Cloud & Deployment:** Vercel, Netlify, Render, CI/CD, AWS (fundamentals), Docker (fundamentals)
+- **Software Engineering Practices:** SDLC, Agile/Scrum, Debugging & Troubleshooting, Cross-Browser Testing, Code Reviews, MVC, Performance Optimization
 
 ---
 
 ## PROFESSIONAL EXPERIENCE
 
 ### Full Stack Developer | Volna Technologies
-*July 2026 – October 2026 (Expected)*
-- Engineered and deployed responsive full-stack web applications and reusable React.js components with modern JavaScript (ES6+).
-- Developed scalable backend services and RESTful APIs using Node.js and Express.js for asynchronous data flows.
-- Designed and optimized MongoDB database schemas, ensuring query performance, data integrity, and indexing efficiency.
-- Implemented secure token-based authentication (JWT) and collaborated via Git/GitHub version control workflows.
+*July 2026 – October 2026*
+- Developed responsive web applications and reusable React.js components using modern JavaScript (ES6+), HTML5, and CSS3.
+- Built RESTful APIs and backend services with Node.js and Express.js for asynchronous data flows, secured with JWT authentication.
+- Designed and optimized MongoDB schemas and indexes, improving query performance and data integrity; collaborated via Git/GitHub.
 
 ### Web Developer Intern | Empire IT Xpert
 *April 2026 – June 2026*
-- Built responsive front-end user interfaces, dynamic dashboards, and workflows for CRM web platforms using React.js and Tailwind CSS.
-- Implemented Node.js and Express.js REST APIs for business data pipelines, form handling, and role-based access control (RBAC).
-- Collaborated on Git/GitHub version control workflows for client requirements, sprint feature delivery, and cross-browser testing.
+- Built responsive user interfaces, dynamic dashboards, and workflows for CRM web platforms using React.js and Tailwind CSS.
+- Developed Node.js/Express.js REST APIs for business data pipelines and form handling, with role-based access control (RBAC).
+- Debugged client workflow issues and delivered sprint features via Git/GitHub workflows with cross-browser testing.
 
 ### Web Developer Intern | Hi-Tech Engineering
 *July 2025 – September 2025*
-- Shipped 3+ responsive MERN stack applications, lifting cross-device compatibility by 40% and cutting data-fetch latency by 25% through optimized REST API integration.
-- Redesigned MongoDB schemas and implemented indexing for Node.js/Express services, improving database query performance by 30%.
-- Raised Core Web Vitals scores by 35% through lazy loading, code splitting, and asset compression.
-- Collaborated within a 5-member Agile team using Git and GitHub for version control and sprint delivery.
+- Shipped 3+ responsive MERN applications, improving cross-device compatibility by 40% and cutting data-fetch latency by 25% via REST APIs.
+- Redesigned MongoDB schemas and added indexing for Node.js/Express services, improving query performance by 30%.
+- Raised Core Web Vitals by 35% with lazy loading, code splitting, and compression in a 5-member Agile team using Git/GitHub.
 
 ---
 
 ## SELECTED PROJECTS
 
-### Pixel Art AI Studio
-*React.js | Node.js | Express.js | MongoDB | REST APIs | HTML5 Canvas | Vercel* | [Live Demo](https://pixel-art-ai-studio.vercel.app)
-- Engineered an AI-driven image processing application with HTML5 Canvas quantization and algorithmic color clustering to convert user uploads into stylized pixel art.
-- Built full-stack Node.js/Express REST API endpoints for batch processing, image filtering, and optimized downsampling pipelines.
-- Deployed responsive web tool on Vercel featuring real-time client-side preview, palette extraction, and multi-format export.
-
 ### Nexus360 CRM
-*React.js | Node.js | Express.js | MongoDB | Tailwind CSS | REST APIs | JWT Auth* | [Live Demo](https://nexus360-crm.vercel.app)
-- Developed a full-stack operations CRM platform featuring Role-Based Access Control (RBAC), multi-stage lead tracking, and responsive dashboard analytics.
-- Implemented secure JWT authentication and token-based middleware protecting operational routes, business data, and document workflows.
-- Designed compound-indexed MongoDB schemas with Express REST APIs to accelerate high-volume customer queries and pipeline updates.
+*JavaScript, React.js, Node.js, Express.js, MongoDB, REST APIs, JWT* | [Live Demo](https://nexus360-crm.vercel.app/)
+- Built a multi-tenant CRM web application with JWT authentication, role-based access control (Admin, Manager, Underwriter, Agent), lead pipelines, and responsive analytics dashboards.
+- Integrated the frontend with versioned REST APIs (/api/v1) and engineered compound-indexed MongoDB schemas to accelerate pipeline queries.
+
+### Fruits & Nuts — E-commerce Website
+*Next.js, React.js, JavaScript, Tailwind CSS* | [Live Website](https://fruitsandnuts.co.in/)
+- Developed a responsive e-commerce storefront with a categorized product catalog (dry fruits, dates, teas, seeds, gift packs), variant pricing, and GST-inclusive rates.
+- Implemented a 4-step Build Your Own Hamper interactive gift builder, product search, cart state management, and direct WhatsApp ordering.
 
 ### Sketch Duel AI — Doodle Battles
-*React.js | Node.js | Socket.io | MongoDB | OpenAI API | JWT | HTML5 Canvas* | [Live Demo](https://sketch-duel-ai-doodle-battles.vercel.app)
-- Built a real-time multiplayer drawing web application with Socket.io WebSockets delivering sub-100ms bidirectional stroke synchronization and live lobby management.
-- Integrated OpenAI API for dynamic AI sketch recognition and automated scoring, paired with JWT authentication and MongoDB match records.
+*Next.js, React.js, Socket.io, HTML5 Canvas, Gemini API, TensorFlow.js* | [Live Demo](https://sketch-duel-ai-doodle-battles.vercel.app/)
+- Built a real-time multiplayer drawing game featuring sub-100ms WebSocket synchronization, HTML5 Canvas studio, lobby room IDs, and leaderboards.
+- Integrated computer vision AI recognition to classify doodles and score players on stroke precision, completion, and speed.
+
+### Pixel Art AI Studio
+*Next.js, React.js, HTML5 Canvas, Supabase, Vercel* | [Live Demo](https://pixel-art-ai-studio.vercel.app/)
+- Built an image-processing tool featuring client-side Canvas quantization, palette generation, export options, and Supabase cloud persistence; deployed on Vercel.
+
+---
+
+## EDUCATION
+- **B.Tech, Electrical and Electronics Engineering** | Galgotias College of Engineering and Technology, Greater Noida *(2026)*
+- **Diploma, Computer Science Engineering** | Glocal University, Saharanpur *(2020 – 2022)*
 
 ---
 
 ## LEADERSHIP & ACHIEVEMENTS
 - **Head of Marketing & Sponsorship Club:** Secured 8+ corporate sponsorships, increasing event funding by 60% and driving 200+ attendee turnout.
-- **IEEE Conference Volunteer:** Coordinated technical sessions and logistical operations for 200+ international attendees.
+- **IEEE Conference Volunteer:** Coordinated technical sessions and logistics for 200+ international attendees.

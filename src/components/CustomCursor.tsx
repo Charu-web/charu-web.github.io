@@ -38,7 +38,7 @@ export const CustomCursor: React.FC = () => {
           setCursorText('EXPLORE');
         } else if (type === 'OPEN') {
           setCursorVariant('open');
-          setCursorText('OPEN ↗');
+          setCursorText('OPEN \u2197');
         } else if (type === 'MAIL') {
           setCursorVariant('mail');
           setCursorText('COPY');
@@ -48,7 +48,7 @@ export const CustomCursor: React.FC = () => {
         }
       } else if (target.closest('a')) {
         setCursorVariant('open');
-        setCursorText('OPEN ↗');
+        setCursorText('OPEN \u2197');
       } else if (target.closest('button, input, textarea')) {
         setCursorVariant('hover');
         setCursorText('');

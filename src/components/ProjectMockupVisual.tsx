@@ -26,7 +26,7 @@ export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
       <div className="w-full h-full min-h-[220px] bg-[#0c1021] p-4 font-mono text-xs flex flex-col justify-between text-zinc-300 relative overflow-hidden">
         <div className="flex items-center justify-between pb-2 border-b border-zinc-800 text-[11px]">
           <span className="text-blue-400 font-semibold flex items-center gap-1.5">
-            <LayoutDashboard className="w-3.5 h-3.5 text-blue-400" /> ZenithHR · Enterprise HRMS
+            <LayoutDashboard className="w-3.5 h-3.5 text-blue-400" /> ZenithHR {'\u00B7'} Enterprise HRMS
           </span>
           <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-medium">
             Live on Vercel
@@ -48,7 +48,7 @@ export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
           </div>
           <div className="bg-zinc-900/90 rounded p-1.5 border border-zinc-800 text-center">
             <span className="text-[9px] text-indigo-400 block">Payroll</span>
-            <span className="text-indigo-300 font-bold text-xs">₹12.8L</span>
+            <span className="text-indigo-300 font-bold text-xs">{'\u20B9'}12.8L</span>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
 
         <div className="flex items-center justify-between bg-zinc-900/90 px-2.5 py-1.5 rounded border border-zinc-800 text-[10px] text-zinc-400">
           <span className="flex items-center gap-1 text-zinc-300">
-            <ShieldCheck className="w-3 h-3 text-blue-400" /> Neon PostgreSQL · Prisma ORM
+            <ShieldCheck className="w-3 h-3 text-blue-400" /> Neon PostgreSQL {'\u00B7'} Prisma ORM
           </span>
           <span className="text-zinc-200">FactoHR Spec</span>
         </div>
@@ -253,7 +253,7 @@ export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
         </div>
 
         <div className="flex items-center justify-between bg-zinc-900 px-2.5 py-1.5 rounded border border-zinc-800 text-[10px] text-zinc-400">
-          <span>React · Express · Node.js</span>
+          <span>React {'\u00B7'} Express {'\u00B7'} Node.js</span>
           <span className="text-zinc-300">Client Portal</span>
         </div>
       </div>
@@ -310,7 +310,7 @@ export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
         <div className="relative z-10 p-4 flex flex-col justify-between h-full bg-gradient-to-t from-zinc-950 via-zinc-950/85 to-zinc-950/60 font-mono text-xs">
           <div className="flex items-center justify-between pb-2 border-b border-zinc-800/80 text-[11px]">
             <span className="text-zinc-100 font-semibold flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-orange-400" /> YuvaHub — Naukri Mahotsav 2026
+              <Layers className="w-3.5 h-3.5 text-orange-400" /> YuvaHub {'\u2014'} Naukri Mahotsav 2026
             </span>
             <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px]">
               Live on Netlify
@@ -345,7 +345,7 @@ export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
           </div>
 
           <div className="flex items-center justify-between bg-zinc-900/90 px-2.5 py-1.5 rounded border border-zinc-800 text-[10px] text-zinc-400">
-            <span>React · Express · Node.js</span>
+            <span>React {'\u00B7'} Express {'\u00B7'} Node.js</span>
             <span className="text-zinc-200 font-medium">Gov &amp; Employment Platform</span>
           </div>
         </div>

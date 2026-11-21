@@ -1,41 +1,33 @@
-import React, { useState } from 'react';
-import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Quote, MapPin, CheckCircle2, ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { MapPin, CheckCircle2, ArrowUpRight, Shield, Layers, Rocket } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface AboutProps {
   onContactClick: () => void;
 }
 
-const TESTIMONIALS = [
+const PRINCIPLES = [
   {
-    id: 't1',
-    quote: "Charu is a dedicated full-stack developer who consistently delivers high-performance solutions beyond expectations. Strong problem-solving mindset and exceptional execution on complex web architectures.",
-    author: "Technical Peer Review",
-    role: "Full Stack Engineering & Architecture",
+    icon: Layers,
+    title: "Architecture Before Code",
+    description: "Designing clean database schemas, predictable REST API contracts, and typed state boundaries before writing UI components to prevent cascade state bugs.",
   },
   {
-    id: 't2',
-    quote: "Demonstrated great ownership across backend APIs, real-time WebSockets, and AI integrations. Clean code, prompt communication, and a strong focus on production-ready delivery.",
-    author: "Collaboration Endorsement",
-    role: "Product & Client Delivery",
+    icon: Shield,
+    title: "Production-First Rigor",
+    description: "Prioritizing accessible layouts, defensive validation, sub-100ms API response targets, and graceful offline error states across all viewports.",
+  },
+  {
+    icon: Rocket,
+    title: "Continuous Learning by Shipping",
+    description: "Transitioning from Electrical & Electronics Engineering into digital products by building and deploying live production applications with real users.",
   },
 ];
 
 export const About: React.FC<AboutProps> = ({ onContactClick }) => {
-  const [currentIdx, setCurrentIdx] = useState(0);
   const shouldReduceMotion = useReducedMotion();
   const editorialEase = [0.16, 1, 0.3, 1] as const;
-
-  const currentTestimonial = TESTIMONIALS[currentIdx];
-
-  const handleNext = () => {
-    setCurrentIdx((prev) => (prev + 1) % TESTIMONIALS.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIdx((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  };
 
   return (
     <section 
@@ -47,7 +39,7 @@ export const About: React.FC<AboutProps> = ({ onContactClick }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         
-        {/* Left Column: Developer Card / Visual Frame (Matching Figma) */}
+        {/* Left Column: Developer Card / Visual Frame */}
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -92,68 +84,56 @@ export const About: React.FC<AboutProps> = ({ onContactClick }) => {
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>Production Verified</span>
               </div>
-              <span>v2.6</span>
+              <span>B.Tech 2026</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Right Column: Large Golden Quote & Statement (Matching Figma) */}
+        {/* Right Column: Engineering Standards & Philosophy */}
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, ease: editorialEase }}
-          className="lg:col-span-7 space-y-8 text-left"
+          className="lg:col-span-7 space-y-6 text-left"
         >
-          {/* Large Quote Mark */}
-          <div className="text-amber-400 opacity-90">
-            <Quote className="w-12 h-12 rotate-180" />
+          <div>
+            <span className="font-mono text-xs font-semibold tracking-widest uppercase text-amber-400 block mb-2">
+              ENGINEERING PHILOSOPHY
+            </span>
+            <h2 className="font-sans text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              Built on Discipline, <br />
+              Delivered for Production.
+            </h2>
+            <div className="w-12 h-1 bg-amber-400 rounded-full my-3" />
+            <p className="font-sans text-sm sm:text-base text-zinc-300 leading-relaxed max-w-xl">
+              I believe great software is where disciplined engineering meets intuitive human experience. Coming from an electrical engineering foundation, I treat every web system as a sequence of signal paths, boundary constraints, and verifiable states.
+            </p>
           </div>
 
-          {/* Testimonial Quote text */}
-          <div className="min-h-[140px] flex items-center">
-            <AnimatePresence mode="wait">
-              <motion.blockquote
-                key={currentTestimonial.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: editorialEase }}
-                className="font-sans text-xl sm:text-2xl lg:text-3xl text-white font-medium leading-relaxed tracking-tight"
-              >
-                "{currentTestimonial.quote}"
-              </motion.blockquote>
-            </AnimatePresence>
-          </div>
-
-          {/* Author info & Navigation arrows */}
-          <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-4">
-            <div className="space-y-0.5">
-              <div className="font-sans text-base sm:text-lg font-bold text-white">
-                {currentTestimonial.author}
-              </div>
-              <div className="font-sans text-xs sm:text-sm text-zinc-400">
-                {currentTestimonial.role}
-              </div>
-            </div>
-
-            {/* Pagination Arrows */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handlePrev}
-                className="w-10 h-10 rounded-full border border-white/10 hover:border-amber-400 bg-white/[0.04] hover:bg-amber-400/10 text-zinc-300 hover:text-amber-400 transition-colors flex items-center justify-center cursor-pointer"
-                aria-label="Previous endorsement"
-              >
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={handleNext}
-                className="w-10 h-10 rounded-full border border-white/10 hover:border-amber-400 bg-white/[0.04] hover:bg-amber-400/10 text-zinc-300 hover:text-amber-400 transition-colors flex items-center justify-center cursor-pointer"
-                aria-label="Next endorsement"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+          {/* 3 Core Principles */}
+          <div className="space-y-4 pt-2">
+            {PRINCIPLES.map((principle) => {
+              const Icon = principle.icon;
+              return (
+                <div
+                  key={principle.title}
+                  className="p-4 sm:p-5 rounded-2xl bg-[#131627]/80 border border-white/[0.08] flex items-start gap-4 hover:border-amber-400/30 transition-colors"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-sans text-base font-bold text-white">
+                      {principle.title}
+                    </h3>
+                    <p className="font-sans text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                      {principle.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
           <div className="pt-2">

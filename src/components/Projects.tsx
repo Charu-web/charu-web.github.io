@@ -36,7 +36,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
       {/* Background ambient glow */}
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Section Header: Our Portfolio & See All (Matching Figma) */}
+      {/* Section Header: Featured Projects & See All */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 text-left">
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
@@ -49,7 +49,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
             SELECTED WORKS
           </span>
           <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Our Portfolio
+            Featured Projects
           </h2>
           <div className="w-12 h-1 bg-amber-400 rounded-full my-2" />
           <p className="font-sans text-sm text-zinc-300 max-w-md pt-1">
@@ -57,7 +57,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
           </p>
         </motion.div>
 
-        {/* Filter Controls & "See All →" */}
+        {/* Filter Controls & "See All" */}
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <div className="flex items-center gap-2 p-1 rounded-xl bg-white/[0.04] border border-white/[0.08]">
             {(['All', 'Full Stack', 'AI & Web', 'Production'] as const).map((filter) => (
@@ -87,7 +87,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onSelectCaseStudy }) => {
         </div>
       </div>
 
-      {/* 3-Column Responsive Grid (Matching Figma Desktop - 7) */}
+      {/* 3-Column Responsive Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {filteredProjects.map((project, index) => (
           <FigmaProjectCard

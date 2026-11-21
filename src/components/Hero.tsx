@@ -24,9 +24,9 @@ export const Hero: React.FC<HeroProps> = ({
   };
 
   const stats = [
-    { label: 'Years of Experience', value: '3+' },
-    { label: 'Complete Projects', value: '15+' },
-    { label: 'Code & Delivery Quality', value: '100%' },
+    { label: 'Completed Projects', value: '12+' },
+    { label: 'Core Specialization', value: 'Full Stack' },
+    { label: 'Engineering Degree', value: '2026' },
   ];
 
   const editorialEase = [0.16, 1, 0.3, 1] as const;
@@ -34,16 +34,16 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section 
       id="home" 
-      className="relative min-h-[90vh] lg:min-h-[94vh] flex items-center pt-28 sm:pt-32 pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden select-none"
+      className="relative min-h-[90vh] lg:min-h-[94vh] flex items-center pt-28 sm:pt-32 pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto overflow-hidden"
     >
-      {/* Figma Ambient Radial Glows */}
+      {/* Ambient Radial Glows */}
       <div className="absolute top-1/4 right-5 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 left-0 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
         
         {/* ========================================================
-            COLUMN 1: INTRO & HEADLINE (Figma Left Column)
+            COLUMN 1: INTRO & HEADLINE
             ======================================================== */}
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, x: -20 }}
@@ -61,7 +61,7 @@ export const Hero: React.FC<HeroProps> = ({
             Charu Sonker
           </h1>
 
-          {/* Golden Amber Accent Divider (Matching Figma) */}
+          {/* Golden Amber Accent Divider */}
           <div className="w-14 h-1 bg-amber-400 rounded-full my-1 shadow-sm shadow-amber-400/50" />
 
           {/* Bio Description */}
@@ -99,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             <a
               href="./Charu_Sonker_Full_Stack_Developer_Resume.pdf"
-              download
+              download="Charu_Sonker_Full_Stack_Developer_Resume.pdf"
               className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-amber-400 transition-colors py-1"
             >
               <Download className="w-3.5 h-3.5" />
@@ -109,7 +109,7 @@ export const Hero: React.FC<HeroProps> = ({
         </motion.div>
 
         {/* ========================================================
-            COLUMN 2: CENTRAL VISUAL CARD (Figma Center Column)
+            COLUMN 2: CENTRAL VISUAL CARD
             ======================================================== */}
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
@@ -121,7 +121,7 @@ export const Hero: React.FC<HeroProps> = ({
         </motion.div>
 
         {/* ========================================================
-            COLUMN 3: VERTICAL STATS STACK (Figma Right Column)
+            COLUMN 3: VERTICAL STATS STACK
             ======================================================== */}
         <motion.div 
           initial={shouldReduceMotion ? false : { opacity: 0, x: 20 }}

@@ -72,7 +72,7 @@ export const Experience: React.FC = () => {
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1.5 font-mono text-xs text-zinc-400">
                     <Calendar className="w-3.5 h-3.5" />
-                    <span>{item.period || '2026'}</span>
+                    <span>{item.period}</span>
                   </div>
                   <ChevronRight className={`w-4 h-4 text-zinc-400 transition-transform ${isSelected ? 'rotate-90 text-amber-400' : ''}`} />
                 </div>
@@ -91,7 +91,7 @@ export const Experience: React.FC = () => {
                     <ul className="space-y-2 text-sm text-zinc-300 leading-relaxed font-sans">
                       {item.responsibilities.map((resp, i) => (
                         <li key={i} className="flex items-start gap-2.5">
-                          <span className="text-amber-400 mt-1">•</span>
+                          <span className="text-amber-400 mt-1">{'\u2022'}</span>
                           <span>{resp}</span>
                         </li>
                       ))}
