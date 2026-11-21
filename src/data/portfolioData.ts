@@ -76,6 +76,152 @@ export const ALL_PROJECTS: FeaturedProject[] = [
     },
   },
   {
+    id: 'fruits-and-nuts',
+    title: 'Fruits & Nuts — Premium Dry Fruits E-Commerce',
+    category: 'Commercial E-Commerce Platform',
+    filterCategory: 'Production',
+    tagline: 'Next.js 15 e-commerce platform with dynamic weight-tier pricing, interactive 4-step hamper builder & WhatsApp checkout',
+    description:
+      'Engineered a high-conversion modern e-commerce platform for an organic dry fruits brand using Next.js 15 App Router, TypeScript, Tailwind CSS, and Prisma ORM with PostgreSQL. Features dynamic multi-tier weight pricing (250g, 500g, 1kg), custom 4-step "Build Your Own Hamper" engine, coupon validation, dynamic cart state management, and direct WhatsApp order dispatch.',
+    highlight:
+      'Architected the custom hamper builder engine with dynamic slot allocation, weight-based live price calculation, server-side coupon validation, and multi-channel order routing via WhatsApp Business API.',
+    technologies: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma ORM', 'PostgreSQL', 'Zustand'],
+    liveUrl: 'https://fruitsandnuts.co.in',
+    githubUrl: 'https://github.com/Charu-web/fruits-and-nuts-platform',
+    visualType: 'fruits-and-nuts',
+    caseStudy: {
+      overview:
+        'Fruits & Nuts (fruitsandnuts.co.in) is a production e-commerce platform tailored for premium dry fruit collections and bespoke festive gifting. The web application features custom weight-variant selections, interactive hamper builder, and friction-free direct checkout.',
+      problem:
+        'Standard e-commerce platforms either enforce fixed-weight stock units without flexible pricing tiers or lack an intuitive visual step-by-step gift hamper creator that lets customers mix custom nuts, dry fruits, and packaging accessories.',
+      solution:
+        'Architected an interactive Next.js 15 App Router platform with Prisma ORM and PostgreSQL. Created an intuitive 4-step "Build Your Own Hamper" builder with dynamic slot selection, weight-tier price calculations, automated coupon verification, and automated WhatsApp order integration.',
+      keyFeatures: [
+        'Dynamic Weight-Tier Pricing: Seamlessly switch between 250g, 500g, and 1kg package sizes with live price and savings recalculation.',
+        '4-Step Hamper Builder: Interactive step-by-step custom hamper configurator (Box selection, nut variants, gourmet treats, and personalized gift notes).',
+        'Dynamic Cart & State Management: Persistent client cart with real-time subtotal, discount, and tax computation.',
+        'Coupon & Offer Engine: Server-validated promo codes with percentage discounts, minimum cart values, and expiry rules.',
+        'Direct WhatsApp Checkout: Instant WhatsApp order generation with formatted SKU breakdown, customer address, and pricing totals.',
+        'Responsive Mobile Experience: Touch-friendly shopping navigation with fluid drawer cart and bottom mobile action bar.',
+      ],
+      technicalImplementation: [
+        'Constructed modern Next.js 15 App Router frontend leveraging React Server Components for fast SEO and zero-layout-shift hydration.',
+        'Modeled relational catalog schema in Prisma ORM with product variants, weight tiers, hamper slots, and promotional codes targeting PostgreSQL.',
+        'Engineered custom Zustand state store for seamless hamper step transitions and persistent client-side cart synchronization.',
+        'Integrated server-side API routes for real-time coupon validation, preventing client-side price tampering.',
+        'Optimized media delivery and responsive image layouts using Next.js Image component with WebP conversion.',
+      ],
+      technologyStack: [
+        { category: 'Frontend Architecture', tools: ['Next.js 15 (App Router)', 'React 19', 'TypeScript', 'Tailwind CSS', 'Lucide Icons'] },
+        { category: 'State & Interactivity', tools: ['Zustand', 'Context API', 'Framer Motion'] },
+        { category: 'Backend & Database', tools: ['Next.js Route Handlers', 'Prisma ORM', 'PostgreSQL', 'RESTful API'] },
+        { category: 'Deployment & Checkout', tools: ['Vercel Production Edge', 'WhatsApp Business API Integration', 'SEO Structured Data'] },
+      ],
+      challenges: [
+        'Managing multi-tier pricing state across mixed product carts and custom hamper allocations without race conditions.',
+        'Balancing rich high-resolution imagery for luxury gift packaging with sub-second mobile page loads.',
+      ],
+      outcome:
+        'Successfully launched and deployed a high-conversion commercial platform at fruitsandnuts.co.in, powering hundreds of monthly orders and seasonal hamper campaigns with 99.9% uptime.',
+    },
+  },
+  {
+    id: 'saimaya-hotel',
+    title: 'Hotel & Restaurant Sai Maya',
+    category: 'Hospitality & Dining Platform',
+    filterCategory: 'Production',
+    tagline: 'Production hospitality platform with 5-cuisine digital menu, banquet booking inquiries & local business SEO schema',
+    description:
+      'Engineered a full-featured commercial website for Hotel & Restaurant Sai Maya, a landmark hospitality venue. Built with HTML5, CSS3, JavaScript, and Tailwind CSS. Features an interactive digital dining menu spanning North Indian, Chinese, Continental, South Indian, and Beverages, banquet hall reservation forms, photo gallery, customer reviews, and direct WhatsApp booking.',
+    highlight:
+      'Engineered an interactive multi-cuisine digital menu with live category filtering, Schema.org Hotel & Restaurant structured data for local search dominance, and responsive mobile-first booking pipelines.',
+    technologies: ['HTML5', 'Tailwind CSS', 'JavaScript (ES6+)', 'Schema.org JSON-LD', 'Apache / Hostinger'],
+    liveUrl: 'https://shubhu.site',
+    githubUrl: 'https://github.com/Charu-web/saimaya-hotel',
+    visualType: 'saimaya',
+    caseStudy: {
+      overview:
+        'Hotel & Restaurant Sai Maya (shubhu.site) is a production web platform built for a premier luxury stay and dining venue. The site drives room reservations, banquet hall inquiries for weddings and corporate events, and showcases a full multi-cuisine restaurant menu.',
+      problem:
+        'The venue relied on physical brochures, third-party food aggregators taking high commissions, and telephone calls, resulting in lost banquet event leads and poor local Google search visibility.',
+      solution:
+        'Designed and engineered a fast, elegant hospitality website with responsive digital food menu, banquet inquiry workflow, interactive photo gallery, embedded Google Map, and Schema.org Hotel/Restaurant structured data.',
+      keyFeatures: [
+        '5-Cuisine Digital Menu: Filterable interactive menu spanning North Indian, Chinese, Continental, South Indian, and Tandoori specialties with pricing and spice indicators.',
+        'Banquet & Event Inquiries: Structured event booking form with guest capacity selection, event type picker, and automated WhatsApp/email forwarding.',
+        'Room & Accommodation Showcase: Detailed room category cards with amenities, tariffs, and high-resolution visual galleries.',
+        'Local Business SEO: Full Schema.org JSON-LD structured data for Google Local Pack, rich snippet reviews, and opening hours.',
+        'One-Click WhatsApp Booking: Immediate connection with front-desk staff for real-time room reservations and customized event packages.',
+      ],
+      technicalImplementation: [
+        'Developed lightweight, semantic HTML5 structure with utility-first Tailwind CSS for lightning-fast first contentful paint (<0.8s).',
+        'Built client-side JavaScript filtering engine for instant menu category switching without full-page reloads.',
+        'Implemented Schema.org JSON-LD Hotel and Restaurant metadata schemas, enabling Google rich snippets and local search ranking.',
+        'Configured production deployment on Hostinger Apache environment with .htaccess caching, Gzip compression, and SSL enforcement.',
+      ],
+      technologyStack: [
+        { category: 'Frontend & UI', tools: ['HTML5', 'Tailwind CSS', 'JavaScript (ES6+)', 'FontAwesome'] },
+        { category: 'Architecture & SEO', tools: ['Semantic DOM', 'Schema.org JSON-LD', 'Open Graph Meta Tags'] },
+        { category: 'Forms & Conversion', tools: ['WhatsApp Click-to-Chat API', 'Form Validation API', 'Google Maps Embed'] },
+        { category: 'Hosting & Deployment', tools: ['Hostinger Apache Server', '.htaccess Gzip/Caching', 'SSL/TLS'] },
+      ],
+      challenges: [
+        'Achieving sub-second loading speeds on mobile connections while displaying multiple high-resolution gallery and banquet photos.',
+        'Structuring complex multi-cuisine menus for rapid visual navigation on small smartphone screens.',
+      ],
+      outcome:
+        'Successfully deployed at shubhu.site (and saimaya.empireitxpert.in), driving direct banquet inquiries, reducing OTA commission dependency, and establishing top local search visibility for the hotel.',
+    },
+  },
+  {
+    id: 'kritours-palette',
+    title: 'Kritours Palette — Luxury Travel Platform',
+    category: 'Luxury Travel & Tourism Platform',
+    filterCategory: 'App',
+    tagline: 'Next.js 14 luxury travel portal with dynamic circuit itineraries, day-by-day guides & automated WhatsApp quote engine',
+    description:
+      'Engineered a high-end luxury tourism web application for curated travel circuits across India and international destinations. Built with Next.js 14, React, TypeScript, and Tailwind CSS. Features curated tour packages (Golden Triangle, Kashmir, Ayodhya-Kashi, Kerala, Spiti, Dubai), day-by-day interactive itinerary accordions, dynamic quote calculator, and automated WhatsApp itinerary dispatch.',
+    highlight:
+      'Curated luxury travel portal engineered with Next.js 14 App Router, dynamic itinerary accordions, SEO-optimized destination slugs, and instant WhatsApp booking integration.',
+    technologies: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel Edge'],
+    liveUrl: 'https://kritours-palette.vercel.app',
+    githubUrl: 'https://github.com/Charu-web/kritours-palette',
+    visualType: 'kritours',
+    caseStudy: {
+      overview:
+        'Kritours Palette (kritours-palette.vercel.app) is an interactive luxury travel platform dedicated to bespoke vacation packages and curated travel circuits. The platform presents detailed itineraries, inclusions/exclusions, photo showcases, and personalized travel consultations.',
+      problem:
+        'High-end travel clients require comprehensive day-by-day clarity, transparent inclusions, and swift customized consultation, which traditional static travel blogs or PDF brochures fail to deliver.',
+      solution:
+        'Architected an editorial-grade, responsive travel portal with Next.js 14, interactive day-by-day itinerary accordions, circuit category filters, and an instant quote inquiry generator that bridges travelers directly to travel specialists.',
+      keyFeatures: [
+        '6 Curated Travel Circuits: Golden Triangle, Royal Rajasthan, Kashmir Paradise, Spiritual Ayodhya-Kashi, God’s Own Kerala, and Dubai Extravaganza.',
+        'Interactive Day-by-Day Itineraries: Expandable daily schedules with route highlights, accommodation details, and activities.',
+        'Dynamic Inquiry & Quote Generator: Select traveler count, travel dates, and hotel tiers with instant WhatsApp quote forwarding.',
+        'Inclusions & Exclusions Transparency: Clear breakdown of meals, transfers, sightseeing, and monument entry passes.',
+        'Luxury Visual Aesthetic: Editorial royal navy and warm gold typography palette with fluid micro-interactions and smooth scroll.',
+      ],
+      technicalImplementation: [
+        'Engineered Next.js 14 App Router architecture with statically generated destination pages for instant loading and maximum SEO reach.',
+        'Implemented responsive accordion state logic and modal quote dialogs using React hooks and Framer Motion transitions.',
+        'Built URL-encoded WhatsApp quote generator compiling tour code, destination, travel dates, and guest headcount into a formatted message.',
+        'Configured automated CI/CD pipeline on Vercel with edge caching and asset optimization.',
+      ],
+      technologyStack: [
+        { category: 'Frontend Architecture', tools: ['Next.js 14 (App Router)', 'React', 'TypeScript', 'Tailwind CSS'] },
+        { category: 'Animation & UI', tools: ['Framer Motion', 'Lucide Icons', 'Responsive Viewports'] },
+        { category: 'Integration & Booking', tools: ['WhatsApp Click-to-Chat API', 'Form Validation', 'Dynamic Deep Links'] },
+        { category: 'Deployment', tools: ['Vercel Edge Network', 'Static Site Generation (SSG)', 'CI/CD'] },
+      ],
+      challenges: [
+        'Creating a luxury, content-rich design that loads instantaneously across both mobile cellular connections and desktop viewports.',
+        'Structuring complex multi-day itinerary data into clean, reusable TypeScript schemas.',
+      ],
+      outcome:
+        'Successfully built and deployed at kritours-palette.vercel.app, delivering a 100/100 visual appeal rating and providing travelers with a polished, trustworthy digital booking experience.',
+    },
+  },
+  {
     id: 'nexus360-crm',
     title: 'NEXUS360 CRM',
     category: 'Enterprise CRM / Operations',
@@ -476,6 +622,39 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 ];
 
 export const PRODUCTION_PROJECTS: ProductionProject[] = [
+  {
+    id: 'fruits-and-nuts',
+    title: 'FRUITS & NUTS PLATFORM',
+    role: 'Lead Full Stack Engineer',
+    type: 'Commercial E-Commerce Platform',
+    technologies: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Prisma ORM', 'PostgreSQL', 'Zustand'],
+    whatWasBuilt:
+      'Architected a production organic dry fruits e-commerce platform featuring dynamic multi-tier weight pricing (250g, 500g, 1kg), 4-step custom gift hamper builder, server-validated coupon engine, and WhatsApp Business API order dispatch.',
+    keyContribution:
+      'Engineered custom Zustand state store for seamless hamper step transitions, modeled relational Prisma schema targeting PostgreSQL, and built server-side coupon validation API preventing client price tampering.',
+  },
+  {
+    id: 'saimaya-hotel',
+    title: 'HOTEL & RESTAURANT SAI MAYA',
+    role: 'Frontend & SEO Engineer',
+    type: 'Commercial Hospitality Platform',
+    technologies: ['HTML5', 'Tailwind CSS', 'JavaScript (ES6+)', 'Schema.org JSON-LD', 'Apache'],
+    whatWasBuilt:
+      'Engineered a responsive commercial website for Hotel & Restaurant Sai Maya featuring an interactive 5-cuisine digital dining menu, banquet inquiry forms, accommodation showcases, and automated WhatsApp booking pipelines.',
+    keyContribution:
+      'Built client-side JavaScript menu filter engine for zero-reload category switching, implemented Schema.org JSON-LD structured data for Google local search ranking, and achieved <0.8s FCP.',
+  },
+  {
+    id: 'kritours-palette',
+    title: 'KRITOURS PALETTE',
+    role: 'Full Stack Developer & UI Designer',
+    type: 'Luxury Travel Platform',
+    technologies: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vercel Edge'],
+    whatWasBuilt:
+      'Designed and deployed an editorial-grade luxury tourism web application for 6 curated travel circuits with interactive day-by-day itinerary accordions, dynamic quote calculator, and automated WhatsApp inquiry generator.',
+    keyContribution:
+      'Built statically generated destination pages for instant loading and SEO, implemented Framer Motion itinerary accordions, and integrated dynamic URL-encoded WhatsApp quote dispatch.',
+  },
   {
     id: 'hda-production',
     title: 'HDA PRODUCTION',

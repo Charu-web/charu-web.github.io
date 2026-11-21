@@ -13,15 +13,29 @@ export interface FeaturedProject {
   id: string;
   title: string;
   category: string;
-  filterCategory: 'Web' | 'App';
+  filterCategory: 'Web' | 'App' | 'Production';
   tagline: string;
   description: string;
   highlight: string;
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
+  imageUrl?: string;
   caseStudy?: CaseStudyData;
-  visualType: 'pixel-art' | 'space-shooter' | 'doodle-duel' | 'dsa-crm' | 'hda-production' | 'yuvahub' | 'yuvahub-naukri-mahotsav' | 'dsa-sathi-crm' | 'bubble-shooter' | 'hrms';
+  visualType: 
+    | 'pixel-art' 
+    | 'space-shooter' 
+    | 'doodle-duel' 
+    | 'dsa-crm' 
+    | 'hda-production' 
+    | 'yuvahub' 
+    | 'yuvahub-naukri-mahotsav' 
+    | 'dsa-sathi-crm' 
+    | 'bubble-shooter' 
+    | 'hrms'
+    | 'fruits-and-nuts'
+    | 'saimaya'
+    | 'kritours';
 }
 
 export interface ProductionProject {

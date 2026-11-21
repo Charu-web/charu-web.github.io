@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
@@ -11,12 +11,16 @@ import { Projects } from './components/Projects';
 import { About } from './components/About';
 import { Experience } from './components/Experience';
 import { Skills } from './components/Skills';
+import { FreelanceModels } from './components/FreelanceModels';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { CaseStudyModal } from './components/CaseStudyModal';
 import { Toast } from './components/Toast';
 import type { FeaturedProject } from './types';
 import { PERSONAL_INFO, ALL_PROJECTS } from './data/portfolioData';
+
+const CaseStudyModal = lazy(() =>
+  import('./components/CaseStudyModal').then((module) => ({ default: module.CaseStudyModal }))
+);
 
 export function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<FeaturedProject | null>(null);
@@ -115,7 +119,10 @@ export function App() {
         {/* 7. Tools & Technical Index */}
         <Skills />
 
-        {/* 8. Contact Banner: Want to make awesome and impactful Product? */}
+        {/* 8. International Client Collaboration & Engagement Models */}
+        <FreelanceModels onContactClick={scrollToContact} />
+
+        {/* 9. Contact Banner: Want to make awesome and impactful Product? */}
         <Contact
           onCopyEmail={handleCopyEmail}
           copiedEmail={copiedEmail}
@@ -125,13 +132,17 @@ export function App() {
       {/* Dark Footer */}
       <Footer onCopyEmail={handleCopyEmail} />
 
-      {/* Case Study Full Reader Modal */}
-      <CaseStudyModal
-        project={selectedCaseStudy}
-        onClose={() => setSelectedCaseStudy(null)}
-        onSelectProject={(project) => setSelectedCaseStudy(project)}
-        allProjects={ALL_PROJECTS}
-      />
+      {/* Case Study Full Reader Modal (Code-split with Suspense) */}
+      <Suspense fallback={null}>
+        {selectedCaseStudy && (
+          <CaseStudyModal
+            project={selectedCaseStudy}
+            onClose={() => setSelectedCaseStudy(null)}
+            onSelectProject={(project) => setSelectedCaseStudy(project)}
+            allProjects={ALL_PROJECTS}
+          />
+        )}
+      </Suspense>
 
       {/* Toast Notification */}
       <Toast

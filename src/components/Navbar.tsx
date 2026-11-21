@@ -33,6 +33,7 @@ export const Navbar: React.FC = () => {
     { name: 'Projects', href: '#projects' },
     { name: 'About', href: '#about' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Engagement', href: '#freelance-models' },
     { name: 'Contact', href: '#contact' },
   ];
 

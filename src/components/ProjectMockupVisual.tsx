@@ -11,7 +11,12 @@ import {
   Layers,
   Globe,
   Radio,
-  FileText
+  FileText,
+  ShoppingBag,
+  Gift,
+  Utensils,
+  MapPin,
+  Compass
 } from 'lucide-react';
 
 import type { FeaturedProject } from '../types';
@@ -21,6 +26,134 @@ interface VisualProps {
 }
 
 export const ProjectMockupVisual: React.FC<VisualProps> = ({ type }) => {
+  if (type === 'fruits-and-nuts') {
+    return (
+      <div className="w-full h-full min-h-[220px] bg-[#0d140e] p-4 font-mono text-xs flex flex-col justify-between text-zinc-300 relative overflow-hidden group">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-35 group-hover:opacity-45 transition-opacity duration-500 scale-105 group-hover:scale-100"
+          style={{ backgroundImage: "url('./images/projects/fruits-and-nuts.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#09100a] via-[#09100a]/80 to-[#0d140e]/90 pointer-events-none" />
+
+        <div className="relative z-10 flex items-center justify-between pb-2 border-b border-emerald-900/40 text-[11px]">
+          <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
+            <ShoppingBag className="w-3.5 h-3.5 text-emerald-400" /> Fruits &amp; Nuts · E-Commerce
+          </span>
+          <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[10px] font-medium">
+            fruitsandnuts.co.in
+          </span>
+        </div>
+
+        <div className="relative z-10 grid grid-cols-3 gap-2 my-2">
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-emerald-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Weight Tiers</span>
+            <span className="text-emerald-400 font-bold text-xs">250g | 500g | 1kg</span>
+          </div>
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-emerald-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Hamper Builder</span>
+            <span className="text-amber-400 font-bold text-xs">4-Step Custom</span>
+          </div>
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-emerald-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Checkout</span>
+            <span className="text-green-400 font-bold text-xs">WhatsApp API</span>
+          </div>
+        </div>
+
+        <div className="relative z-10 flex items-center justify-between bg-black/80 px-2.5 py-1.5 rounded border border-emerald-900/40 text-[10px] text-zinc-400">
+          <span className="flex items-center gap-1 text-emerald-300">
+            <Gift className="w-3 h-3 text-emerald-400" /> Next.js 15 · Prisma · PostgreSQL
+          </span>
+          <span className="text-zinc-200">Zustand Cart</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === 'saimaya') {
+    return (
+      <div className="w-full h-full min-h-[220px] bg-[#1a140e] p-4 font-mono text-xs flex flex-col justify-between text-zinc-300 relative overflow-hidden group">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-35 group-hover:opacity-45 transition-opacity duration-500 scale-105 group-hover:scale-100"
+          style={{ backgroundImage: "url('./images/projects/saimaya-hotel.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#120d09] via-[#120d09]/80 to-[#1a140e]/90 pointer-events-none" />
+
+        <div className="relative z-10 flex items-center justify-between pb-2 border-b border-amber-900/40 text-[11px]">
+          <span className="text-amber-400 font-semibold flex items-center gap-1.5">
+            <Utensils className="w-3.5 h-3.5 text-amber-400" /> Sai Maya · Hotel &amp; Dining
+          </span>
+          <span className="px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[10px] font-medium">
+            shubhu.site
+          </span>
+        </div>
+
+        <div className="relative z-10 grid grid-cols-3 gap-2 my-2">
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-amber-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Digital Menu</span>
+            <span className="text-amber-300 font-bold text-xs">5 Cuisines</span>
+          </div>
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-amber-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Banquets</span>
+            <span className="text-zinc-200 font-bold text-xs">Event Inquiries</span>
+          </div>
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-amber-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Local SEO</span>
+            <span className="text-emerald-400 font-bold text-xs">Schema JSON-LD</span>
+          </div>
+        </div>
+
+        <div className="relative z-10 flex items-center justify-between bg-black/80 px-2.5 py-1.5 rounded border border-amber-900/40 text-[10px] text-zinc-400">
+          <span className="flex items-center gap-1 text-amber-300">
+            <MapPin className="w-3 h-3 text-amber-400" /> HTML5 · Tailwind CSS · JS
+          </span>
+          <span className="text-zinc-200">Hostinger Apache</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === 'kritours') {
+    return (
+      <div className="w-full h-full min-h-[220px] bg-[#0c1527] p-4 font-mono text-xs flex flex-col justify-between text-zinc-300 relative overflow-hidden group">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-35 group-hover:opacity-45 transition-opacity duration-500 scale-105 group-hover:scale-100"
+          style={{ backgroundImage: "url('./images/projects/kritours-palette.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080d19] via-[#080d19]/80 to-[#0c1527]/90 pointer-events-none" />
+
+        <div className="relative z-10 flex items-center justify-between pb-2 border-b border-sky-900/40 text-[11px]">
+          <span className="text-sky-400 font-semibold flex items-center gap-1.5">
+            <Compass className="w-3.5 h-3.5 text-sky-400" /> Kritours Palette · Luxury Travel
+          </span>
+          <span className="px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/20 text-sky-300 text-[10px] font-medium">
+            kritours-palette.vercel.app
+          </span>
+        </div>
+
+        <div className="relative z-10 grid grid-cols-3 gap-2 my-2">
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-sky-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Circuits</span>
+            <span className="text-sky-300 font-bold text-xs">6 Curated Tours</span>
+          </div>
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-sky-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Itinerary</span>
+            <span className="text-amber-300 font-bold text-xs">Day Accordions</span>
+          </div>
+          <div className="bg-black/75 backdrop-blur-sm rounded p-2 border border-sky-900/40 text-center">
+            <span className="text-[9px] text-zinc-400 block uppercase">Consultation</span>
+            <span className="text-green-400 font-bold text-xs">Direct WhatsApp</span>
+          </div>
+        </div>
+
+        <div className="relative z-10 flex items-center justify-between bg-black/80 px-2.5 py-1.5 rounded border border-sky-900/40 text-[10px] text-zinc-400">
+          <span className="flex items-center gap-1 text-sky-300">
+            <Globe className="w-3 h-3 text-sky-400" /> Next.js 14 · TypeScript · Vercel Edge
+          </span>
+          <span className="text-zinc-200">Framer Motion</span>
+        </div>
+      </div>
+    );
+  }
   if (type === 'hrms') {
     return (
       <div className="w-full h-full min-h-[220px] bg-[#0c1021] p-4 font-mono text-xs flex flex-col justify-between text-zinc-300 relative overflow-hidden">
